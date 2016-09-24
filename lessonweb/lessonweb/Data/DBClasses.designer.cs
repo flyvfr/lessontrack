@@ -30,12 +30,12 @@ namespace lessonweb.Data
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertEndorsement(Endorsement instance);
     partial void UpdateEndorsement(Endorsement instance);
     partial void DeleteEndorsement(Endorsement instance);
+    partial void InsertAppUser(AppUser instance);
+    partial void UpdateAppUser(AppUser instance);
+    partial void DeleteAppUser(AppUser instance);
     #endregion
 		
 		public DBClassesDataContext() : 
@@ -68,14 +68,6 @@ namespace lessonweb.Data
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Endorsement> Endorsements
 		{
 			get
@@ -83,10 +75,200 @@ namespace lessonweb.Data
 				return this.GetTable<Endorsement>();
 			}
 		}
+		
+		public System.Data.Linq.Table<AppUser> AppUsers
+		{
+			get
+			{
+				return this.GetTable<AppUser>();
+			}
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Endorsements")]
+	public partial class Endorsement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserEmail;
+		
+		private string _EndorsementType;
+		
+		private string _EndorsementSubtype;
+		
+		private System.Nullable<System.DateTime> _ValidityIfAny;
+		
+		private System.DateTime _IssuedOn;
+		
+		private string _IssuingAuthority;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserEmailChanging(string value);
+    partial void OnUserEmailChanged();
+    partial void OnEndorsementTypeChanging(string value);
+    partial void OnEndorsementTypeChanged();
+    partial void OnEndorsementSubtypeChanging(string value);
+    partial void OnEndorsementSubtypeChanged();
+    partial void OnValidityIfAnyChanging(System.Nullable<System.DateTime> value);
+    partial void OnValidityIfAnyChanged();
+    partial void OnIssuedOnChanging(System.DateTime value);
+    partial void OnIssuedOnChanged();
+    partial void OnIssuingAuthorityChanging(string value);
+    partial void OnIssuingAuthorityChanged();
+    #endregion
+		
+		public Endorsement()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserEmail
+		{
+			get
+			{
+				return this._UserEmail;
+			}
+			set
+			{
+				if ((this._UserEmail != value))
+				{
+					this.OnUserEmailChanging(value);
+					this.SendPropertyChanging();
+					this._UserEmail = value;
+					this.SendPropertyChanged("UserEmail");
+					this.OnUserEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndorsementType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string EndorsementType
+		{
+			get
+			{
+				return this._EndorsementType;
+			}
+			set
+			{
+				if ((this._EndorsementType != value))
+				{
+					this.OnEndorsementTypeChanging(value);
+					this.SendPropertyChanging();
+					this._EndorsementType = value;
+					this.SendPropertyChanged("EndorsementType");
+					this.OnEndorsementTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndorsementSubtype", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string EndorsementSubtype
+		{
+			get
+			{
+				return this._EndorsementSubtype;
+			}
+			set
+			{
+				if ((this._EndorsementSubtype != value))
+				{
+					this.OnEndorsementSubtypeChanging(value);
+					this.SendPropertyChanging();
+					this._EndorsementSubtype = value;
+					this.SendPropertyChanged("EndorsementSubtype");
+					this.OnEndorsementSubtypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidityIfAny", DbType="Date")]
+		public System.Nullable<System.DateTime> ValidityIfAny
+		{
+			get
+			{
+				return this._ValidityIfAny;
+			}
+			set
+			{
+				if ((this._ValidityIfAny != value))
+				{
+					this.OnValidityIfAnyChanging(value);
+					this.SendPropertyChanging();
+					this._ValidityIfAny = value;
+					this.SendPropertyChanged("ValidityIfAny");
+					this.OnValidityIfAnyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuedOn", DbType="Date NOT NULL")]
+		public System.DateTime IssuedOn
+		{
+			get
+			{
+				return this._IssuedOn;
+			}
+			set
+			{
+				if ((this._IssuedOn != value))
+				{
+					this.OnIssuedOnChanging(value);
+					this.SendPropertyChanging();
+					this._IssuedOn = value;
+					this.SendPropertyChanged("IssuedOn");
+					this.OnIssuedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuingAuthority", DbType="NVarChar(50)")]
+		public string IssuingAuthority
+		{
+			get
+			{
+				return this._IssuingAuthority;
+			}
+			set
+			{
+				if ((this._IssuingAuthority != value))
+				{
+					this.OnIssuingAuthorityChanging(value);
+					this.SendPropertyChanging();
+					this._IssuingAuthority = value;
+					this.SendPropertyChanged("IssuingAuthority");
+					this.OnIssuingAuthorityChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppUsers")]
+	public partial class AppUser : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -185,7 +367,7 @@ namespace lessonweb.Data
     partial void OnEmployerChanged();
     #endregion
 		
-		public User()
+		public AppUser()
 		{
 			OnCreated();
 		}
@@ -626,188 +808,6 @@ namespace lessonweb.Data
 					this._Employer = value;
 					this.SendPropertyChanged("Employer");
 					this.OnEmployerChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Endorsements")]
-	public partial class Endorsement : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _UserEmail;
-		
-		private string _EndorsementType;
-		
-		private string _EndorsementSubtype;
-		
-		private System.Nullable<System.DateTime> _ValidityIfAny;
-		
-		private System.DateTime _IssuedOn;
-		
-		private string _IssuingAuthority;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserEmailChanging(string value);
-    partial void OnUserEmailChanged();
-    partial void OnEndorsementTypeChanging(string value);
-    partial void OnEndorsementTypeChanged();
-    partial void OnEndorsementSubtypeChanging(string value);
-    partial void OnEndorsementSubtypeChanged();
-    partial void OnValidityIfAnyChanging(System.Nullable<System.DateTime> value);
-    partial void OnValidityIfAnyChanged();
-    partial void OnIssuedOnChanging(System.DateTime value);
-    partial void OnIssuedOnChanged();
-    partial void OnIssuingAuthorityChanging(string value);
-    partial void OnIssuingAuthorityChanged();
-    #endregion
-		
-		public Endorsement()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string UserEmail
-		{
-			get
-			{
-				return this._UserEmail;
-			}
-			set
-			{
-				if ((this._UserEmail != value))
-				{
-					this.OnUserEmailChanging(value);
-					this.SendPropertyChanging();
-					this._UserEmail = value;
-					this.SendPropertyChanged("UserEmail");
-					this.OnUserEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndorsementType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string EndorsementType
-		{
-			get
-			{
-				return this._EndorsementType;
-			}
-			set
-			{
-				if ((this._EndorsementType != value))
-				{
-					this.OnEndorsementTypeChanging(value);
-					this.SendPropertyChanging();
-					this._EndorsementType = value;
-					this.SendPropertyChanged("EndorsementType");
-					this.OnEndorsementTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndorsementSubtype", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string EndorsementSubtype
-		{
-			get
-			{
-				return this._EndorsementSubtype;
-			}
-			set
-			{
-				if ((this._EndorsementSubtype != value))
-				{
-					this.OnEndorsementSubtypeChanging(value);
-					this.SendPropertyChanging();
-					this._EndorsementSubtype = value;
-					this.SendPropertyChanged("EndorsementSubtype");
-					this.OnEndorsementSubtypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidityIfAny", DbType="Date")]
-		public System.Nullable<System.DateTime> ValidityIfAny
-		{
-			get
-			{
-				return this._ValidityIfAny;
-			}
-			set
-			{
-				if ((this._ValidityIfAny != value))
-				{
-					this.OnValidityIfAnyChanging(value);
-					this.SendPropertyChanging();
-					this._ValidityIfAny = value;
-					this.SendPropertyChanged("ValidityIfAny");
-					this.OnValidityIfAnyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuedOn", DbType="Date NOT NULL")]
-		public System.DateTime IssuedOn
-		{
-			get
-			{
-				return this._IssuedOn;
-			}
-			set
-			{
-				if ((this._IssuedOn != value))
-				{
-					this.OnIssuedOnChanging(value);
-					this.SendPropertyChanging();
-					this._IssuedOn = value;
-					this.SendPropertyChanged("IssuedOn");
-					this.OnIssuedOnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuingAuthority", DbType="NVarChar(50)")]
-		public string IssuingAuthority
-		{
-			get
-			{
-				return this._IssuingAuthority;
-			}
-			set
-			{
-				if ((this._IssuingAuthority != value))
-				{
-					this.OnIssuingAuthorityChanging(value);
-					this.SendPropertyChanging();
-					this._IssuingAuthority = value;
-					this.SendPropertyChanged("IssuingAuthority");
-					this.OnIssuingAuthorityChanged();
 				}
 			}
 		}

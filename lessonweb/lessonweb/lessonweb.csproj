@@ -106,6 +106,7 @@
     <Content Include="Assets\css\animate.min.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\demo.css" />
+    <Content Include="Assets\css\login.css" />
     <Content Include="Assets\css\paper-dashboard.css" />
     <Content Include="Assets\css\themify-icons.css" />
     <Content Include="Assets\fonts\themify.svg" />
@@ -137,11 +138,13 @@
     <Content Include="Templates\user.html" />
     <Content Include="web\dashboard.aspx" />
     <Content Include="Web.config" />
+    <Content Include="web\login.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\SessionData.cs" />
+    <Compile Include="App_Code\Constants.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\AppUser.cs" />
     <Compile Include="Data\DBClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,6 +160,13 @@
     </Compile>
     <Compile Include="web\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

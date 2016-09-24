@@ -105,7 +105,7 @@
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-panel"></i>
-								<p><%= %></p>
+								<p><%= mUser.GetFullName()%></p>
                             </a>
                         </li>
                         <li class="dropdown">
