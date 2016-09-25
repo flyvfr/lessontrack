@@ -136,6 +136,7 @@
     <Content Include="Templates\template.html" />
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
+    <Content Include="web\instructors.aspx" />
     <Content Include="web\students.aspx" />
     <Content Include="web\basepage.aspx" />
     <Content Include="web\dashboard.aspx" />
@@ -156,6 +157,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="web\instructors.aspx.cs">
+      <DependentUpon>instructors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\instructors.aspx.designer.cs">
+      <DependentUpon>instructors.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\students.aspx.cs">
       <DependentUpon>students.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

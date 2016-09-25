@@ -8,7 +8,7 @@ using lessonweb.Data;
 
 namespace lessonweb.web
 {
-    public partial class PGStudents : System.Web.UI.Page
+    public partial class PGInstructors : System.Web.UI.Page
     {
         protected AppUser mUser = null;
 
@@ -33,9 +33,9 @@ namespace lessonweb.web
             return "" + AppUser.GetTotalInstructors();
         }
 
-        protected IEnumerable<AppUser> GetStudentList()
+        protected IEnumerable<AppUser> GetInstructorList()
         {
-            return AppUser.GetStudents();
+            return AppUser.GetInstructors();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="students.aspx.cs" Inherits="lessonweb.web.PGStudents" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="instructors.aspx.cs" Inherits="lessonweb.web.PGInstructors" %>
 <%@ Import Namespace="lessonweb.Data" %>
 
 <!doctype html>
@@ -55,13 +55,13 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="students.aspx">
                         <i class="ti-user"></i>
                         <p>Students</p>
                     </a>
                 </li>
-                <li >
+                <li class="active" >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>
                         <p>Instructors</p>
@@ -142,7 +142,7 @@
 
                                     <tbody>
                                         <%
-                                            var Students = GetStudentList();
+                                            var Students = GetInstructorList();
                                             foreach (AppUser usr in Students)
                                             {
                                                 %>

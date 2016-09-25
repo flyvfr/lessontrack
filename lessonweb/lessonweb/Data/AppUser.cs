@@ -32,6 +32,26 @@ namespace lessonweb.Data
             return nUsers;
         }
 
+        internal static IEnumerable<AppUser> GetInstructors()
+        {
+            DBClassesDataContext dbc = new DBClassesDataContext();
+            IEnumerable<AppUser> usrs = (from u in dbc.AppUsers
+                                         where u.IsInstructor == true
+                                         select u);
+
+            return usrs;
+        }
+
+        internal static IEnumerable<AppUser> GetStudents()
+        {
+            DBClassesDataContext dbc = new DBClassesDataContext();
+            IEnumerable<AppUser> usrs = (from u in dbc.AppUsers
+                           where u.IsStudent == true
+                           select u);
+
+            return usrs;
+        }
+
         internal static int GetTotalInstructors()
         {
             DBClassesDataContext dbc = new DBClassesDataContext();
