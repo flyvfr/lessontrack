@@ -8,7 +8,7 @@ using lessonweb.Data;
 
 namespace lessonweb.web
 {
-    public partial class dashboard : System.Web.UI.Page
+    public partial class basepage : System.Web.UI.Page
     {
         protected AppUser mUser = null;
 

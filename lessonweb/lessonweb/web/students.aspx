@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="lessonweb.web.dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="students.aspx.cs" Inherits="lessonweb.web.PGStudents" %>
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Dashboard</title>
+	<title>LessonTrack Student List</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -46,14 +46,15 @@
                     Atomic Helicopters
                 </a>
             </div>
+
             <ul class="nav">
-                <li class="active">
+                <li >
                     <a href="dashboard.aspx">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li >
+                <li class="active">
                     <a href="students.aspx">
                         <i class="ti-user"></i>
                         <p>Students</p>
@@ -97,7 +98,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">Students</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -124,117 +125,41 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
-                                            <i class="ti-user"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Students</p>
-                                            <%=GetTotalStudents() %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-success text-center">
-                                            <i class="ti-light-bulb"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Instructors</p>
-                                            <%=GetTotalInstructors() %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-calendar"></i> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Lessons </p>
-                                            23
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> This week
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-book"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Total Lessons</p>
-                                            45
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Since beginning
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
 
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Recent Lessons</h4>
-                                <p class="category"></p>
-                                <hr />
-                            </div>
                             <div class="content">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Email</td>
+                                            <td>Phone</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Goutham Sukumar</td>
+                                            <td>gsukumar@outlook.com</td>
+                                            <td>(425)5169623</td>
+                                            <td>view, delete, edit</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Goutham Sukumar</td>
+                                            <td>gsukumar@outlook.com</td>
+                                            <td>(425)5169623</td>
+                                            <td>view, delete, edit</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Goutham Sukumar</td>
+                                            <td>gsukumar@outlook.com</td>
+                                            <td>(425)5169623</td>
+                                            <td>view, delete, edit</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

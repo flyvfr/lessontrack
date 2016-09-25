@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="lessonweb.web.dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="basepage.aspx.cs" Inherits="lessonweb.web.basepage" %>
 
 <!doctype html>
 <html lang="en">
@@ -46,6 +46,7 @@
                     Atomic Helicopters
                 </a>
             </div>
+
             <ul class="nav">
                 <li class="active">
                     <a href="dashboard.aspx">

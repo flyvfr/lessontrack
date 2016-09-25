@@ -10,6 +10,6 @@
 namespace lessonweb.web {
     
     
-    public partial class dashboard {
+    public partial class basepage {
     }
 }
