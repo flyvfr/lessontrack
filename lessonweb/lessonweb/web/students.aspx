@@ -100,6 +100,7 @@
                         <span class="icon-bar bar3"></span>
                     </button>
                     <a class="navbar-brand" href="#">Students</a>
+                    <button type="button" class="btn btn-success" onClick="parent.location='edituser.aspx?type=student'">Add New</button>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -130,13 +131,13 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-                                <table class="table table-striped">
+                                <table class="table table-condensed">
                                     <thead>
                                         <tr>
-                                            <td>Name</td>
-                                            <td>Email</td>
-                                            <td>Phone</td>
-                                            <td>Actions</td>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
 
@@ -147,10 +148,10 @@
                                             {
                                                 %>
                                         <tr>
-                                            <td><%=usr.GetFullName() %></td>
+                                              <td><a href="showuser.aspx?uid=<%=usr.UserEmail%>"><%=usr.GetFullName() %></a></td> 
                                             <td><%=usr.UserEmail %></td>
                                             <td><%=usr.CellPhone %></td>
-                                            <td>view, delete, edit</td>
+                                            <td><a href="achievement.aspx?uid=<%=usr.UserEmail%>" class="ti-crown"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="edituser.aspx?uid=<%=usr.UserEmail%>" class="ti-pencil"/></td>
                                         </tr>
                                             <%
                                             }

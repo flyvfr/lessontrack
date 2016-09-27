@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="instructors.aspx.cs" Inherits="lessonweb.web.PGInstructors" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="showuser.aspx.cs" Inherits="lessonweb.web.PGShowUser" %>
 <%@ Import Namespace="lessonweb.Data" %>
 
 <!doctype html>
@@ -9,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Instructors List</title>
+	<title>LessonTrack Student</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -32,6 +32,28 @@
 
 </head>
 <body>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title">Delete User ?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this user ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onClick="parent.location='deleteuser.aspx?uid=<%=mShownUser.UserEmail %>'">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -61,7 +83,7 @@
                         <p>Students</p>
                     </a>
                 </li>
-                <li class="active" >
+                <li >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>
                         <p>Instructors</p>
@@ -99,9 +121,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Instructors</a>
-                    <button type="button" class="btn btn-success" onClick="parent.location='edituser.aspx?type=instructor'">Add New</button>
-
+                    <a class="navbar-brand" href="#"><%= mShownUser.GetFullName()%></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -128,35 +148,78 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-8">
                         <div class="card">
                             <div class="content">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div>
+                                            <p><strong><%=mShownUser.GetFullName() %></strong></p>
+                                            <p class="text-warning"><%=mShownUser.UserEmail %></p>
+                                            <%if (!String.IsNullOrEmpty(mShownUser.CellPhone))
+                                                {%>
+                                                <p><%=mShownUser.CellPhone %> (cell)</p>
+                                            <%} %>
 
-                                    <tbody>
-                                        <%
-                                            var Students = GetInstructorList();
-                                            foreach (AppUser usr in Students)
-                                            {
-                                                %>
-                                        <tr>
-                                            <td><a href="showuser.aspx?uid=<%=usr.UserEmail%>"><%=usr.GetFullName() %></a></td>
-                                            <td><%=usr.UserEmail %></td>
-                                            <td><%=usr.CellPhone %></td>
-                                            <td><a href="achievement.aspx?uid=<%=usr.UserEmail%>&IsInstructor=1" class="ti-crown"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="edituser.aspx?uid=<%=usr.UserEmail%>" class="ti-pencil"/></td>                                        </tr>
-                                            <%
-                                            }
-                                             %>
-                                    </tbody>
-                                </table>
+                                            <%if (!String.IsNullOrEmpty(mShownUser.HomePhone))
+                                                {%>
+                                                <p><%=mShownUser.HomePhone %> (home)</p>
+                                            <%} %>
+
+                                            <%if (!String.IsNullOrEmpty(mShownUser.WorkPhone))
+                                                {%>
+                                                <p><%=mShownUser.WorkPhone %> (work)</p>
+                                            <%} %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <a href="edituser.aspx?uid=<%=mShownUser.UserEmail %>">
+                                        <i class="ti-pencil-alt"></i> </a> &nbsp;&nbsp;&nbsp;
+                                        <a href="#" data-toggle="modal" data-target="#myModal">
+                                        <i class="ti-trash"></i> </a> &nbsp;&nbsp;&nbsp;
+                                        <a href="achievement.aspx?uid=<%=mShownUser.UserEmail %>">
+                                        <i class="ti-crown"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="card">
+                            <div class="content">
+                                <p><strong>Address</strong></p>
+                                <p><%=mShownUser.Address1 %></p>
+                                <p><%=mShownUser.Address2 %></p>
+                                <p><%=mShownUser.Address3 %></p>
+                                <p><%=mShownUser.City %></p>
+                                <p><%=mShownUser.State %></p>
+                                <p><%=mShownUser.ZIP %></p>
+                                <p><%=mShownUser.Country%></p>
+                                <br />
+                                <%if (mShownUser.DOB != null)
+                                    {%>
+                                    <p><strong>Date Of Birth</strong></p>
+                                    <p><%=mShownUser.DOB%></p>
+                                <%} %>
+                                <br />
+
+                                <%if (!String.IsNullOrEmpty(mShownUser.Employer))
+                                    {%>
+                                    <p><strong>Employer</strong></p>
+                                    <p><%=mShownUser.Employer%></p>
+                                <%} %>
+
                             </div>
                         </div>
                     </div>

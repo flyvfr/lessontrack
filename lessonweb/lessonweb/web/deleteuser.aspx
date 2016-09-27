@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="instructors.aspx.cs" Inherits="lessonweb.web.PGInstructors" %>
-<%@ Import Namespace="lessonweb.Data" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deleteuser.aspx.cs" Inherits="lessonweb.web.PGDeleteUser" %>
 
 <!doctype html>
 <html lang="en">
@@ -9,7 +8,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Instructors List</title>
+	<title>LessonTrack Dashboard</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -49,7 +48,7 @@
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active">
                     <a href="dashboard.aspx">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
@@ -61,7 +60,7 @@
                         <p>Students</p>
                     </a>
                 </li>
-                <li class="active" >
+                <li >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>
                         <p>Instructors</p>
@@ -99,9 +98,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Instructors</a>
-                    <button type="button" class="btn btn-success" onClick="parent.location='edituser.aspx?type=instructor'">Add New</button>
-
+                    <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -128,35 +125,117 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-lg-3 col-sm-6">
                         <div class="card">
                             <div class="content">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Students</p>
+                                            <%=GetTotalStudents() %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-light-bulb"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Instructors</p>
+                                            <%=GetTotalInstructors() %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-calendar"></i> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-danger text-center">
+                                            <i class="ti-pulse"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Lessons </p>
+                                            23
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> This week
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-book"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Total Lessons</p>
+                                            45
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> Since beginning
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
 
-                                    <tbody>
-                                        <%
-                                            var Students = GetInstructorList();
-                                            foreach (AppUser usr in Students)
-                                            {
-                                                %>
-                                        <tr>
-                                            <td><a href="showuser.aspx?uid=<%=usr.UserEmail%>"><%=usr.GetFullName() %></a></td>
-                                            <td><%=usr.UserEmail %></td>
-                                            <td><%=usr.CellPhone %></td>
-                                            <td><a href="achievement.aspx?uid=<%=usr.UserEmail%>&IsInstructor=1" class="ti-crown"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="edituser.aspx?uid=<%=usr.UserEmail%>" class="ti-pencil"/></td>                                        </tr>
-                                            <%
-                                            }
-                                             %>
-                                    </tbody>
-                                </table>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Recent Lessons</h4>
+                                <p class="category"></p>
+                                <hr />
+                            </div>
+                            <div class="content">
                             </div>
                         </div>
                     </div>

@@ -32,6 +32,16 @@ namespace lessonweb.Data
             return nUsers;
         }
 
+        internal static AppUser getUser(string uid)
+        {
+            DBClassesDataContext dbc = new DBClassesDataContext();
+            AppUser usr = (from u in dbc.AppUsers
+                           where u.UserEmail == uid
+                           select u).SingleOrDefault();
+
+            return usr;
+        }
+
         internal static IEnumerable<AppUser> GetInstructors()
         {
             DBClassesDataContext dbc = new DBClassesDataContext();
@@ -60,5 +70,6 @@ namespace lessonweb.Data
                           select u).Count();
             return nUsers;
         }
+
     }
 }

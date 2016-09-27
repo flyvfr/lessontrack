@@ -136,7 +136,10 @@
     <Content Include="Templates\template.html" />
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
+    <Content Include="web\deleteuser.aspx" />
     <Content Include="web\instructors.aspx" />
+    <Content Include="web\edituser.aspx" />
+    <Content Include="web\showuser.aspx" />
     <Content Include="web\students.aspx" />
     <Content Include="web\basepage.aspx" />
     <Content Include="web\dashboard.aspx" />
@@ -157,12 +160,33 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="web\deleteuser.aspx.cs">
+      <DependentUpon>deleteuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\deleteuser.aspx.designer.cs">
+      <DependentUpon>deleteuser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\instructors.aspx.cs">
       <DependentUpon>instructors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="web\instructors.aspx.designer.cs">
       <DependentUpon>instructors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\edituser.aspx.cs">
+      <DependentUpon>edituser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\edituser.aspx.designer.cs">
+      <DependentUpon>edituser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\showuser.aspx.cs">
+      <DependentUpon>showuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\showuser.aspx.designer.cs">
+      <DependentUpon>showuser.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\students.aspx.cs">
       <DependentUpon>students.aspx</DependentUpon>
