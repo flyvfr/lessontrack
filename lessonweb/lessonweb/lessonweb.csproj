@@ -136,10 +136,14 @@
     <Content Include="Templates\template.html" />
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
+    <Content Include="web\deleteaircraft.aspx" />
     <Content Include="web\deleteuser.aspx" />
+    <Content Include="web\editaircraft.aspx" />
     <Content Include="web\instructors.aspx" />
     <Content Include="web\edituser.aspx" />
+    <Content Include="web\showaircraft.aspx" />
     <Content Include="web\showuser.aspx" />
+    <Content Include="web\aircraft.aspx" />
     <Content Include="web\students.aspx" />
     <Content Include="web\basepage.aspx" />
     <Content Include="web\dashboard.aspx" />
@@ -150,6 +154,7 @@
     <Compile Include="App_Code\Constants.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\Aircraft.cs" />
     <Compile Include="Data\AppUser.cs" />
     <Compile Include="Data\DBClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -160,12 +165,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="web\deleteaircraft.aspx.cs">
+      <DependentUpon>deleteaircraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\deleteaircraft.aspx.designer.cs">
+      <DependentUpon>deleteaircraft.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\deleteuser.aspx.cs">
       <DependentUpon>deleteuser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="web\deleteuser.aspx.designer.cs">
       <DependentUpon>deleteuser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\editaircraft.aspx.cs">
+      <DependentUpon>editaircraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\editaircraft.aspx.designer.cs">
+      <DependentUpon>editaircraft.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\instructors.aspx.cs">
       <DependentUpon>instructors.aspx</DependentUpon>
@@ -181,12 +200,26 @@
     <Compile Include="web\edituser.aspx.designer.cs">
       <DependentUpon>edituser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="web\showaircraft.aspx.cs">
+      <DependentUpon>showaircraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\showaircraft.aspx.designer.cs">
+      <DependentUpon>showaircraft.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\showuser.aspx.cs">
       <DependentUpon>showuser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="web\showuser.aspx.designer.cs">
       <DependentUpon>showuser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\aircraft.aspx.cs">
+      <DependentUpon>aircraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\aircraft.aspx.designer.cs">
+      <DependentUpon>aircraft.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\students.aspx.cs">
       <DependentUpon>students.aspx</DependentUpon>

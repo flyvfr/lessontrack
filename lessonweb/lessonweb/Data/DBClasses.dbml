@@ -36,4 +36,15 @@
       <Column Name="Employer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Aircrafts" Member="Aircrafts">
+    <Type Name="Aircraft">
+      <Column Name="TailNumber" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Make" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Model" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="LastHobbs" Type="System.Decimal" DbType="Decimal(7,1)" CanBeNull="true" />
+      <Column Name="LastMXHobbs" Type="System.Decimal" DbType="Decimal(7,1)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

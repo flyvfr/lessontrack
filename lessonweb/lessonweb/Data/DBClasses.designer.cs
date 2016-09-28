@@ -36,6 +36,9 @@ namespace lessonweb.Data
     partial void InsertAppUser(AppUser instance);
     partial void UpdateAppUser(AppUser instance);
     partial void DeleteAppUser(AppUser instance);
+    partial void InsertAircraft(Aircraft instance);
+    partial void UpdateAircraft(Aircraft instance);
+    partial void DeleteAircraft(Aircraft instance);
     #endregion
 		
 		public DBClassesDataContext() : 
@@ -81,6 +84,14 @@ namespace lessonweb.Data
 			get
 			{
 				return this.GetTable<AppUser>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Aircraft> Aircrafts
+		{
+			get
+			{
+				return this.GetTable<Aircraft>();
 			}
 		}
 	}
@@ -808,6 +819,212 @@ namespace lessonweb.Data
 					this._Employer = value;
 					this.SendPropertyChanged("Employer");
 					this.OnEmployerChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Aircrafts")]
+	public partial class Aircraft : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _TailNumber;
+		
+		private string _Make;
+		
+		private string _Model;
+		
+		private string _Year;
+		
+		private System.Nullable<decimal> _LastHobbs;
+		
+		private System.Nullable<decimal> _LastMXHobbs;
+		
+		private int _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTailNumberChanging(string value);
+    partial void OnTailNumberChanged();
+    partial void OnMakeChanging(string value);
+    partial void OnMakeChanged();
+    partial void OnModelChanging(string value);
+    partial void OnModelChanged();
+    partial void OnYearChanging(string value);
+    partial void OnYearChanged();
+    partial void OnLastHobbsChanging(System.Nullable<decimal> value);
+    partial void OnLastHobbsChanged();
+    partial void OnLastMXHobbsChanging(System.Nullable<decimal> value);
+    partial void OnLastMXHobbsChanged();
+    partial void OnStatusChanging(int value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public Aircraft()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TailNumber", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string TailNumber
+		{
+			get
+			{
+				return this._TailNumber;
+			}
+			set
+			{
+				if ((this._TailNumber != value))
+				{
+					this.OnTailNumberChanging(value);
+					this.SendPropertyChanging();
+					this._TailNumber = value;
+					this.SendPropertyChanged("TailNumber");
+					this.OnTailNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Make", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Make
+		{
+			get
+			{
+				return this._Make;
+			}
+			set
+			{
+				if ((this._Make != value))
+				{
+					this.OnMakeChanging(value);
+					this.SendPropertyChanging();
+					this._Make = value;
+					this.SendPropertyChanged("Make");
+					this.OnMakeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Model", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Model
+		{
+			get
+			{
+				return this._Model;
+			}
+			set
+			{
+				if ((this._Model != value))
+				{
+					this.OnModelChanging(value);
+					this.SendPropertyChanging();
+					this._Model = value;
+					this.SendPropertyChanged("Model");
+					this.OnModelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="NChar(10)")]
+		public string Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastHobbs", DbType="Decimal(7,1)")]
+		public System.Nullable<decimal> LastHobbs
+		{
+			get
+			{
+				return this._LastHobbs;
+			}
+			set
+			{
+				if ((this._LastHobbs != value))
+				{
+					this.OnLastHobbsChanging(value);
+					this.SendPropertyChanging();
+					this._LastHobbs = value;
+					this.SendPropertyChanged("LastHobbs");
+					this.OnLastHobbsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastMXHobbs", DbType="Decimal(7,1)")]
+		public System.Nullable<decimal> LastMXHobbs
+		{
+			get
+			{
+				return this._LastMXHobbs;
+			}
+			set
+			{
+				if ((this._LastMXHobbs != value))
+				{
+					this.OnLastMXHobbsChanging(value);
+					this.SendPropertyChanging();
+					this._LastMXHobbs = value;
+					this.SendPropertyChanged("LastMXHobbs");
+					this.OnLastMXHobbsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
+		public int Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}

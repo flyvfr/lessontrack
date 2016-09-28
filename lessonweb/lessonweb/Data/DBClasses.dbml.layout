@@ -14,5 +14,11 @@
         <elementListCompartment Id="5abab4a8-f205-474c-90da-86fc00cc8cc0" absoluteBounds="2.14, 2.21, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="209648da-b4c7-40e8-a245-b820d8e23644" absoluteBounds="7.125, 3.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DBClassesDataContext/Aircraft" />
+      <nestedChildShapes>
+        <elementListCompartment Id="614a2193-a845-4476-b1dc-c33593485342" absoluteBounds="7.14, 3.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
