@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deleteaircraft.aspx.cs" Inherits="lessonweb.web.PGDeleteAircraft" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="showcourse.aspx.cs" Inherits="lessonweb.web.PGShowCourse" %>
+<%@ Import Namespace="lessonweb.Data" %>
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Dashboard</title>
+	<title>LessonTrack Student</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -48,7 +49,7 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li >
                     <a href="dashboard.aspx">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
@@ -98,7 +99,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#"><%= mCourse.CertificationName%></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -124,24 +125,62 @@
 
         <div class="content">
             <div class="container-fluid">
-               
                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group" id="stageacc">
+                        <%foreach (STAGE s in mCourse.mStages)
+                            { %>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading active ">
+                                        <h4 class="panel-title <%=(s.IsComplete?"text-success":(s.IsStarted?"text-primary":"text-danger")) %>">
+                                            <a data-toggle="collapse" data-parent="#stageacc" href="#collapse<%=s.STAGEID %>">
+                                                <%if (s.Type.ToLower().Equals("ground")){%>
+                                                GROUND <%=s.Name %>
+                                                <%} else { %>
+                                                FLIGHT  <%=s.Name %>
+                                                <%} %>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse<%=s.STAGEID %>" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="panel-group" id="lessonacc">
+                                                <%foreach (LESSON less in s.Lessons)
+                                                    { %>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title <%=(less.IsComplete?"text-success":(less.IsStarted?"text-primary":"text-danger")) %>">
+                                                            <a data-toggle="collapse" data-parent="#lessonacc" href="#collapse<%=s.STAGEID%><%=less.LESSONID %>">
+                                                                <%=less.Title%>
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse<%=s.STAGEID%><%=less.LESSONID %>" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <%foreach (LESSONITEM li in less.LessonItems)
+                                                                { %>
+                                                                <%if (li.IsGroup)
+                                                                    {%>
+                                                                    <p><strong><%=li.ItemName %></strong></p>
+                                                                <%} else { %>
+                                                                <p>&nbsp;&nbsp;&nbsp;<%=li.ItemName %></p>
+                                                                <%} %>
+                                                            <%} %>
 
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Recent Lessons</h4>
-                                <p class="category"></p>
-                                <hr />
-                            </div>
-                            <div class="content">
-                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                                <%} %>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <%} %>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <footer class="footer">
             <div class="container-fluid">
@@ -170,9 +209,9 @@
                 </div>
             </div>
         </footer>
-
     </div>
 </div>
+
 
 
 </body>

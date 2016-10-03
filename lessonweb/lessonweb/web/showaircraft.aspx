@@ -90,14 +90,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.aspx">
+                    <a href="showcourse.aspx?certid=61-PVT">
                         <i class="ti-book"></i>
-                        <p>Courses</p>
+                        <p>Private Syllabus</p>
                     </a>
                 </li>
                 <li>
                     <a href="aircraft.aspx">
-                        <i class="ti-rocket"></i>
+                        <i class="fa fa-plane"></i>
                         <p>Aircraft</p>
                     </a>
                 </li>
@@ -154,7 +154,7 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="icon-big icon-warning text-center">
-                                            <i class="ti-user"></i>
+                                            <i class="fa fa-plane"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">

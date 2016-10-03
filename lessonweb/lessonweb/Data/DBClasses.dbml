@@ -47,4 +47,53 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.FAACerts" Member="FAACerts">
+    <Type Name="FAACert">
+      <Column Name="CertificationID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CertificationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InfoLink" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FAAPart" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LESSONITEMS" Member="LESSONITEMs">
+    <Type Name="LESSONITEM">
+      <Column Name="LineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LESSONID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STAGEID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LESSONGUID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsGroup" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsReview" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsIntro" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LESSONS" Member="LESSONs">
+    <Type Name="LESSON">
+      <Column Name="LESSONID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Objective" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Standard" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="STAGEID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.STAGES" Member="STAGEs">
+    <Type Name="STAGE">
+      <Column Name="STAGEID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Objective" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Standard" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CertificationID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompletionLogs" Member="CompletionLogs">
+    <Type Name="CompletionLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DateCompleted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Student" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Instructor" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="AircraftUsed" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="LessonGUID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

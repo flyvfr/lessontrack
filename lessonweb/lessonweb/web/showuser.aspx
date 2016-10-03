@@ -90,14 +90,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.aspx">
+                    <a href="showcourse.aspx?certid=61-PVT">
                         <i class="ti-book"></i>
-                        <p>Courses</p>
+                        <p>Private Syllabus</p>
                     </a>
                 </li>
                 <li>
                     <a href="aircraft.aspx">
-                        <i class="ti-rocket"></i>
+                        <i class="fa fa-plane"></i>
                         <p>Aircraft</p>
                     </a>
                 </li>
@@ -186,8 +186,11 @@
                                         <i class="ti-pencil-alt"></i> </a> &nbsp;&nbsp;&nbsp;
                                         <a href="#" data-toggle="modal" data-target="#myModal">
                                         <i class="ti-trash"></i> </a> &nbsp;&nbsp;&nbsp;
-                                        <a href="achievement.aspx?uid=<%=mShownUser.UserEmail %>">
+                                        <%if (mShownUser.IsStudent)
+                                            { %>
+                                        <a href="showcourse.aspx?certid=61-PVT&student=<%=mShownUser.UserEmail %>">
                                         <i class="ti-crown"></i> </a>
+                                        <%} %>
                                     </div>
                                 </div>
                             </div>

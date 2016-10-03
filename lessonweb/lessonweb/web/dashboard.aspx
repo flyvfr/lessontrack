@@ -66,14 +66,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.aspx">
+                    <a href="showcourse.aspx?certid=61-PVT">
                         <i class="ti-book"></i>
-                        <p>Courses</p>
+                        <p>Private Syllabus</p>
                     </a>
                 </li>
                 <li>
                     <a href="aircraft.aspx">
-                        <i class="ti-rocket"></i>
+                        <i class="fa fa-plane"></i>
                         <p>Aircraft</p>
                     </a>
                 </li>
@@ -180,13 +180,13 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="fa fa-plane"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Lessons </p>
-                                            23
+                                            <p>Aircraft </p>
+                                            <%=GetTotalAircraft() %>
                                         </div>
                                     </div>
                                 </div>

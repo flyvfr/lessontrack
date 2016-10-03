@@ -32,6 +32,7 @@ namespace lessonweb.Data
             return nAc;
         }
 
+
         internal static IEnumerable<Aircraft> GetAll()
         {
             DBClassesDataContext dbc = new DBClassesDataContext();

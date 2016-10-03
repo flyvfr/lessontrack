@@ -68,14 +68,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.aspx">
+                    <a href="showcourse.aspx?certid=61-PVT">
                         <i class="ti-book"></i>
-                        <p>Courses</p>
+                        <p>Private Syllabus</p>
                     </a>
                 </li>
                 <li>
                     <a href="aircraft.aspx">
-                        <i class="ti-rocket"></i>
+                        <i class="fa fa-plane"></i>
                         <p>Aircraft</p>
                     </a>
                 </li>

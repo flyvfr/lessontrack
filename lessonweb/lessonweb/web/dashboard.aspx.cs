@@ -33,5 +33,10 @@ namespace lessonweb.web
             return "" + AppUser.GetTotalInstructors();
         }
 
+        protected string GetTotalAircraft()
+        {
+            return "" + Aircraft.GetTotalShips();
+        }
+
     }
 }
