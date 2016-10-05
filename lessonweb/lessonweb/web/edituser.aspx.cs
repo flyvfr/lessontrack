@@ -86,12 +86,21 @@ namespace lessonweb.web
                                where u.UserEmail == mEditingUser.UserEmail
                                select u).SingleOrDefault();
                 mEditingUser = usr;
-            }else
+                if (!String.IsNullOrEmpty(PasswordChange.Text))
+                {
+                    mEditingUser.PasswordHash = System.Text.Encoding.UTF8.GetBytes(PasswordChange.Text);
+                }
+            }
+            else
             {
                 dbc.AppUsers.InsertOnSubmit(mEditingUser);
                 mEditingUser.UserEmail = Email.Text;
+                if (!String.IsNullOrEmpty(Password.Text))
+                {
+                    mEditingUser.PasswordHash = System.Text.Encoding.UTF8.GetBytes(Password.Text);
+                }
                 mEditingUser.CreatedOn = DateTime.Now;
-                mEditingUser.PasswordHash = new ASCIIEncoding().GetBytes(Password.Text);
+                //mEditingUser.PasswordHash = new ASCIIEncoding().GetBytes(Password.Text);
             }
 
             // now save all the data and move to the previous page.

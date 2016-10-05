@@ -8,7 +8,7 @@ using lessonweb.Data;
 
 namespace lessonweb.web
 {
-    public partial class PGShowCourse : System.Web.UI.Page
+    public partial class PGPrintProgress : System.Web.UI.Page
     {
         protected AppUser mUser = null;
         protected FAACert mCourse = null;

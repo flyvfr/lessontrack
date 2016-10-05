@@ -8,7 +8,7 @@ using lessonweb.Data;
 
 namespace lessonweb.web
 {
-    public partial class PGShowCourse : System.Web.UI.Page
+    public partial class PGEditCourse : System.Web.UI.Page
     {
         protected AppUser mUser = null;
         protected FAACert mCourse = null;
@@ -50,8 +50,19 @@ namespace lessonweb.web
                 }
             }
 
+            if (mStudent == null)
+            {
+                Response.Redirect("dashboard.aspx");
+                Response.Close();
+                return;
+            }
+
             mCourse.LoadStages(studentid);   // load it completely
         }
 
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

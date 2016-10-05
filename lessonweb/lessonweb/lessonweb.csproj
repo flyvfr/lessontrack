@@ -138,11 +138,14 @@
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
     <Content Include="web\deleteaircraft.aspx" />
+    <Content Include="web\printprogress.aspx" />
+    <Content Include="web\updatecourse.aspx" />
     <Content Include="web\deleteuser.aspx" />
     <Content Include="web\editaircraft.aspx" />
     <Content Include="web\instructors.aspx" />
     <Content Include="web\edituser.aspx" />
     <Content Include="web\showaircraft.aspx" />
+    <Content Include="web\editcourse.aspx" />
     <Content Include="web\showcourse.aspx" />
     <Content Include="web\showuser.aspx" />
     <Content Include="web\aircraft.aspx" />
@@ -179,6 +182,20 @@
     <Compile Include="web\deleteaircraft.aspx.designer.cs">
       <DependentUpon>deleteaircraft.aspx</DependentUpon>
     </Compile>
+    <Compile Include="web\printprogress.aspx.cs">
+      <DependentUpon>printprogress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\printprogress.aspx.designer.cs">
+      <DependentUpon>printprogress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\updatecourse.aspx.cs">
+      <DependentUpon>updatecourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\updatecourse.aspx.designer.cs">
+      <DependentUpon>updatecourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\deleteuser.aspx.cs">
       <DependentUpon>deleteuser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +230,13 @@
     </Compile>
     <Compile Include="web\showaircraft.aspx.designer.cs">
       <DependentUpon>showaircraft.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\editcourse.aspx.cs">
+      <DependentUpon>editcourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\editcourse.aspx.designer.cs">
+      <DependentUpon>editcourse.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\showcourse.aspx.cs">
       <DependentUpon>showcourse.aspx</DependentUpon>

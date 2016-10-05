@@ -7,14 +7,19 @@ namespace lessonweb.Data
 {
     public partial class LESSON
     {
-        public IEnumerable<LESSONITEM> LessonItems;
+        public List<LESSONITEM> LessonItems;
         public bool IsComplete = false; // incomplete by default
         public bool IsStarted = false;
         public void LoadItems(DBClassesDataContext dbc)
         {
-            LessonItems = from l in dbc.LESSONITEMs
+            IEnumerable<LESSONITEM> items= from l in dbc.LESSONITEMs
                       where l.LESSONID == LESSONID
                       select l;
+            LessonItems = new List<LESSONITEM>();
+            foreach (LESSONITEM l in items)
+            {
+                LessonItems.Add(l);
+            }
         }
 
         /**
@@ -40,5 +45,16 @@ namespace lessonweb.Data
                 }
             }
         }
+
+        public string GetReportLines()
+        {
+            String s = "<tr class='warning'><td colspan='4'>" + Title+ "</td></tr>\n";
+            foreach (LESSONITEM less in LessonItems)
+            {
+                s += less.GetReportLines();
+            }
+            return s;
+        }
+
     }
 }

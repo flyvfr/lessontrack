@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>
@@ -121,7 +121,16 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><%= mShownUser.GetFullName()%></a>
+                    <div>
+                        <a class="navbar-brand" href="#"><%= mShownUser.GetFullName()%></a>
+                        <%if (mShownUser.IsStudent)
+                        { %>
+                            <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
+                            <button type="button" class="btn btn-success" onClick="parent.location='editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">Update Progress</button>
+                            <!--<a href="showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Show Progress</a>
+                            <a href="editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Update Progress</a> -->
+                        <%} %>
+                    </div>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -182,15 +191,10 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="edituser.aspx?uid=<%=mShownUser.UserEmail %>">
-                                        <i class="ti-pencil-alt"></i> </a> &nbsp;&nbsp;&nbsp;
-                                        <a href="#" data-toggle="modal" data-target="#myModal">
-                                        <i class="ti-trash"></i> </a> &nbsp;&nbsp;&nbsp;
-                                        <%if (mShownUser.IsStudent)
-                                            { %>
-                                        <a href="showcourse.aspx?certid=61-PVT&student=<%=mShownUser.UserEmail %>">
-                                        <i class="ti-crown"></i> </a>
-                                        <%} %>
+                                            <a href="edituser.aspx?uid=<%=mShownUser.UserEmail %>">
+                                            <i class="fa fa-2x fa-pencil-square"></i> </a> &nbsp;&nbsp;&nbsp;
+                                            <a href="#" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-2x fa-trash"></i> </a> &nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>
                             </div>

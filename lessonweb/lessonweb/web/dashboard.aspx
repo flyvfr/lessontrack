@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>
@@ -141,10 +141,10 @@
                                     </div>
                                 </div>
                                 <div class="footer">
-                                    <hr />
+                                   <!-- <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> 
-                                    </div>
+                                        <i class="ti-timer"></i> This week
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -166,10 +166,10 @@
                                     </div>
                                 </div>
                                 <div class="footer">
-                                    <hr />
+                                   <!-- <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> 
-                                    </div>
+                                        <i class="ti-timer"></i> This week
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -191,35 +191,10 @@
                                     </div>
                                 </div>
                                 <div class="footer">
-                                    <hr />
+                                   <!-- <hr />
                                     <div class="stats">
                                         <i class="ti-timer"></i> This week
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-book"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Total Lessons</p>
-                                            45
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Since beginning
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -231,10 +206,35 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Recent Lessons</h4>
-                                <p class="category"></p>
-                                <hr />
                             </div>
                             <div class="content">
+                                 <table class="table table-condensed">
+                                    <thead>
+                                        <tr class="active">
+                                            <th style="width:10%">Date</th>
+                                            <th>Lesson</th>
+                                            <th>Student</th>
+                                            <th>Instructor</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <%
+                                            var lessons = lessonweb.Data.LESSONITEM.GetLatest(20);
+                                            foreach (lessonweb.Data.LESSONITEM itm in lessons)
+                                            {
+                                                %>
+                                        <tr>
+                                              <td><%=(itm.CompletedOn.HasValue? ((DateTime)(itm.CompletedOn)).ToString("d") : "") %></td> 
+                                            <td><%=itm.ItemName%></td>
+                                            <td><%=itm.Student.GetFullName()%></td>
+                                            <td><%=itm.Instructor%></td>
+                                        </tr>
+                                            <%
+                                            }
+                                             %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

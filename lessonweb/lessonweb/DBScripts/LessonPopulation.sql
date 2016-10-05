@@ -3,7 +3,7 @@ truncate table STAGES;
 truncate table LESSONS;
 truncate table LESSONITEMS;
 		
-insert into STAGES (name, type, CertificationID) values ('STAGE I', 'FLIGHT', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE I', 'FLIGHT', '141-PVT');
 
 update STAGES SET OBJECTIVE='During this stage, the student becomes familiar with the training helicopter and learns how the helicopter controls are used to establish and maintain specific flight attitudes. The student also will gain proficiency to conduct the first supervised solo in the training helicopter.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='At the completion of this stage, the student will demonstrate proficiency in basic flight maneuvers, and will have successfully soloed in the local area.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -535,7 +535,12 @@ INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro
 update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) from LessonItems);
 
 					
-INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Before Takeoff Check', 0, 0, 0);
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Before Takeoff Ch', 0, 0, 0);
+
+update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) from LessonItems);
+
+					
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'eck', 0, 0, 0);
 
 update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) from LessonItems);
 
@@ -1946,7 +1951,7 @@ update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) fr
 				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));
 
-insert into STAGES (name, type, CertificationID) values ('STAGE II', 'FLIGHT', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE II', 'FLIGHT', '141-PVT');
 
 update STAGES SET OBJECTIVE='This stage allows the student to expand the skills learned in the previous stage. Introduction of maximum performance takeoffs and climbs, steep approaches, running/rolling takeoffs, shallow approaches, running/roll on landings, and slope operations prepare the student for conducting flights at a variety of airports and heliports. Through discussion sessions, the student will gain insight into emergency situations including retreating blade stall, dynamic rollover, ground resonance, low G conditions, and low r.p.m. and blade stall.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='At the completion of this stage, the student will have the proficiency to safely demonstrate consistent results in performing maximum performance takeoffs and climbs, steep approaches, running/rolling takeoffs, shallow approaches, running/roll on landings, and slope operations. The student will exhibit knowledge of the elements related to retreating blade stall, dynamic rollover, ground resonance, low G conditions, low r.p.m. and blade stall, and can explain flight techniques which prevent these emergency situations.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -2770,7 +2775,7 @@ update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) fr
 				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));
 
-insert into STAGES (name, type, CertificationID) values ('STAGE III', 'FLIGHT', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE III', 'FLIGHT', '141-PVT');
 
 update STAGES SET OBJECTIVE='During this stage, the student will learn to conduct cross-country flights using pilotage, dead reckoning, and radio navigation. In addition, the student will learn how to conduct night operations safely.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='This stage is complete when the student can accurately plan and conduct cross-country and night flights.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -4757,7 +4762,7 @@ update LESSONITEMS SET IsIntro=0, IsReview=1 where LineID=(select Max(LineID) fr
 				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));
 
-insert into STAGES (name, type, CertificationID) values ('STAGE I', 'GROUND', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE I', 'GROUND', '141-PVT');
 
 update STAGES SET OBJECTIVE='During this stage, the student will be introduced to helicopters and become familiar with the aerodynamic principles of flight which affect their operation. The student will also obtain a basic knowledge of the safety of flight, airports and heliports, airspace, radio communications, and air traffic control services, including the use of radar. In addition, the student will learn how to predict performance and control weight and balance conditions of the helicopter. The student also will become familiar with the Federal Aviation Regulations as they apply to private pilot operations. Finally, the student will be introduced to meteorology for pilots.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='This stage is complete when the student has taken the Stage I written exam with a minimum passing score of 80%, and the instructor has reviewed each incorrect response to ensure complete understanding before the student progresses to Stage II.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -5481,7 +5486,7 @@ update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) fr
 				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));
 
-insert into STAGES (name, type, CertificationID) values ('STAGE II', 'GROUND', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE II', 'GROUND', '141-PVT');
 
 update STAGES SET OBJECTIVE='During this stage, the student will build on previous weather knowledge to learn how to procure weather information and interpret printed reports and graphic weather products. In addition, the student will learn about aeronautical charts, flight computers, pilotage, dead reckoning, and flight information sources. The student also will be introduced to VOR, ADF, and advanced navigation, including GPS.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='This stage is complete when the student has taken the Stage II written exam with a minimum passing score of 80%, and the instructor has reviewed each incorrect response to ensure complete understanding before the student progresses to Stage III.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -5818,9 +5823,25 @@ update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) fr
 INSERT INTO LESSONS (TITLE, STAGEID) values ('GROUND LESSON 11 STAGE II EXAM', (select MAX(STAGEID) from STAGES));
 
 				
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Interpreting Weather Data', 0, 0, 0);
+
+update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) from LessonItems);
+
+				
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Basic Navigation', 0, 0, 0);
+
+update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) from LessonItems);
+
+				
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Radio Navigation', 0, 0, 0);
+
+update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) from LessonItems);
+
+
+				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));
 
-insert into STAGES (name, type, CertificationID) values ('STAGE III', 'GROUND', '61-PVT');
+insert into STAGES (name, type, CertificationID) values ('STAGE III', 'GROUND', '141-PVT');
 
 update STAGES SET OBJECTIVE='During this stage, the student will gain an understanding of the physiological factors which can affect both pilot and passengers during flight. In addition, the student will learn how to conduct comprehensive preflight planning for cross-country flights and gain insight into factors affecting the decision-making process.' where STAGEID=(select MAX(STAGEID) from STAGES);
 update STAGES SET STANDARD='This stage is complete when the student has taken the Stage III written exam and the Private Pilot Helicopter Final Exam with a minimum passing score of 80%, and the instructor has reviewed each incorrect response to ensure complete understanding.' where STAGEID=(select MAX(STAGEID) from STAGES);
@@ -6039,6 +6060,11 @@ update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) fr
 
 				
 INSERT INTO LESSONS (TITLE, STAGEID) values ('GROUND LESSON 15 END-OF-COURSE EXAM — PRIVATE PILOT HELICOPTER', (select MAX(STAGEID) from STAGES));
+
+					
+INSERT INTO LESSONITEMS (LESSONID, STAGEID, ItemName, IsGroup, IsReview, IsIntro) values ((select MAX(LESSONID) from LESSONS), (select MAX(STAGEID) from STAGES), 'Private Pilot Helicopter End-of-Course Exam', 0, 0, 0);
+
+update LESSONITEMS SET IsIntro=0, IsReview=0 where LineID=(select Max(LineID) from LessonItems);
 
 				
 update  lessonitems set LESSONGUID = CONCAT(Convert(varchar, StageID), ':', Convert(varchar, LessonID),':', Convert(varchar, lineid));

@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>

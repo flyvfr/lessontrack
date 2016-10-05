@@ -8,7 +8,7 @@ namespace lessonweb.Data
     public partial class FAACert
     {
 
-        public IEnumerable<STAGE> mStages;
+        public List<STAGE> mStages;
         public bool IsComplete = false; // incomplete by default
         public bool IsStarted = false; // unstarted by default
 
@@ -25,10 +25,15 @@ namespace lessonweb.Data
         public void LoadStages(string optionalStudent)
         {
             DBClassesDataContext dbc = new DBClassesDataContext();
-            mStages = from s in dbc.STAGEs
+            IEnumerable<STAGE> lst = from s in dbc.STAGEs
                        where s.CertificationID == CertificationID
                      select s;
 
+            mStages = new List<STAGE>();
+            foreach (STAGE l in lst)
+            {
+                mStages.Add(l);
+            }
             IsComplete = true;
 
             foreach (STAGE stg in mStages)

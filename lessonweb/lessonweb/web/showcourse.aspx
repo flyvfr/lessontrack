@@ -9,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Student</title>
+	<title>LessonTrack Course</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>
@@ -99,7 +99,18 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><%= mCourse.CertificationName%></a>
+                    <div>
+
+                    <%if (mStudent != null)
+                        { %>
+                        <a class="navbar-brand" href="showuser.aspx?uid=<%=mStudent.UserEmail %>"><%= mStudent.GetFullName()%></a>
+                        <button type="button" class="btn btn-success" onClick="window.open('printprogress.aspx?certid=<%=mCourse.CertificationID %>&student=<%=mStudent.UserEmail %>')">Print...</button>
+                        <button type="button" class="btn btn-success" onClick="parent.location='editcourse.aspx?certid=<%=mCourse.CertificationID %>&student=<%=mStudent.UserEmail %>'">Update Progress</button>
+                        <%}else{ %>
+                        <a class="navbar-brand" href="#"><%= mCourse.CertificationName%></a>
+                        <%} %>
+                    </div>
+
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -127,13 +138,17 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12">
+
                         <div class="panel-group" id="stageacc">
                         <%foreach (STAGE s in mCourse.mStages)
                             { %>
                                 <div class="panel panel-default">
                                     <div class="panel-heading active ">
                                         <h4 class="panel-title <%=(s.IsComplete?"text-success":(s.IsStarted?"text-primary":"text-danger")) %>">
+                                            
                                             <a data-toggle="collapse" data-parent="#stageacc" href="#collapse<%=s.STAGEID %>">
+                                                <%if (s.IsComplete)
+                                                    {%><i class="fa fa-check"></i><%} %>
                                                 <%if (s.Type.ToLower().Equals("ground")){%>
                                                 GROUND <%=s.Name %>
                                                 <%} else { %>
@@ -151,6 +166,8 @@
                                                     <div class="panel-heading">
                                                         <h4 class="panel-title <%=(less.IsComplete?"text-success":(less.IsStarted?"text-primary":"text-danger")) %>">
                                                             <a data-toggle="collapse" data-parent="#lessonacc" href="#collapse<%=s.STAGEID%><%=less.LESSONID %>">
+                                                                <%if (less.IsComplete)
+                                                                    {%><i class="fa fa-check"></i><%} %>
                                                                 <%=less.Title%>
                                                             </a>
                                                         </h4>
@@ -163,7 +180,10 @@
                                                                     {%>
                                                                     <p><strong><%=li.ItemName %></strong></p>
                                                                 <%} else { %>
-                                                                <p>&nbsp;&nbsp;&nbsp;<%=li.ItemName %></p>
+                                                                <p class="<%=(li.IsComplete?"text-success":"text-danger") %>">
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <%if (li.IsComplete)
+                                                                    {%><i class="fa fa-check"></i><%} %><%=li.ItemName %></p>
                                                                 <%} %>
                                                             <%} %>
 

@@ -7,15 +7,22 @@ namespace lessonweb.Data
 {
     public partial class STAGE
     {
-        public IEnumerable<LESSON> Lessons;
+        public List<LESSON> Lessons;
         public bool IsComplete = false; // incomplete by default
         public bool IsStarted = false; // unstarted by default
 
         public void LoadLessons(DBClassesDataContext dbc)
         {
-            Lessons = from l in dbc.LESSONs
+            IEnumerable < LESSON > lst = from l in dbc.LESSONs
                       where l.STAGEID == STAGEID
                       select l;
+            Lessons = new List<LESSON>();
+            foreach (LESSON l in lst)
+            {
+                Lessons.Add(l);
+            }
+
+
             foreach (LESSON les in Lessons)
             {
                 les.LoadItems(dbc);
@@ -46,5 +53,16 @@ namespace lessonweb.Data
             }
 
         }
+
+        public string GetReportLines()
+        {
+            String s = "<tr class='info'><td colspan='4'>" + Name + "</td></tr>\n";
+            foreach (LESSON less in Lessons)
+            {
+                s += less.GetReportLines();
+            }
+            return s;
+        }
+
     }
 }

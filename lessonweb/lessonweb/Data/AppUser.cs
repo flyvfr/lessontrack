@@ -19,8 +19,16 @@ namespace lessonweb.Data
             AppUser usr = (from u in dbc.AppUsers
                           where u.UserEmail == email
                           select u).SingleOrDefault();
-
+            if (usr.PasswordHash != null && usr.PasswordHash.ToArray()[0] != 0)
+            {
+                string internalpwd = System.Text.Encoding.UTF8.GetString(usr.PasswordHash.ToArray());
+                if (internalpwd != passwd)
+                {
+                    return null;
+                }
+            }
             return usr;
+
         }
 
         internal static int GetTotalStudents()

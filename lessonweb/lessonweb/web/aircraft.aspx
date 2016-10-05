@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>
@@ -98,8 +98,10 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
+                    <div>
                     <a class="navbar-brand" href="#">Aircraft</a>
                     <button type="button" class="btn btn-success" onClick="parent.location='editaircraft.aspx?type=new'">Add New</button>
+                    </div>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">

@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="showcourse.aspx?certid=61-PVT">
+                    <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
                     </a>
@@ -142,13 +142,14 @@
                                             { %>
                                         <label for="Email" class="control-label col-sm-3">Email</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="Email" runat="server" class="form-control" autocomplete="off" placeholder="Email Address"></asp:TextBox>
+                                            <asp:TextBox ID="Email" runat="server" class="form-control" placeholder="Email Address"></asp:TextBox>
                                         </div>
                                         <label for="Password" class="control-label col-sm-3">Password</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="Password" type="password" runat="server" class="form-control" autocomplete="off" placeholder="Email Address"></asp:TextBox>
+                                            <asp:TextBox ID="Password" type="password" runat="server" class="form-control" autocomplete="off" placeholder="Password required"></asp:TextBox>
                                         </div>
-                                        <%} %>
+                                        <%}%>
+
                                         <label for="FName" class="control-label col-sm-3">First Name</label>
                                         <div class="col-sm-9">
                                             <asp:TextBox ID="FName" runat="server" class="form-control" autocomplete="off" placeholder="First Name"></asp:TextBox>
@@ -262,6 +263,25 @@
                         </div>
                     </div>
                 </div>
+
+                <% if (NewType == null)
+                    { %>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="content">
+                                <p><strong>Password Update</strong></p>
+                                <div class="form-group">
+                                        <label for="PasswordChange" class="control-label col-sm-3">Password</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="PasswordChange" type="password" runat="server" class="form-control" autocomplete="off" placeholder="Leave empty to keep old password"></asp:TextBox>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%} %>
 
                 <div class="row">
                     <div class="col-md-8">
