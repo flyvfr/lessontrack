@@ -51,6 +51,13 @@ namespace lessonweb.web
                     return;
                 }
             }
+
+            if (mEditingUser== null || (mUser.IsRestrictedUser() && mEditingUser.UserEmail != mUser.UserEmail))
+            {
+                Response.Redirect("dashboard.aspx");
+                Response.Close();
+                return;
+            }
             if (!IsPostBack)
             {
                 Email.ReadOnly = (NewType == null);

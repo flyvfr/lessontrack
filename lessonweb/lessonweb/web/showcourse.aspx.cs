@@ -44,7 +44,7 @@ namespace lessonweb.web
             if (!String.IsNullOrEmpty(studentid))
             {
                 mStudent = AppUser.getUser(studentid);
-                if (mStudent == null)
+                if (mStudent == null || (mUser.IsRestrictedUser() && mStudent.UserEmail != mUser.UserEmail))
                 {
                     studentid = null;
                 }

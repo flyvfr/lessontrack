@@ -49,7 +49,12 @@ namespace lessonweb.web
                     studentid = null;
                 }
             }
-
+            if (mStudent == null || (mUser.IsRestrictedUser() && mStudent.UserEmail != mUser.UserEmail))
+            {
+                Response.Redirect("dashboard.aspx");
+                Response.Close();
+                return;
+            }
             mCourse.LoadStages(studentid);   // load it completely
         }
 

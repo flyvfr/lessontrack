@@ -22,7 +22,7 @@ namespace lessonweb.web
         protected void btnSignIn_Click(object sender, EventArgs e)
         {
             AppUser user = AppUser.getUserIfValid(Email.Text, Password.Text);
-            if (user != null && user.IsAdmin)
+            if (user != null)
             {
                 Session[Constants.SESS_KEY_USER] = user;
                 Response.Redirect("dashboard.aspx");

@@ -107,6 +107,7 @@
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\demo.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
+    <Content Include="Assets\css\lessonweb.css" />
     <Content Include="Assets\css\login.css" />
     <Content Include="Assets\css\paper-dashboard.css" />
     <Content Include="Assets\css\themify-icons.css" />
@@ -159,6 +160,7 @@
     <Compile Include="App_Code\Constants.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\LessonTimeLog.cs" />
     <Compile Include="Data\CompletionLog.cs" />
     <Compile Include="Data\LESSONITEM.cs" />
     <Compile Include="Data\LESSON.cs" />

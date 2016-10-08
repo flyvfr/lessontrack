@@ -22,6 +22,13 @@ namespace lessonweb.web
                 return;
             }
 
+            if (mUser.IsRestrictedUser())
+            {
+                Response.Redirect("showuser.aspx?uid="+mUser.UserEmail);
+                Response.Close();
+                return;
+            }
+
         }
 
         protected string GetTotalStudents()

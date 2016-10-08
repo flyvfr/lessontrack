@@ -48,18 +48,30 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.aspx">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="students.aspx">
-                        <i class="ti-user"></i>
-                        <p>Students</p>
-                    </a>
-                </li>
+                 <%if (mUser.IsRestrictedUser())
+                    {%>
+                    <li >
+                        <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+                            <i class="ti-user"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                <%}
+                else
+                { %>
+                    <li >
+                        <a href="dashboard.aspx">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="students.aspx">
+                            <i class="ti-user"></i>
+                            <p>Students</p>
+                        </a>
+                    </li>
+                <%} %>
                 <li >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>

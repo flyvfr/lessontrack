@@ -12,6 +12,11 @@ namespace lessonweb.Data
             return FirstName + " " + LastName;
         }
 
+        public bool IsRestrictedUser()
+        {
+            return IsStudent && !IsAdmin && !IsInstructor;
+        }
+
         // if the user exists and is valid, return the user, else return null
         internal static AppUser getUserIfValid(string email, string passwd)
         {

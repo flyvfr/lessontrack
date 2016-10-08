@@ -49,13 +49,19 @@ namespace lessonweb.Data
                         logcopy.Add(l);
                     }
 
-                    stg.LoadStudentStatus(logcopy, optionalStudent);
+                    IEnumerable<LessonTimeLog> timelog = LessonTimeLog.LoadStudentLog(dbc, optionalStudent);
+                    List<LessonTimeLog> timelogcopy = new List<LessonTimeLog>();
+                    foreach (LessonTimeLog l in timelog)
+                    {
+                        timelogcopy.Add(l);
+                    }
+                    stg.LoadStudentStatus(timelogcopy, logcopy, optionalStudent);
                 }
-                if (stg.IsStarted)
+                if (stg.IsAllStarted)
                 {
                     IsStarted = true;
                 }
-                if (!stg.IsComplete)
+                if (!stg.IsAllComplete)
                 {
                     IsComplete = false;
                 }

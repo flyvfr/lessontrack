@@ -1,0 +1,9 @@
+﻿.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.header{
+   font-family:Arial;
+   font-weight:bold
+}

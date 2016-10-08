@@ -56,18 +56,30 @@
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="dashboard.aspx">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="students.aspx">
-                        <i class="ti-user"></i>
-                        <p>Students</p>
-                    </a>
-                </li>
+                 <%if (mUser.IsRestrictedUser())
+                    {%>
+                    <li >
+                        <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+                            <i class="ti-user"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                <%}
+                else
+                { %>
+                    <li >
+                        <a href="dashboard.aspx">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="students.aspx">
+                            <i class="ti-user"></i>
+                            <p>Students</p>
+                        </a>
+                    </li>
+                <%} %>
                 <li >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>
@@ -112,11 +124,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
 								<p><%= mUser.GetFullName()%></p>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+								<i class="fa fa-user"></i>
+								<p>Profile</p>
+                            </a>
+                        </li>
 						<li>
                             <a href="login.aspx">
 								<i class="ti-lock"></i>

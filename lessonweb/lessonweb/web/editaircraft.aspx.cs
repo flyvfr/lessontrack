@@ -18,12 +18,19 @@ namespace lessonweb.web
         protected void Page_Load(object sender, EventArgs e)
         {
             mUser = (AppUser)Session[Constants.SESS_KEY_USER];
-            if (mUser == null)
+            if (mUser == null || !mUser.IsAdmin)
             {
                 Response.Redirect("login.aspx");
                 Response.Close();
                 return;
             }
+            if (!mUser.IsAdmin)
+            {
+                Response.Redirect("dashboard.aspx");
+                Response.Close();
+                return;
+            }
+
             Referrer = Request.Params["referer"];
 
             String tail = Request.Params["tail"];

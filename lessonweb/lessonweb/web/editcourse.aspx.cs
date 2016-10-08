@@ -50,7 +50,7 @@ namespace lessonweb.web
                 }
             }
 
-            if (mStudent == null)
+            if (mStudent == null|| mUser.IsRestrictedUser())
             {
                 Response.Redirect("dashboard.aspx");
                 Response.Close();

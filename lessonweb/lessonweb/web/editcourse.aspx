@@ -18,6 +18,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet" />
@@ -48,18 +49,30 @@
                 </div>
 
                 <ul class="nav">
-                    <li>
+                 <%if (mUser.IsRestrictedUser())
+                    {%>
+                    <li >
+                        <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+                            <i class="ti-user"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                <%}
+                else
+                { %>
+                    <li >
                         <a href="dashboard.aspx">
                             <i class="ti-panel"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
+                    <li >
                         <a href="students.aspx">
                             <i class="ti-user"></i>
                             <p>Students</p>
                         </a>
                     </li>
+                <%} %>
                     <li>
                         <a href="instructors.aspx">
                             <i class="ti-light-bulb"></i>
@@ -110,15 +123,19 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="ti-panel"></i>
-                                        <p><%= mUser.GetFullName()%></p>
+								        <p><%= mUser.GetFullName()%></p>
                                     </a>
                                 </li>
-
                                 <li>
+                                    <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+								        <i class="fa fa-user"></i>
+								        <p>Profile</p>
+                                    </a>
+                                </li>
+						        <li>
                                     <a href="login.aspx">
-                                        <i class="ti-lock"></i>
-                                        <p>Logout</p>
+								        <i class="ti-lock"></i>
+								        <p>Logout</p>
                                     </a>
                                 </li>
                             </ul>
@@ -143,15 +160,7 @@
                                                 <a data-toggle="collapse" data-parent="#stageacc" href="#collapse<%=s.STAGEID %>">
                                                     <%if (s.IsComplete)
                                                         {%><i class="fa fa-check"></i><%} %>
-                                                    <%if (s.Type.ToLower().Equals("ground"))
-                                                    {%>
-                                                GROUND <%=s.Name %>
-                                                    <%}
-                                                    else
-                                                    { %>
-                                                FLIGHT  <%=s.Name %>
-                                                    <%} %>
-                                                </a>
+                                                <%=s.Name %></a>
                                             </h4>
                                         </div>
                                         <div id="collapse<%=s.STAGEID %>" class="panel-collapse collapse">
@@ -171,20 +180,181 @@
                                                         </div>
                                                         <div id="collapse<%=s.STAGEID%><%=less.LESSONID %>" class="panel-collapse collapse">
                                                             <div class="panel-body">
-                                                                <%foreach (LESSONITEM li in less.LessonItems)
-                                                                    { %>
-                                                                <%if (li.IsGroup)
-                                                                    {%>
-                                                                <p><strong><%=li.ItemName %></strong></p>
-                                                                <%}
-                                                                else
-                                                                { %>
-                                                                <div class="checkbox"  >
-                                                                  <label class="<%=(li.IsComplete?"text-success":"text-danger")%>"> <!-- onclick="onitemchecked()" --> <input type="checkbox" name="CHK-<%=li.LESSONGUID%>" class="success" <%=(li.IsComplete?"checked":"")%> > <%=li.ItemName %></label>
+                                                                <!-- TIMES BLOCK -->
+                                                                <div class="panel-group col-sm-8" id="timesacc">
+                                                                    <div class="panel panel-default">
+                                                                        <div class="panel-heading">
+                                                                            <h4 class="panel-title <%=(less.IsTimesComplete?"text-success":(less.IsTimesStarted?"text-primary":"text-danger")) %>">
+                                                                                <a data-toggle="collapse" data-parent="#timesacc" href="#collapseTimes<%=s.STAGEID%><%=less.LESSONID %>">
+                                                                                    <%if (less.IsAllComplete)
+                                                                                        {%><i class="fa fa-check"></i><%} %>
+                                                                                    Time Log
+                                                                                    <%if (less.IsAllStarted && !less.IsTimesComplete)
+                                                                                        {%><i class="fa fa-clock-o"></i><%} %>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id="collapseTimes<%=s.STAGEID%><%=less.LESSONID %>" class="panel-collapse collapse">
+                                                                            <div class="panel-body nopadding">
+                                                                                <table class="table table-condensed extracompact">
+                                                                                    <thead class="header">
+                                                                                        <tr>
+                                                                                            <th>Time</th>
+                                                                                            <th>Required</th>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <th>Total so far</th>
+                                                                                            <th>Remaining</th>
+                                                                                            <th>New Total</th>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                    </thead>
+
+                                                                                    <tbody>
+                                                                                        <%if (less.briefing>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Briefing</td> 
+                                                                                            <td><%=less.briefing%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedbriefing%></td>
+                                                                                            <td><%=(less.briefing - less.Loggedbriefing) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-briefing-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.classvideo>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Classes and Video</td> 
+                                                                                            <td><%=less.classvideo%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedclassvideo%></td>
+                                                                                            <td><%=(less.classvideo - less.Loggedclassvideo) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-classvideo-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.exams>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Exams</td> 
+                                                                                            <td><%=less.exams%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedexams%></td>
+                                                                                            <td><%=(less.exams - less.Loggedexams) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-exams-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.debrief>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Test Debriefing</td> 
+                                                                                            <td><%=less.debrief%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggeddebrief%></td>
+                                                                                            <td><%=(less.debrief - less.Loggeddebrief) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-debrief-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.duallocalday>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Dual Local Day</td> 
+                                                                                            <td><%=less.duallocalday %></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedduallocalday %></td>
+                                                                                            <td><%=(less.duallocalday - less.Loggedduallocalday) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-duallocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.dualccday>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Dual Day Cross Country</td> 
+                                                                                            <td><%=less.dualccday%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggeddualccday%></td>
+                                                                                            <td><%=(less.dualccday - less.Loggeddualccday) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-dualccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.duallocalnight>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Dual Night Local</td> 
+                                                                                            <td><%=less.duallocalnight %></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedduallocalnight%></td>
+                                                                                            <td><%=(less.duallocalnight - less.Loggedduallocalnight) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-duallocalnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.dualccnight>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Dual Night Cross Country</td> 
+                                                                                            <td><%=less.dualccnight%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggeddualccnight%></td>
+                                                                                            <td><%=(less.dualccnight - less.Loggeddualccnight) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-dualccnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.sololocalday>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Solo Local Day</td> 
+                                                                                            <td><%=less.sololocalday%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedsololocalday%></td>
+                                                                                            <td><%=(less.sololocalday - less.Loggedsololocalday) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-sololocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+                                                                                        <%if (less.soloccday>0) { %>
+                                                                                        <tr>
+                                                                                            <td>Solo Day Cross Country</td> 
+                                                                                            <td><%=less.soloccday%></td>
+                                                                                            <%if (mStudent != null)
+                                                                                                {%>
+                                                                                            <td><%=less.Loggedsoloccday%></td>
+                                                                                            <td><%=(less.soloccday - less.Loggedsoloccday) %></td>
+                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-soloccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <%} %>
+                                                                                        </tr>
+                                                                                        <%} %>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>    
                                                                 </div>
+                                                                <!-- END TIMES BLOCK -->
+                                                                <div class="panel-body col-sm-12">
+                                                                    <%foreach (LESSONITEM li in less.LessonItems)
+                                                                        { %>
+                                                                    <%if (li.IsGroup)
+                                                                        {%>
+                                                                    <p><strong><%=li.ItemName %></strong></p>
+                                                                    <%}
+                                                                    else
+                                                                    { %>
+                                                                    <div class="checkbox"  >
+                                                                      <label class="<%=(li.IsComplete?"text-success":"text-danger")%>"> <!-- onclick="onitemchecked()" --> <input type="checkbox" name="CHK-<%=li.LESSONGUID%>" class="success" <%=(li.IsComplete?"checked":"")%> > <%=li.ItemName %></label>
+                                                                    </div>
      
-                                                                <%} %>
-                                                                <%} %>
+                                                                    <%} %>
+                                                                    <%} %>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

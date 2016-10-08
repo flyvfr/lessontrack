@@ -32,7 +32,7 @@ namespace lessonweb.web
             }
 
             mShownUser = AppUser.getUser(uid);
-            if (mShownUser == null)
+            if (mShownUser == null || (mUser.IsRestrictedUser() && mShownUser.UserEmail != mUser.UserEmail))
             {
                 Response.Redirect("dashboard.aspx");
                 Response.Close();

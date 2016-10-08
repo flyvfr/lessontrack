@@ -23,7 +23,7 @@ namespace lessonweb.web
             }
 
             String uid = Request.Params["uid"];
-            if (String.IsNullOrEmpty(uid))
+            if (String.IsNullOrEmpty(uid) || !mUser.IsAdmin)
             {
                 Response.Redirect("dashboard.aspx");
                 Response.Close();

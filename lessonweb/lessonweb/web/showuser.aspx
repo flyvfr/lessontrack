@@ -71,18 +71,30 @@
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="dashboard.aspx">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="students.aspx">
-                        <i class="ti-user"></i>
-                        <p>Students</p>
-                    </a>
-                </li>
+                <%if (mUser.IsRestrictedUser())
+                    {%>
+                    <li >
+                        <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+                            <i class="ti-user"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                <%}
+                else
+                { %>
+                    <li >
+                        <a href="dashboard.aspx">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="students.aspx">
+                            <i class="ti-user"></i>
+                            <p>Students</p>
+                        </a>
+                    </li>
+                <%} %>
                 <li >
                     <a href="instructors.aspx">
                         <i class="ti-light-bulb"></i>
@@ -123,12 +135,16 @@
                     </button>
                     <div>
                         <a class="navbar-brand" href="#"><%= mShownUser.GetFullName()%></a>
-                        <%if (mShownUser.IsStudent)
+                        <%if (mUser.IsRestrictedUser() && (mUser.UserEmail == mShownUser.UserEmail))
+                            { %>
+                            <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
+                            <!--<a href="showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Show Progress</a>
+                            <a href="editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Update Progress</a> -->
+                        <%}
+                        else if (!mUser.IsRestrictedUser())
                         { %>
                             <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
                             <button type="button" class="btn btn-success" onClick="parent.location='editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">Update Progress</button>
-                            <!--<a href="showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Show Progress</a>
-                            <a href="editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Update Progress</a> -->
                         <%} %>
                     </div>
                 </div>
@@ -136,11 +152,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
 								<p><%= mUser.GetFullName()%></p>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
+								<i class="fa fa-user"></i>
+								<p>Profile</p>
+                            </a>
+                        </li>
 						<li>
                             <a href="login.aspx">
 								<i class="ti-lock"></i>
@@ -188,15 +208,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%if (!mUser.IsRestrictedUser())
+                                 { %>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
                                             <a href="edituser.aspx?uid=<%=mShownUser.UserEmail %>">
                                             <i class="fa fa-2x fa-pencil-square"></i> </a> &nbsp;&nbsp;&nbsp;
+                                    <%if (mUser.IsAdmin)
+                                    { %>
+
                                             <a href="#" data-toggle="modal" data-target="#myModal">
                                             <i class="fa fa-2x fa-trash"></i> </a> &nbsp;&nbsp;&nbsp;
+                                    <%} %>
                                     </div>
                                 </div>
+                                <%} %>
                             </div>
                         </div>
                     </div>
@@ -226,7 +253,6 @@
                                     <p><strong>Employer</strong></p>
                                     <p><%=mShownUser.Employer%></p>
                                 <%} %>
-
                             </div>
                         </div>
                     </div>

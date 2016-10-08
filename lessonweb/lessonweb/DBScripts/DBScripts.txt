@@ -1,0 +1,62 @@
+CREATE TABLE [dbo].[STAGES] (
+    [RowID]           INT            IDENTITY (1, 1) NOT NULL,
+    [STAGEID]         int  NOT NULL,
+    [Name]            NVARCHAR (50)  NOT NULL,
+    [CertificationID] NVARCHAR (50)  NOT NULL,
+    [Objective]       VARCHAR (MAX)  NULL,
+    [Standard]        VARCHAR (MAX)  NULL,
+    [GroundObjective] VARCHAR (MAX)  NULL,
+    [GroundStandard]  VARCHAR (MAX)  NULL,
+    [duallocalday]    DECIMAL (5, 2) NULL,
+    [dualccday]       DECIMAL (5, 2) NULL,
+    [duallocalnight]  DECIMAL (5, 2) NULL,
+    [dualccnight]     DECIMAL (5, 2) NULL,
+    [sololocalday]    DECIMAL (5, 2) NULL,
+    [soloccday]       DECIMAL (5, 2) NULL,
+    [sololocalnight]  DECIMAL (5, 2) NULL,
+    [soloccnight]     DECIMAL (5, 2) NULL,
+    [briefing]        DECIMAL (5, 2) NULL,
+    [classvideo]      DECIMAL (5, 2) NULL,
+    [exams]           DECIMAL (5, 2) NULL,
+    [debrief]         DECIMAL (5, 2) NULL,
+    PRIMARY KEY CLUSTERED ([RowID] ASC)
+);
+
+
+GO
+
+CREATE INDEX [IX_STAGES_STAGEID] ON [dbo].[STAGES] ([STAGEID])
+
+
+CREATE TABLE [dbo].[LESSONS] (
+    [ROWID]  INT            IDENTITY (1, 1) NOT NULL,
+    [LESSONID]  int NOT NULL,
+    [STAGEID]   INT            NOT NULL,
+    [IsGround]   BIT NOT NULL,
+    [Title]     NVARCHAR (100) NOT NULL,
+    [Objective] NVARCHAR (MAX) NULL,
+    [Standard]  NVARCHAR (MAX) NULL,
+    [duallocalday]    DECIMAL (5, 2) NULL,
+    [dualccday]       DECIMAL (5, 2) NULL,
+    [duallocalnight]  DECIMAL (5, 2) NULL,
+    [dualccnight]     DECIMAL (5, 2) NULL,
+    [sololocalday]    DECIMAL (5, 2) NULL,
+    [soloccday]       DECIMAL (5, 2) NULL,
+    [sololocalnight]  DECIMAL (5, 2) NULL,
+    [soloccnight]     DECIMAL (5, 2) NULL,
+    [briefing]        DECIMAL (5, 2) NULL,
+    [classvideo]      DECIMAL (5, 2) NULL,
+    [exams]           DECIMAL (5, 2) NULL,
+    [debrief]         DECIMAL (5, 2) NULL,
+    PRIMARY KEY CLUSTERED ([ROWID])
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_LESSONS_STAGE]
+    ON [dbo].[LESSONS]([STAGEID] ASC);
+
+
+GO
+
+CREATE INDEX [IX_LESSONS_LESSONID] ON [dbo].[LESSONS] ([LESSONID])

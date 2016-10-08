@@ -23,7 +23,7 @@ namespace lessonweb.web
             }
 
             String tail = Request.Params["tail"];
-            if (String.IsNullOrEmpty(tail))
+            if (String.IsNullOrEmpty(tail) || !mUser.IsAdmin)
             {
                 Response.Redirect("dashboard.aspx");
                 Response.Close();
