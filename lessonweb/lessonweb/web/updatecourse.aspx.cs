@@ -98,7 +98,7 @@ namespace lessonweb.web
             }
             foreach (int i in LessonsWithLogs) {
                 ProcessTimeLogging(dbc, i);
-                }
+            }
 
             // now delete every course thats not in this list
             // insert courses that are in the list but not in the database
@@ -146,6 +146,7 @@ namespace lessonweb.web
                     cl.DateCompleted = DateTime.Now;
                     cl.Instructor = mUser.UserEmail;
                     cl.LessonGUID = logid;
+                    cl.SetLessonAndStage(cl.LessonGUID);
                     cl.Student = mStudent.UserEmail;
                     dbc.CompletionLogs.InsertOnSubmit(cl);
                 }
@@ -176,7 +177,6 @@ namespace lessonweb.web
                 logToUpdate.Student = mStudent.UserEmail;
             }
 
-            logToUpdate.PerformedOn = DateTime.Now;
             // get the different available fields.
             foreach (string s in Request.Params.Keys)
             {
@@ -188,6 +188,10 @@ namespace lessonweb.web
                     int lessonIDFld = int.Parse(comps[2]);
                     int stageID = int.Parse(comps[3]);
                     if (lessonid != lessonIDFld) continue;
+
+                    logToUpdate.Instructor = mUser.UserEmail;
+                    logToUpdate.PerformedOn = DateTime.Now;
+
                     logToUpdate.STAGEID = stageID;
                     decimal val = Decimal.Parse(Request.Params[s]);
                     if (comps[1] == "briefing") logToUpdate.briefing = val;

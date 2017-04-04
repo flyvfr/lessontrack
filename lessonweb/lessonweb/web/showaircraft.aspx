@@ -107,7 +107,7 @@
                         <p>Private Syllabus</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="aircraft.aspx">
                         <i class="fa fa-plane"></i>
                         <p>Aircraft</p>

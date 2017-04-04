@@ -42,25 +42,52 @@ namespace lessonweb.Data
     partial void InsertAppUser(AppUser instance);
     partial void UpdateAppUser(AppUser instance);
     partial void DeleteAppUser(AppUser instance);
-    partial void InsertCompletionLog(CompletionLog instance);
-    partial void UpdateCompletionLog(CompletionLog instance);
-    partial void DeleteCompletionLog(CompletionLog instance);
     partial void InsertLESSONITEM(LESSONITEM instance);
     partial void UpdateLESSONITEM(LESSONITEM instance);
     partial void DeleteLESSONITEM(LESSONITEM instance);
+    partial void InsertLessonTimeLog(LessonTimeLog instance);
+    partial void UpdateLessonTimeLog(LessonTimeLog instance);
+    partial void DeleteLessonTimeLog(LessonTimeLog instance);
+    partial void InsertCompletionLog(CompletionLog instance);
+    partial void UpdateCompletionLog(CompletionLog instance);
+    partial void DeleteCompletionLog(CompletionLog instance);
     partial void InsertSTAGE(STAGE instance);
     partial void UpdateSTAGE(STAGE instance);
     partial void DeleteSTAGE(STAGE instance);
     partial void InsertLESSON(LESSON instance);
     partial void UpdateLESSON(LESSON instance);
     partial void DeleteLESSON(LESSON instance);
-    partial void InsertLessonTimeLog(LessonTimeLog instance);
-    partial void UpdateLessonTimeLog(LessonTimeLog instance);
-    partial void DeleteLessonTimeLog(LessonTimeLog instance);
+    partial void InsertAchievementDefinition(AchievementDefinition instance);
+    partial void UpdateAchievementDefinition(AchievementDefinition instance);
+    partial void DeleteAchievementDefinition(AchievementDefinition instance);
+    partial void InsertAchievementPrereq(AchievementPrereq instance);
+    partial void UpdateAchievementPrereq(AchievementPrereq instance);
+    partial void DeleteAchievementPrereq(AchievementPrereq instance);
+    partial void InsertTaskDefinition(TaskDefinition instance);
+    partial void UpdateTaskDefinition(TaskDefinition instance);
+    partial void DeleteTaskDefinition(TaskDefinition instance);
+    partial void InsertPilotAchievement(PilotAchievement instance);
+    partial void UpdatePilotAchievement(PilotAchievement instance);
+    partial void DeletePilotAchievement(PilotAchievement instance);
+    partial void InsertRewardDefinition(RewardDefinition instance);
+    partial void UpdateRewardDefinition(RewardDefinition instance);
+    partial void DeleteRewardDefinition(RewardDefinition instance);
+    partial void InsertRewardPrereq(RewardPrereq instance);
+    partial void UpdateRewardPrereq(RewardPrereq instance);
+    partial void DeleteRewardPrereq(RewardPrereq instance);
+    partial void InsertPilotClassDefinition(PilotClassDefinition instance);
+    partial void UpdatePilotClassDefinition(PilotClassDefinition instance);
+    partial void DeletePilotClassDefinition(PilotClassDefinition instance);
+    partial void InsertPilotClassPrereq(PilotClassPrereq instance);
+    partial void UpdatePilotClassPrereq(PilotClassPrereq instance);
+    partial void DeletePilotClassPrereq(PilotClassPrereq instance);
+    partial void InsertPilotClass(PilotClass instance);
+    partial void UpdatePilotClass(PilotClass instance);
+    partial void DeletePilotClass(PilotClass instance);
     #endregion
 		
 		public DBClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["lessontrackConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["lessontrackConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -121,19 +148,27 @@ namespace lessonweb.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<CompletionLog> CompletionLogs
-		{
-			get
-			{
-				return this.GetTable<CompletionLog>();
-			}
-		}
-		
 		public System.Data.Linq.Table<LESSONITEM> LESSONITEMs
 		{
 			get
 			{
 				return this.GetTable<LESSONITEM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LessonTimeLog> LessonTimeLogs
+		{
+			get
+			{
+				return this.GetTable<LessonTimeLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompletionLog> CompletionLogs
+		{
+			get
+			{
+				return this.GetTable<CompletionLog>();
 			}
 		}
 		
@@ -153,11 +188,75 @@ namespace lessonweb.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<LessonTimeLog> LessonTimeLogs
+		public System.Data.Linq.Table<AchievementDefinition> AchievementDefinitions
 		{
 			get
 			{
-				return this.GetTable<LessonTimeLog>();
+				return this.GetTable<AchievementDefinition>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AchievementPrereq> AchievementPrereqs
+		{
+			get
+			{
+				return this.GetTable<AchievementPrereq>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TaskDefinition> TaskDefinitions
+		{
+			get
+			{
+				return this.GetTable<TaskDefinition>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PilotAchievement> PilotAchievements
+		{
+			get
+			{
+				return this.GetTable<PilotAchievement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RewardDefinition> RewardDefinitions
+		{
+			get
+			{
+				return this.GetTable<RewardDefinition>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RewardPrereq> RewardPrereqs
+		{
+			get
+			{
+				return this.GetTable<RewardPrereq>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PilotClassDefinition> PilotClassDefinitions
+		{
+			get
+			{
+				return this.GetTable<PilotClassDefinition>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PilotClassPrereq> PilotClassPrereqs
+		{
+			get
+			{
+				return this.GetTable<PilotClassPrereq>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PilotClass> PilotClasses
+		{
+			get
+			{
+				return this.GetTable<PilotClass>();
 			}
 		}
 	}
@@ -1250,236 +1349,6 @@ namespace lessonweb.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletionLogs")]
-	public partial class CompletionLog : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.DateTime _DateCompleted;
-		
-		private string _Student;
-		
-		private string _Instructor;
-		
-		private string _AircraftUsed;
-		
-		private string _LessonGUID;
-		
-		private int _STAGEID;
-		
-		private decimal _HoursSpent;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDateCompletedChanging(System.DateTime value);
-    partial void OnDateCompletedChanged();
-    partial void OnStudentChanging(string value);
-    partial void OnStudentChanged();
-    partial void OnInstructorChanging(string value);
-    partial void OnInstructorChanged();
-    partial void OnAircraftUsedChanging(string value);
-    partial void OnAircraftUsedChanged();
-    partial void OnLessonGUIDChanging(string value);
-    partial void OnLessonGUIDChanged();
-    partial void OnSTAGEIDChanging(int value);
-    partial void OnSTAGEIDChanged();
-    partial void OnHoursSpentChanging(decimal value);
-    partial void OnHoursSpentChanged();
-    #endregion
-		
-		public CompletionLog()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCompleted
-		{
-			get
-			{
-				return this._DateCompleted;
-			}
-			set
-			{
-				if ((this._DateCompleted != value))
-				{
-					this.OnDateCompletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCompleted = value;
-					this.SendPropertyChanged("DateCompleted");
-					this.OnDateCompletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Student", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Student
-		{
-			get
-			{
-				return this._Student;
-			}
-			set
-			{
-				if ((this._Student != value))
-				{
-					this.OnStudentChanging(value);
-					this.SendPropertyChanging();
-					this._Student = value;
-					this.SendPropertyChanged("Student");
-					this.OnStudentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructor", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Instructor
-		{
-			get
-			{
-				return this._Instructor;
-			}
-			set
-			{
-				if ((this._Instructor != value))
-				{
-					this.OnInstructorChanging(value);
-					this.SendPropertyChanging();
-					this._Instructor = value;
-					this.SendPropertyChanged("Instructor");
-					this.OnInstructorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AircraftUsed", DbType="NChar(10)")]
-		public string AircraftUsed
-		{
-			get
-			{
-				return this._AircraftUsed;
-			}
-			set
-			{
-				if ((this._AircraftUsed != value))
-				{
-					this.OnAircraftUsedChanging(value);
-					this.SendPropertyChanging();
-					this._AircraftUsed = value;
-					this.SendPropertyChanged("AircraftUsed");
-					this.OnAircraftUsedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonGUID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string LessonGUID
-		{
-			get
-			{
-				return this._LessonGUID;
-			}
-			set
-			{
-				if ((this._LessonGUID != value))
-				{
-					this.OnLessonGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._LessonGUID = value;
-					this.SendPropertyChanged("LessonGUID");
-					this.OnLessonGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAGEID", DbType="Int NOT NULL")]
-		public int STAGEID
-		{
-			get
-			{
-				return this._STAGEID;
-			}
-			set
-			{
-				if ((this._STAGEID != value))
-				{
-					this.OnSTAGEIDChanging(value);
-					this.SendPropertyChanging();
-					this._STAGEID = value;
-					this.SendPropertyChanged("STAGEID");
-					this.OnSTAGEIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoursSpent", DbType="Decimal(5,2) NOT NULL")]
-		public decimal HoursSpent
-		{
-			get
-			{
-				return this._HoursSpent;
-			}
-			set
-			{
-				if ((this._HoursSpent != value))
-				{
-					this.OnHoursSpentChanging(value);
-					this.SendPropertyChanging();
-					this._HoursSpent = value;
-					this.SendPropertyChanged("HoursSpent");
-					this.OnHoursSpentChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LESSONITEMS")]
 	public partial class LESSONITEM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1685,6 +1554,754 @@ namespace lessonweb.Data
 					this._IsIntro = value;
 					this.SendPropertyChanged("IsIntro");
 					this.OnIsIntroChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonTimeLog")]
+	public partial class LessonTimeLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _STAGEID;
+		
+		private int _LESSONID;
+		
+		private string _Student;
+		
+		private string _Instructor;
+		
+		private System.DateTime _PerformedOn;
+		
+		private string _AircraftUsed;
+		
+		private decimal _duallocalday;
+		
+		private decimal _dualccday;
+		
+		private decimal _duallocalnight;
+		
+		private decimal _dualccnight;
+		
+		private decimal _sololocalday;
+		
+		private decimal _soloccday;
+		
+		private decimal _sololocalnight;
+		
+		private decimal _soloccnight;
+		
+		private decimal _briefing;
+		
+		private decimal _classvideo;
+		
+		private decimal _exams;
+		
+		private decimal _debrief;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSTAGEIDChanging(int value);
+    partial void OnSTAGEIDChanged();
+    partial void OnLESSONIDChanging(int value);
+    partial void OnLESSONIDChanged();
+    partial void OnStudentChanging(string value);
+    partial void OnStudentChanged();
+    partial void OnInstructorChanging(string value);
+    partial void OnInstructorChanged();
+    partial void OnPerformedOnChanging(System.DateTime value);
+    partial void OnPerformedOnChanged();
+    partial void OnAircraftUsedChanging(string value);
+    partial void OnAircraftUsedChanged();
+    partial void OnduallocaldayChanging(decimal value);
+    partial void OnduallocaldayChanged();
+    partial void OndualccdayChanging(decimal value);
+    partial void OndualccdayChanged();
+    partial void OnduallocalnightChanging(decimal value);
+    partial void OnduallocalnightChanged();
+    partial void OndualccnightChanging(decimal value);
+    partial void OndualccnightChanged();
+    partial void OnsololocaldayChanging(decimal value);
+    partial void OnsololocaldayChanged();
+    partial void OnsoloccdayChanging(decimal value);
+    partial void OnsoloccdayChanged();
+    partial void OnsololocalnightChanging(decimal value);
+    partial void OnsololocalnightChanged();
+    partial void OnsoloccnightChanging(decimal value);
+    partial void OnsoloccnightChanged();
+    partial void OnbriefingChanging(decimal value);
+    partial void OnbriefingChanged();
+    partial void OnclassvideoChanging(decimal value);
+    partial void OnclassvideoChanged();
+    partial void OnexamsChanging(decimal value);
+    partial void OnexamsChanged();
+    partial void OndebriefChanging(decimal value);
+    partial void OndebriefChanged();
+    #endregion
+		
+		public LessonTimeLog()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAGEID", DbType="Int NOT NULL")]
+		public int STAGEID
+		{
+			get
+			{
+				return this._STAGEID;
+			}
+			set
+			{
+				if ((this._STAGEID != value))
+				{
+					this.OnSTAGEIDChanging(value);
+					this.SendPropertyChanging();
+					this._STAGEID = value;
+					this.SendPropertyChanged("STAGEID");
+					this.OnSTAGEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LESSONID", DbType="Int NOT NULL")]
+		public int LESSONID
+		{
+			get
+			{
+				return this._LESSONID;
+			}
+			set
+			{
+				if ((this._LESSONID != value))
+				{
+					this.OnLESSONIDChanging(value);
+					this.SendPropertyChanging();
+					this._LESSONID = value;
+					this.SendPropertyChanged("LESSONID");
+					this.OnLESSONIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Student", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Student
+		{
+			get
+			{
+				return this._Student;
+			}
+			set
+			{
+				if ((this._Student != value))
+				{
+					this.OnStudentChanging(value);
+					this.SendPropertyChanging();
+					this._Student = value;
+					this.SendPropertyChanged("Student");
+					this.OnStudentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructor", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Instructor
+		{
+			get
+			{
+				return this._Instructor;
+			}
+			set
+			{
+				if ((this._Instructor != value))
+				{
+					this.OnInstructorChanging(value);
+					this.SendPropertyChanging();
+					this._Instructor = value;
+					this.SendPropertyChanged("Instructor");
+					this.OnInstructorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PerformedOn", DbType="DateTime NOT NULL")]
+		public System.DateTime PerformedOn
+		{
+			get
+			{
+				return this._PerformedOn;
+			}
+			set
+			{
+				if ((this._PerformedOn != value))
+				{
+					this.OnPerformedOnChanging(value);
+					this.SendPropertyChanging();
+					this._PerformedOn = value;
+					this.SendPropertyChanged("PerformedOn");
+					this.OnPerformedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AircraftUsed", DbType="NChar(10)")]
+		public string AircraftUsed
+		{
+			get
+			{
+				return this._AircraftUsed;
+			}
+			set
+			{
+				if ((this._AircraftUsed != value))
+				{
+					this.OnAircraftUsedChanging(value);
+					this.SendPropertyChanging();
+					this._AircraftUsed = value;
+					this.SendPropertyChanged("AircraftUsed");
+					this.OnAircraftUsedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_duallocalday", DbType="Decimal(5,2) NOT NULL")]
+		public decimal duallocalday
+		{
+			get
+			{
+				return this._duallocalday;
+			}
+			set
+			{
+				if ((this._duallocalday != value))
+				{
+					this.OnduallocaldayChanging(value);
+					this.SendPropertyChanging();
+					this._duallocalday = value;
+					this.SendPropertyChanged("duallocalday");
+					this.OnduallocaldayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dualccday", DbType="Decimal(5,2) NOT NULL")]
+		public decimal dualccday
+		{
+			get
+			{
+				return this._dualccday;
+			}
+			set
+			{
+				if ((this._dualccday != value))
+				{
+					this.OndualccdayChanging(value);
+					this.SendPropertyChanging();
+					this._dualccday = value;
+					this.SendPropertyChanged("dualccday");
+					this.OndualccdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_duallocalnight", DbType="Decimal(5,2) NOT NULL")]
+		public decimal duallocalnight
+		{
+			get
+			{
+				return this._duallocalnight;
+			}
+			set
+			{
+				if ((this._duallocalnight != value))
+				{
+					this.OnduallocalnightChanging(value);
+					this.SendPropertyChanging();
+					this._duallocalnight = value;
+					this.SendPropertyChanged("duallocalnight");
+					this.OnduallocalnightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dualccnight", DbType="Decimal(5,2) NOT NULL")]
+		public decimal dualccnight
+		{
+			get
+			{
+				return this._dualccnight;
+			}
+			set
+			{
+				if ((this._dualccnight != value))
+				{
+					this.OndualccnightChanging(value);
+					this.SendPropertyChanging();
+					this._dualccnight = value;
+					this.SendPropertyChanged("dualccnight");
+					this.OndualccnightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sololocalday", DbType="Decimal(5,2) NOT NULL")]
+		public decimal sololocalday
+		{
+			get
+			{
+				return this._sololocalday;
+			}
+			set
+			{
+				if ((this._sololocalday != value))
+				{
+					this.OnsololocaldayChanging(value);
+					this.SendPropertyChanging();
+					this._sololocalday = value;
+					this.SendPropertyChanged("sololocalday");
+					this.OnsololocaldayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_soloccday", DbType="Decimal(5,2) NOT NULL")]
+		public decimal soloccday
+		{
+			get
+			{
+				return this._soloccday;
+			}
+			set
+			{
+				if ((this._soloccday != value))
+				{
+					this.OnsoloccdayChanging(value);
+					this.SendPropertyChanging();
+					this._soloccday = value;
+					this.SendPropertyChanged("soloccday");
+					this.OnsoloccdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sololocalnight", DbType="Decimal(5,2) NOT NULL")]
+		public decimal sololocalnight
+		{
+			get
+			{
+				return this._sololocalnight;
+			}
+			set
+			{
+				if ((this._sololocalnight != value))
+				{
+					this.OnsololocalnightChanging(value);
+					this.SendPropertyChanging();
+					this._sololocalnight = value;
+					this.SendPropertyChanged("sololocalnight");
+					this.OnsololocalnightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_soloccnight", DbType="Decimal(5,2) NOT NULL")]
+		public decimal soloccnight
+		{
+			get
+			{
+				return this._soloccnight;
+			}
+			set
+			{
+				if ((this._soloccnight != value))
+				{
+					this.OnsoloccnightChanging(value);
+					this.SendPropertyChanging();
+					this._soloccnight = value;
+					this.SendPropertyChanged("soloccnight");
+					this.OnsoloccnightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_briefing", DbType="Decimal(5,2) NOT NULL")]
+		public decimal briefing
+		{
+			get
+			{
+				return this._briefing;
+			}
+			set
+			{
+				if ((this._briefing != value))
+				{
+					this.OnbriefingChanging(value);
+					this.SendPropertyChanging();
+					this._briefing = value;
+					this.SendPropertyChanged("briefing");
+					this.OnbriefingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_classvideo", DbType="Decimal(5,2) NOT NULL")]
+		public decimal classvideo
+		{
+			get
+			{
+				return this._classvideo;
+			}
+			set
+			{
+				if ((this._classvideo != value))
+				{
+					this.OnclassvideoChanging(value);
+					this.SendPropertyChanging();
+					this._classvideo = value;
+					this.SendPropertyChanged("classvideo");
+					this.OnclassvideoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_exams", DbType="Decimal(5,2) NOT NULL")]
+		public decimal exams
+		{
+			get
+			{
+				return this._exams;
+			}
+			set
+			{
+				if ((this._exams != value))
+				{
+					this.OnexamsChanging(value);
+					this.SendPropertyChanging();
+					this._exams = value;
+					this.SendPropertyChanged("exams");
+					this.OnexamsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debrief", DbType="Decimal(5,2) NOT NULL")]
+		public decimal debrief
+		{
+			get
+			{
+				return this._debrief;
+			}
+			set
+			{
+				if ((this._debrief != value))
+				{
+					this.OndebriefChanging(value);
+					this.SendPropertyChanging();
+					this._debrief = value;
+					this.SendPropertyChanged("debrief");
+					this.OndebriefChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompletionLogs")]
+	public partial class CompletionLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _DateCompleted;
+		
+		private string _Student;
+		
+		private string _Instructor;
+		
+		private string _AircraftUsed;
+		
+		private string _LessonGUID;
+		
+		private int _STAGEID;
+		
+		private int _LESSONID;
+		
+		private decimal _HoursSpent;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDateCompletedChanging(System.DateTime value);
+    partial void OnDateCompletedChanged();
+    partial void OnStudentChanging(string value);
+    partial void OnStudentChanged();
+    partial void OnInstructorChanging(string value);
+    partial void OnInstructorChanged();
+    partial void OnAircraftUsedChanging(string value);
+    partial void OnAircraftUsedChanged();
+    partial void OnLessonGUIDChanging(string value);
+    partial void OnLessonGUIDChanged();
+    partial void OnSTAGEIDChanging(int value);
+    partial void OnSTAGEIDChanged();
+    partial void OnLESSONIDChanging(int value);
+    partial void OnLESSONIDChanged();
+    partial void OnHoursSpentChanging(decimal value);
+    partial void OnHoursSpentChanged();
+    #endregion
+		
+		public CompletionLog()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCompleted
+		{
+			get
+			{
+				return this._DateCompleted;
+			}
+			set
+			{
+				if ((this._DateCompleted != value))
+				{
+					this.OnDateCompletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCompleted = value;
+					this.SendPropertyChanged("DateCompleted");
+					this.OnDateCompletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Student", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Student
+		{
+			get
+			{
+				return this._Student;
+			}
+			set
+			{
+				if ((this._Student != value))
+				{
+					this.OnStudentChanging(value);
+					this.SendPropertyChanging();
+					this._Student = value;
+					this.SendPropertyChanged("Student");
+					this.OnStudentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructor", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Instructor
+		{
+			get
+			{
+				return this._Instructor;
+			}
+			set
+			{
+				if ((this._Instructor != value))
+				{
+					this.OnInstructorChanging(value);
+					this.SendPropertyChanging();
+					this._Instructor = value;
+					this.SendPropertyChanged("Instructor");
+					this.OnInstructorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AircraftUsed", DbType="NChar(10)")]
+		public string AircraftUsed
+		{
+			get
+			{
+				return this._AircraftUsed;
+			}
+			set
+			{
+				if ((this._AircraftUsed != value))
+				{
+					this.OnAircraftUsedChanging(value);
+					this.SendPropertyChanging();
+					this._AircraftUsed = value;
+					this.SendPropertyChanged("AircraftUsed");
+					this.OnAircraftUsedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonGUID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LessonGUID
+		{
+			get
+			{
+				return this._LessonGUID;
+			}
+			set
+			{
+				if ((this._LessonGUID != value))
+				{
+					this.OnLessonGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._LessonGUID = value;
+					this.SendPropertyChanged("LessonGUID");
+					this.OnLessonGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAGEID", DbType="Int NOT NULL")]
+		public int STAGEID
+		{
+			get
+			{
+				return this._STAGEID;
+			}
+			set
+			{
+				if ((this._STAGEID != value))
+				{
+					this.OnSTAGEIDChanging(value);
+					this.SendPropertyChanging();
+					this._STAGEID = value;
+					this.SendPropertyChanged("STAGEID");
+					this.OnSTAGEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LESSONID", DbType="Int NOT NULL")]
+		public int LESSONID
+		{
+			get
+			{
+				return this._LESSONID;
+			}
+			set
+			{
+				if ((this._LESSONID != value))
+				{
+					this.OnLESSONIDChanging(value);
+					this.SendPropertyChanging();
+					this._LESSONID = value;
+					this.SendPropertyChanged("LESSONID");
+					this.OnLESSONIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoursSpent", DbType="Decimal(5,2) NOT NULL")]
+		public decimal HoursSpent
+		{
+			get
+			{
+				return this._HoursSpent;
+			}
+			set
+			{
+				if ((this._HoursSpent != value))
+				{
+					this.OnHoursSpentChanging(value);
+					this.SendPropertyChanging();
+					this._HoursSpent = value;
+					this.SendPropertyChanged("HoursSpent");
+					this.OnHoursSpentChanged();
 				}
 			}
 		}
@@ -2722,49 +3339,21 @@ namespace lessonweb.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonTimeLog")]
-	public partial class LessonTimeLog : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AchievementDefinition")]
+	public partial class AchievementDefinition : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private int _STAGEID;
+		private System.Guid _AchievementID;
 		
-		private int _LESSONID;
+		private string _AchievementName;
 		
-		private string _Student;
+		private string _AchievementDesc;
 		
-		private string _Instructor;
-		
-		private System.DateTime _PerformedOn;
-		
-		private string _AircraftUsed;
-		
-		private decimal _duallocalday;
-		
-		private decimal _dualccday;
-		
-		private decimal _duallocalnight;
-		
-		private decimal _dualccnight;
-		
-		private decimal _sololocalday;
-		
-		private decimal _soloccday;
-		
-		private decimal _sololocalnight;
-		
-		private decimal _soloccnight;
-		
-		private decimal _briefing;
-		
-		private decimal _classvideo;
-		
-		private decimal _exams;
-		
-		private decimal _debrief;
+		private int _ValidityMonths;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2772,50 +3361,22 @@ namespace lessonweb.Data
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnSTAGEIDChanging(int value);
-    partial void OnSTAGEIDChanged();
-    partial void OnLESSONIDChanging(int value);
-    partial void OnLESSONIDChanged();
-    partial void OnStudentChanging(string value);
-    partial void OnStudentChanged();
-    partial void OnInstructorChanging(string value);
-    partial void OnInstructorChanged();
-    partial void OnPerformedOnChanging(System.DateTime value);
-    partial void OnPerformedOnChanged();
-    partial void OnAircraftUsedChanging(string value);
-    partial void OnAircraftUsedChanged();
-    partial void OnduallocaldayChanging(decimal value);
-    partial void OnduallocaldayChanged();
-    partial void OndualccdayChanging(decimal value);
-    partial void OndualccdayChanged();
-    partial void OnduallocalnightChanging(decimal value);
-    partial void OnduallocalnightChanged();
-    partial void OndualccnightChanging(decimal value);
-    partial void OndualccnightChanged();
-    partial void OnsololocaldayChanging(decimal value);
-    partial void OnsololocaldayChanged();
-    partial void OnsoloccdayChanging(decimal value);
-    partial void OnsoloccdayChanged();
-    partial void OnsololocalnightChanging(decimal value);
-    partial void OnsololocalnightChanged();
-    partial void OnsoloccnightChanging(decimal value);
-    partial void OnsoloccnightChanged();
-    partial void OnbriefingChanging(decimal value);
-    partial void OnbriefingChanged();
-    partial void OnclassvideoChanging(decimal value);
-    partial void OnclassvideoChanged();
-    partial void OnexamsChanging(decimal value);
-    partial void OnexamsChanged();
-    partial void OndebriefChanging(decimal value);
-    partial void OndebriefChanged();
+    partial void OnAchievementIDChanging(System.Guid value);
+    partial void OnAchievementIDChanged();
+    partial void OnAchievementNameChanging(string value);
+    partial void OnAchievementNameChanged();
+    partial void OnAchievementDescChanging(string value);
+    partial void OnAchievementDescChanged();
+    partial void OnValidityMonthsChanging(int value);
+    partial void OnValidityMonthsChanged();
     #endregion
 		
-		public LessonTimeLog()
+		public AchievementDefinition()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Id
 		{
 			get
@@ -2835,362 +3396,1562 @@ namespace lessonweb.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STAGEID", DbType="Int NOT NULL")]
-		public int STAGEID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid AchievementID
 		{
 			get
 			{
-				return this._STAGEID;
+				return this._AchievementID;
 			}
 			set
 			{
-				if ((this._STAGEID != value))
+				if ((this._AchievementID != value))
 				{
-					this.OnSTAGEIDChanging(value);
+					this.OnAchievementIDChanging(value);
 					this.SendPropertyChanging();
-					this._STAGEID = value;
-					this.SendPropertyChanged("STAGEID");
-					this.OnSTAGEIDChanged();
+					this._AchievementID = value;
+					this.SendPropertyChanged("AchievementID");
+					this.OnAchievementIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LESSONID", DbType="Int NOT NULL")]
-		public int LESSONID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AchievementName
 		{
 			get
 			{
-				return this._LESSONID;
+				return this._AchievementName;
 			}
 			set
 			{
-				if ((this._LESSONID != value))
+				if ((this._AchievementName != value))
 				{
-					this.OnLESSONIDChanging(value);
+					this.OnAchievementNameChanging(value);
 					this.SendPropertyChanging();
-					this._LESSONID = value;
-					this.SendPropertyChanged("LESSONID");
-					this.OnLESSONIDChanged();
+					this._AchievementName = value;
+					this.SendPropertyChanged("AchievementName");
+					this.OnAchievementNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Student", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Student
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementDesc", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string AchievementDesc
 		{
 			get
 			{
-				return this._Student;
+				return this._AchievementDesc;
 			}
 			set
 			{
-				if ((this._Student != value))
+				if ((this._AchievementDesc != value))
 				{
-					this.OnStudentChanging(value);
+					this.OnAchievementDescChanging(value);
 					this.SendPropertyChanging();
-					this._Student = value;
-					this.SendPropertyChanged("Student");
-					this.OnStudentChanged();
+					this._AchievementDesc = value;
+					this.SendPropertyChanged("AchievementDesc");
+					this.OnAchievementDescChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructor", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Instructor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidityMonths", DbType="Int NOT NULL")]
+		public int ValidityMonths
 		{
 			get
 			{
-				return this._Instructor;
+				return this._ValidityMonths;
 			}
 			set
 			{
-				if ((this._Instructor != value))
+				if ((this._ValidityMonths != value))
 				{
-					this.OnInstructorChanging(value);
+					this.OnValidityMonthsChanging(value);
 					this.SendPropertyChanging();
-					this._Instructor = value;
-					this.SendPropertyChanged("Instructor");
-					this.OnInstructorChanged();
+					this._ValidityMonths = value;
+					this.SendPropertyChanged("ValidityMonths");
+					this.OnValidityMonthsChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PerformedOn", DbType="DateTime NOT NULL")]
-		public System.DateTime PerformedOn
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AchievementPrereq")]
+	public partial class AchievementPrereq : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _AchievementID;
+		
+		private System.Nullable<System.Guid> _TaskID;
+		
+		private System.Nullable<System.Guid> _RequiredAchievementID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAchievementIDChanging(System.Guid value);
+    partial void OnAchievementIDChanged();
+    partial void OnTaskIDChanging(System.Nullable<System.Guid> value);
+    partial void OnTaskIDChanged();
+    partial void OnRequiredAchievementIDChanging(System.Nullable<System.Guid> value);
+    partial void OnRequiredAchievementIDChanged();
+    #endregion
+		
+		public AchievementPrereq()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
 		{
 			get
 			{
-				return this._PerformedOn;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._PerformedOn != value))
+				if ((this._Id != value))
 				{
-					this.OnPerformedOnChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._PerformedOn = value;
-					this.SendPropertyChanged("PerformedOn");
-					this.OnPerformedOnChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AircraftUsed", DbType="NChar(10)")]
-		public string AircraftUsed
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid AchievementID
 		{
 			get
 			{
-				return this._AircraftUsed;
+				return this._AchievementID;
 			}
 			set
 			{
-				if ((this._AircraftUsed != value))
+				if ((this._AchievementID != value))
 				{
-					this.OnAircraftUsedChanging(value);
+					this.OnAchievementIDChanging(value);
 					this.SendPropertyChanging();
-					this._AircraftUsed = value;
-					this.SendPropertyChanged("AircraftUsed");
-					this.OnAircraftUsedChanged();
+					this._AchievementID = value;
+					this.SendPropertyChanged("AchievementID");
+					this.OnAchievementIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_duallocalday", DbType="Decimal(5,2) NOT NULL")]
-		public decimal duallocalday
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TaskID
 		{
 			get
 			{
-				return this._duallocalday;
+				return this._TaskID;
 			}
 			set
 			{
-				if ((this._duallocalday != value))
+				if ((this._TaskID != value))
 				{
-					this.OnduallocaldayChanging(value);
+					this.OnTaskIDChanging(value);
 					this.SendPropertyChanging();
-					this._duallocalday = value;
-					this.SendPropertyChanged("duallocalday");
-					this.OnduallocaldayChanged();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dualccday", DbType="Decimal(5,2) NOT NULL")]
-		public decimal dualccday
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredAchievementID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RequiredAchievementID
 		{
 			get
 			{
-				return this._dualccday;
+				return this._RequiredAchievementID;
 			}
 			set
 			{
-				if ((this._dualccday != value))
+				if ((this._RequiredAchievementID != value))
 				{
-					this.OndualccdayChanging(value);
+					this.OnRequiredAchievementIDChanging(value);
 					this.SendPropertyChanging();
-					this._dualccday = value;
-					this.SendPropertyChanged("dualccday");
-					this.OndualccdayChanged();
+					this._RequiredAchievementID = value;
+					this.SendPropertyChanged("RequiredAchievementID");
+					this.OnRequiredAchievementIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_duallocalnight", DbType="Decimal(5,2) NOT NULL")]
-		public decimal duallocalnight
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TaskDefinition")]
+	public partial class TaskDefinition : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _TaskID;
+		
+		private string _TaskName;
+		
+		private string _TaskDescription;
+		
+		private int _TaskType;
+		
+		private string _AircraftType;
+		
+		private string _TailNo;
+		
+		private System.Nullable<decimal> _Hours;
+		
+		private string _Maneuver;
+		
+		private string _Airport;
+		
+		private string _Lesson;
+		
+		private string _Course;
+		
+		private System.Nullable<decimal> _Distance;
+		
+		private bool _IsNight;
+		
+		private bool _IsDual;
+		
+		private bool _IsCrossCountry;
+		
+		private string _IsWithPassenger;
+		
+		private System.Nullable<System.DateTime> _ValidityStartDate;
+		
+		private System.Nullable<System.DateTime> _ValidityEndDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTaskIDChanging(System.Guid value);
+    partial void OnTaskIDChanged();
+    partial void OnTaskNameChanging(string value);
+    partial void OnTaskNameChanged();
+    partial void OnTaskDescriptionChanging(string value);
+    partial void OnTaskDescriptionChanged();
+    partial void OnTaskTypeChanging(int value);
+    partial void OnTaskTypeChanged();
+    partial void OnAircraftTypeChanging(string value);
+    partial void OnAircraftTypeChanged();
+    partial void OnTailNoChanging(string value);
+    partial void OnTailNoChanged();
+    partial void OnHoursChanging(System.Nullable<decimal> value);
+    partial void OnHoursChanged();
+    partial void OnManeuverChanging(string value);
+    partial void OnManeuverChanged();
+    partial void OnAirportChanging(string value);
+    partial void OnAirportChanged();
+    partial void OnLessonChanging(string value);
+    partial void OnLessonChanged();
+    partial void OnCourseChanging(string value);
+    partial void OnCourseChanged();
+    partial void OnDistanceChanging(System.Nullable<decimal> value);
+    partial void OnDistanceChanged();
+    partial void OnIsNightChanging(bool value);
+    partial void OnIsNightChanged();
+    partial void OnIsDualChanging(bool value);
+    partial void OnIsDualChanged();
+    partial void OnIsCrossCountryChanging(bool value);
+    partial void OnIsCrossCountryChanged();
+    partial void OnIsWithPassengerChanging(string value);
+    partial void OnIsWithPassengerChanged();
+    partial void OnValidityStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnValidityStartDateChanged();
+    partial void OnValidityEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnValidityEndDateChanged();
+    #endregion
+		
+		public TaskDefinition()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
 		{
 			get
 			{
-				return this._duallocalnight;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._duallocalnight != value))
+				if ((this._Id != value))
 				{
-					this.OnduallocalnightChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._duallocalnight = value;
-					this.SendPropertyChanged("duallocalnight");
-					this.OnduallocalnightChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dualccnight", DbType="Decimal(5,2) NOT NULL")]
-		public decimal dualccnight
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TaskID
 		{
 			get
 			{
-				return this._dualccnight;
+				return this._TaskID;
 			}
 			set
 			{
-				if ((this._dualccnight != value))
+				if ((this._TaskID != value))
 				{
-					this.OndualccnightChanging(value);
+					this.OnTaskIDChanging(value);
 					this.SendPropertyChanging();
-					this._dualccnight = value;
-					this.SendPropertyChanged("dualccnight");
-					this.OndualccnightChanged();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sololocalday", DbType="Decimal(5,2) NOT NULL")]
-		public decimal sololocalday
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string TaskName
 		{
 			get
 			{
-				return this._sololocalday;
+				return this._TaskName;
 			}
 			set
 			{
-				if ((this._sololocalday != value))
+				if ((this._TaskName != value))
 				{
-					this.OnsololocaldayChanging(value);
+					this.OnTaskNameChanging(value);
 					this.SendPropertyChanging();
-					this._sololocalday = value;
-					this.SendPropertyChanged("sololocalday");
-					this.OnsololocaldayChanged();
+					this._TaskName = value;
+					this.SendPropertyChanged("TaskName");
+					this.OnTaskNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_soloccday", DbType="Decimal(5,2) NOT NULL")]
-		public decimal soloccday
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskDescription", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string TaskDescription
 		{
 			get
 			{
-				return this._soloccday;
+				return this._TaskDescription;
 			}
 			set
 			{
-				if ((this._soloccday != value))
+				if ((this._TaskDescription != value))
 				{
-					this.OnsoloccdayChanging(value);
+					this.OnTaskDescriptionChanging(value);
 					this.SendPropertyChanging();
-					this._soloccday = value;
-					this.SendPropertyChanged("soloccday");
-					this.OnsoloccdayChanged();
+					this._TaskDescription = value;
+					this.SendPropertyChanged("TaskDescription");
+					this.OnTaskDescriptionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sololocalnight", DbType="Decimal(5,2) NOT NULL")]
-		public decimal sololocalnight
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskType", DbType="Int NOT NULL")]
+		public int TaskType
 		{
 			get
 			{
-				return this._sololocalnight;
+				return this._TaskType;
 			}
 			set
 			{
-				if ((this._sololocalnight != value))
+				if ((this._TaskType != value))
 				{
-					this.OnsololocalnightChanging(value);
+					this.OnTaskTypeChanging(value);
 					this.SendPropertyChanging();
-					this._sololocalnight = value;
-					this.SendPropertyChanged("sololocalnight");
-					this.OnsololocalnightChanged();
+					this._TaskType = value;
+					this.SendPropertyChanged("TaskType");
+					this.OnTaskTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_soloccnight", DbType="Decimal(5,2) NOT NULL")]
-		public decimal soloccnight
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AircraftType", DbType="NVarChar(50)")]
+		public string AircraftType
 		{
 			get
 			{
-				return this._soloccnight;
+				return this._AircraftType;
 			}
 			set
 			{
-				if ((this._soloccnight != value))
+				if ((this._AircraftType != value))
 				{
-					this.OnsoloccnightChanging(value);
+					this.OnAircraftTypeChanging(value);
 					this.SendPropertyChanging();
-					this._soloccnight = value;
-					this.SendPropertyChanged("soloccnight");
-					this.OnsoloccnightChanged();
+					this._AircraftType = value;
+					this.SendPropertyChanged("AircraftType");
+					this.OnAircraftTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_briefing", DbType="Decimal(5,2) NOT NULL")]
-		public decimal briefing
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TailNo", DbType="NChar(10)")]
+		public string TailNo
 		{
 			get
 			{
-				return this._briefing;
+				return this._TailNo;
 			}
 			set
 			{
-				if ((this._briefing != value))
+				if ((this._TailNo != value))
 				{
-					this.OnbriefingChanging(value);
+					this.OnTailNoChanging(value);
 					this.SendPropertyChanging();
-					this._briefing = value;
-					this.SendPropertyChanged("briefing");
-					this.OnbriefingChanged();
+					this._TailNo = value;
+					this.SendPropertyChanged("TailNo");
+					this.OnTailNoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_classvideo", DbType="Decimal(5,2) NOT NULL")]
-		public decimal classvideo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hours", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Hours
 		{
 			get
 			{
-				return this._classvideo;
+				return this._Hours;
 			}
 			set
 			{
-				if ((this._classvideo != value))
+				if ((this._Hours != value))
 				{
-					this.OnclassvideoChanging(value);
+					this.OnHoursChanging(value);
 					this.SendPropertyChanging();
-					this._classvideo = value;
-					this.SendPropertyChanged("classvideo");
-					this.OnclassvideoChanged();
+					this._Hours = value;
+					this.SendPropertyChanged("Hours");
+					this.OnHoursChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_exams", DbType="Decimal(5,2) NOT NULL")]
-		public decimal exams
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Maneuver", DbType="NVarChar(50)")]
+		public string Maneuver
 		{
 			get
 			{
-				return this._exams;
+				return this._Maneuver;
 			}
 			set
 			{
-				if ((this._exams != value))
+				if ((this._Maneuver != value))
 				{
-					this.OnexamsChanging(value);
+					this.OnManeuverChanging(value);
 					this.SendPropertyChanging();
-					this._exams = value;
-					this.SendPropertyChanged("exams");
-					this.OnexamsChanged();
+					this._Maneuver = value;
+					this.SendPropertyChanged("Maneuver");
+					this.OnManeuverChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debrief", DbType="Decimal(5,2) NOT NULL")]
-		public decimal debrief
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Airport", DbType="NChar(10)")]
+		public string Airport
 		{
 			get
 			{
-				return this._debrief;
+				return this._Airport;
 			}
 			set
 			{
-				if ((this._debrief != value))
+				if ((this._Airport != value))
 				{
-					this.OndebriefChanging(value);
+					this.OnAirportChanging(value);
 					this.SendPropertyChanging();
-					this._debrief = value;
-					this.SendPropertyChanged("debrief");
-					this.OndebriefChanged();
+					this._Airport = value;
+					this.SendPropertyChanged("Airport");
+					this.OnAirportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lesson", DbType="NVarChar(50)")]
+		public string Lesson
+		{
+			get
+			{
+				return this._Lesson;
+			}
+			set
+			{
+				if ((this._Lesson != value))
+				{
+					this.OnLessonChanging(value);
+					this.SendPropertyChanging();
+					this._Lesson = value;
+					this.SendPropertyChanged("Lesson");
+					this.OnLessonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Course", DbType="NVarChar(50)")]
+		public string Course
+		{
+			get
+			{
+				return this._Course;
+			}
+			set
+			{
+				if ((this._Course != value))
+				{
+					this.OnCourseChanging(value);
+					this.SendPropertyChanging();
+					this._Course = value;
+					this.SendPropertyChanged("Course");
+					this.OnCourseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distance", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Distance
+		{
+			get
+			{
+				return this._Distance;
+			}
+			set
+			{
+				if ((this._Distance != value))
+				{
+					this.OnDistanceChanging(value);
+					this.SendPropertyChanging();
+					this._Distance = value;
+					this.SendPropertyChanged("Distance");
+					this.OnDistanceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNight", DbType="Bit NOT NULL")]
+		public bool IsNight
+		{
+			get
+			{
+				return this._IsNight;
+			}
+			set
+			{
+				if ((this._IsNight != value))
+				{
+					this.OnIsNightChanging(value);
+					this.SendPropertyChanging();
+					this._IsNight = value;
+					this.SendPropertyChanged("IsNight");
+					this.OnIsNightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDual", DbType="Bit NOT NULL")]
+		public bool IsDual
+		{
+			get
+			{
+				return this._IsDual;
+			}
+			set
+			{
+				if ((this._IsDual != value))
+				{
+					this.OnIsDualChanging(value);
+					this.SendPropertyChanging();
+					this._IsDual = value;
+					this.SendPropertyChanged("IsDual");
+					this.OnIsDualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCrossCountry", DbType="Bit NOT NULL")]
+		public bool IsCrossCountry
+		{
+			get
+			{
+				return this._IsCrossCountry;
+			}
+			set
+			{
+				if ((this._IsCrossCountry != value))
+				{
+					this.OnIsCrossCountryChanging(value);
+					this.SendPropertyChanging();
+					this._IsCrossCountry = value;
+					this.SendPropertyChanged("IsCrossCountry");
+					this.OnIsCrossCountryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsWithPassenger", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string IsWithPassenger
+		{
+			get
+			{
+				return this._IsWithPassenger;
+			}
+			set
+			{
+				if ((this._IsWithPassenger != value))
+				{
+					this.OnIsWithPassengerChanging(value);
+					this.SendPropertyChanging();
+					this._IsWithPassenger = value;
+					this.SendPropertyChanged("IsWithPassenger");
+					this.OnIsWithPassengerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidityStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ValidityStartDate
+		{
+			get
+			{
+				return this._ValidityStartDate;
+			}
+			set
+			{
+				if ((this._ValidityStartDate != value))
+				{
+					this.OnValidityStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._ValidityStartDate = value;
+					this.SendPropertyChanged("ValidityStartDate");
+					this.OnValidityStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidityEndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ValidityEndDate
+		{
+			get
+			{
+				return this._ValidityEndDate;
+			}
+			set
+			{
+				if ((this._ValidityEndDate != value))
+				{
+					this.OnValidityEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._ValidityEndDate = value;
+					this.SendPropertyChanged("ValidityEndDate");
+					this.OnValidityEndDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PilotAchievement")]
+	public partial class PilotAchievement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _PilotEmail;
+		
+		private System.Guid _AchievementID;
+		
+		private System.DateTime _DateCompleted;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPilotEmailChanging(string value);
+    partial void OnPilotEmailChanged();
+    partial void OnAchievementIDChanging(System.Guid value);
+    partial void OnAchievementIDChanged();
+    partial void OnDateCompletedChanging(System.DateTime value);
+    partial void OnDateCompletedChanged();
+    #endregion
+		
+		public PilotAchievement()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PilotEmail
+		{
+			get
+			{
+				return this._PilotEmail;
+			}
+			set
+			{
+				if ((this._PilotEmail != value))
+				{
+					this.OnPilotEmailChanging(value);
+					this.SendPropertyChanging();
+					this._PilotEmail = value;
+					this.SendPropertyChanged("PilotEmail");
+					this.OnPilotEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid AchievementID
+		{
+			get
+			{
+				return this._AchievementID;
+			}
+			set
+			{
+				if ((this._AchievementID != value))
+				{
+					this.OnAchievementIDChanging(value);
+					this.SendPropertyChanging();
+					this._AchievementID = value;
+					this.SendPropertyChanged("AchievementID");
+					this.OnAchievementIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCompleted
+		{
+			get
+			{
+				return this._DateCompleted;
+			}
+			set
+			{
+				if ((this._DateCompleted != value))
+				{
+					this.OnDateCompletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCompleted = value;
+					this.SendPropertyChanged("DateCompleted");
+					this.OnDateCompletedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RewardDefinition")]
+	public partial class RewardDefinition : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _RewardID;
+		
+		private string _RewardName;
+		
+		private string _RewardDesc;
+		
+		private string _RewardType;
+		
+		private decimal _RewardCount;
+		
+		private int _RewardValidityMonths;
+		
+		private string _RewardItem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRewardIDChanging(System.Guid value);
+    partial void OnRewardIDChanged();
+    partial void OnRewardNameChanging(string value);
+    partial void OnRewardNameChanged();
+    partial void OnRewardDescChanging(string value);
+    partial void OnRewardDescChanged();
+    partial void OnRewardTypeChanging(string value);
+    partial void OnRewardTypeChanged();
+    partial void OnRewardCountChanging(decimal value);
+    partial void OnRewardCountChanged();
+    partial void OnRewardValidityMonthsChanging(int value);
+    partial void OnRewardValidityMonthsChanged();
+    partial void OnRewardItemChanging(string value);
+    partial void OnRewardItemChanged();
+    #endregion
+		
+		public RewardDefinition()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RewardID
+		{
+			get
+			{
+				return this._RewardID;
+			}
+			set
+			{
+				if ((this._RewardID != value))
+				{
+					this.OnRewardIDChanging(value);
+					this.SendPropertyChanging();
+					this._RewardID = value;
+					this.SendPropertyChanged("RewardID");
+					this.OnRewardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string RewardName
+		{
+			get
+			{
+				return this._RewardName;
+			}
+			set
+			{
+				if ((this._RewardName != value))
+				{
+					this.OnRewardNameChanging(value);
+					this.SendPropertyChanging();
+					this._RewardName = value;
+					this.SendPropertyChanged("RewardName");
+					this.OnRewardNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardDesc", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string RewardDesc
+		{
+			get
+			{
+				return this._RewardDesc;
+			}
+			set
+			{
+				if ((this._RewardDesc != value))
+				{
+					this.OnRewardDescChanging(value);
+					this.SendPropertyChanging();
+					this._RewardDesc = value;
+					this.SendPropertyChanged("RewardDesc");
+					this.OnRewardDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardType", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string RewardType
+		{
+			get
+			{
+				return this._RewardType;
+			}
+			set
+			{
+				if ((this._RewardType != value))
+				{
+					this.OnRewardTypeChanging(value);
+					this.SendPropertyChanging();
+					this._RewardType = value;
+					this.SendPropertyChanged("RewardType");
+					this.OnRewardTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardCount", DbType="Decimal(18,0) NOT NULL")]
+		public decimal RewardCount
+		{
+			get
+			{
+				return this._RewardCount;
+			}
+			set
+			{
+				if ((this._RewardCount != value))
+				{
+					this.OnRewardCountChanging(value);
+					this.SendPropertyChanging();
+					this._RewardCount = value;
+					this.SendPropertyChanged("RewardCount");
+					this.OnRewardCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardValidityMonths", DbType="Int NOT NULL")]
+		public int RewardValidityMonths
+		{
+			get
+			{
+				return this._RewardValidityMonths;
+			}
+			set
+			{
+				if ((this._RewardValidityMonths != value))
+				{
+					this.OnRewardValidityMonthsChanging(value);
+					this.SendPropertyChanging();
+					this._RewardValidityMonths = value;
+					this.SendPropertyChanged("RewardValidityMonths");
+					this.OnRewardValidityMonthsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardItem", DbType="NVarChar(50)")]
+		public string RewardItem
+		{
+			get
+			{
+				return this._RewardItem;
+			}
+			set
+			{
+				if ((this._RewardItem != value))
+				{
+					this.OnRewardItemChanging(value);
+					this.SendPropertyChanging();
+					this._RewardItem = value;
+					this.SendPropertyChanged("RewardItem");
+					this.OnRewardItemChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RewardPrereq")]
+	public partial class RewardPrereq : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _RewardID;
+		
+		private System.Guid _RequiredAchievement;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRewardIDChanging(System.Guid value);
+    partial void OnRewardIDChanged();
+    partial void OnRequiredAchievementChanging(System.Guid value);
+    partial void OnRequiredAchievementChanged();
+    #endregion
+		
+		public RewardPrereq()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RewardID
+		{
+			get
+			{
+				return this._RewardID;
+			}
+			set
+			{
+				if ((this._RewardID != value))
+				{
+					this.OnRewardIDChanging(value);
+					this.SendPropertyChanging();
+					this._RewardID = value;
+					this.SendPropertyChanged("RewardID");
+					this.OnRewardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredAchievement", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RequiredAchievement
+		{
+			get
+			{
+				return this._RequiredAchievement;
+			}
+			set
+			{
+				if ((this._RequiredAchievement != value))
+				{
+					this.OnRequiredAchievementChanging(value);
+					this.SendPropertyChanging();
+					this._RequiredAchievement = value;
+					this.SendPropertyChanged("RequiredAchievement");
+					this.OnRequiredAchievementChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PilotClassDefinition")]
+	public partial class PilotClassDefinition : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _PilotClassID;
+		
+		private string _PilotClassName;
+		
+		private string _PilotClassDescription;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPilotClassIDChanging(System.Guid value);
+    partial void OnPilotClassIDChanged();
+    partial void OnPilotClassNameChanging(string value);
+    partial void OnPilotClassNameChanged();
+    partial void OnPilotClassDescriptionChanging(string value);
+    partial void OnPilotClassDescriptionChanged();
+    #endregion
+		
+		public PilotClassDefinition()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotClassID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PilotClassID
+		{
+			get
+			{
+				return this._PilotClassID;
+			}
+			set
+			{
+				if ((this._PilotClassID != value))
+				{
+					this.OnPilotClassIDChanging(value);
+					this.SendPropertyChanging();
+					this._PilotClassID = value;
+					this.SendPropertyChanged("PilotClassID");
+					this.OnPilotClassIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotClassName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PilotClassName
+		{
+			get
+			{
+				return this._PilotClassName;
+			}
+			set
+			{
+				if ((this._PilotClassName != value))
+				{
+					this.OnPilotClassNameChanging(value);
+					this.SendPropertyChanging();
+					this._PilotClassName = value;
+					this.SendPropertyChanged("PilotClassName");
+					this.OnPilotClassNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotClassDescription", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string PilotClassDescription
+		{
+			get
+			{
+				return this._PilotClassDescription;
+			}
+			set
+			{
+				if ((this._PilotClassDescription != value))
+				{
+					this.OnPilotClassDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._PilotClassDescription = value;
+					this.SendPropertyChanged("PilotClassDescription");
+					this.OnPilotClassDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PilotClassPrereq")]
+	public partial class PilotClassPrereq : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _PilotClassID;
+		
+		private System.Guid _AchievementID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPilotClassIDChanging(System.Guid value);
+    partial void OnPilotClassIDChanged();
+    partial void OnAchievementIDChanging(System.Guid value);
+    partial void OnAchievementIDChanged();
+    #endregion
+		
+		public PilotClassPrereq()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotClassID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PilotClassID
+		{
+			get
+			{
+				return this._PilotClassID;
+			}
+			set
+			{
+				if ((this._PilotClassID != value))
+				{
+					this.OnPilotClassIDChanging(value);
+					this.SendPropertyChanging();
+					this._PilotClassID = value;
+					this.SendPropertyChanged("PilotClassID");
+					this.OnPilotClassIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid AchievementID
+		{
+			get
+			{
+				return this._AchievementID;
+			}
+			set
+			{
+				if ((this._AchievementID != value))
+				{
+					this.OnAchievementIDChanging(value);
+					this.SendPropertyChanging();
+					this._AchievementID = value;
+					this.SendPropertyChanged("AchievementID");
+					this.OnAchievementIDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PilotClass")]
+	public partial class PilotClass : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _PilotEmail;
+		
+		private System.Guid _PilotClassID;
+		
+		private System.DateTime _DateCompleted;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPilotEmailChanging(string value);
+    partial void OnPilotEmailChanged();
+    partial void OnPilotClassIDChanging(System.Guid value);
+    partial void OnPilotClassIDChanged();
+    partial void OnDateCompletedChanging(System.DateTime value);
+    partial void OnDateCompletedChanged();
+    #endregion
+		
+		public PilotClass()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PilotEmail
+		{
+			get
+			{
+				return this._PilotEmail;
+			}
+			set
+			{
+				if ((this._PilotEmail != value))
+				{
+					this.OnPilotEmailChanging(value);
+					this.SendPropertyChanging();
+					this._PilotEmail = value;
+					this.SendPropertyChanged("PilotEmail");
+					this.OnPilotEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PilotClassID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PilotClassID
+		{
+			get
+			{
+				return this._PilotClassID;
+			}
+			set
+			{
+				if ((this._PilotClassID != value))
+				{
+					this.OnPilotClassIDChanging(value);
+					this.SendPropertyChanging();
+					this._PilotClassID = value;
+					this.SendPropertyChanged("PilotClassID");
+					this.OnPilotClassIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompleted", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCompleted
+		{
+			get
+			{
+				return this._DateCompleted;
+			}
+			set
+			{
+				if ((this._DateCompleted != value))
+				{
+					this.OnDateCompletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCompleted = value;
+					this.SendPropertyChanged("DateCompleted");
+					this.OnDateCompletedChanged();
 				}
 			}
 		}

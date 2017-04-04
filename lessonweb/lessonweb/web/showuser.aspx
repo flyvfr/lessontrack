@@ -18,12 +18,13 @@
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
+
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
-
+    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -135,17 +136,19 @@
                     </button>
                     <div>
                         <a class="navbar-brand" href="#"><%= mShownUser.GetFullName()%></a>
-                        <%if (mUser.IsRestrictedUser() && (mUser.UserEmail == mShownUser.UserEmail))
+                        <%if (mShownUser.IsStudent) { %>
+                            <%if (mUser.IsRestrictedUser() && (mUser.UserEmail == mShownUser.UserEmail))
+                                { %>
+                                <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
+                                <!--<a href="showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Show Progress</a>
+                                <a href="editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Update Progress</a> -->
+                            <%}
+                            else if (!mUser.IsRestrictedUser())
                             { %>
-                            <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
-                            <!--<a href="showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Show Progress</a>
-                            <a href="editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>">Update Progress</a> -->
-                        <%}
-                        else if (!mUser.IsRestrictedUser())
-                        { %>
-                            <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
-                            <button type="button" class="btn btn-success" onClick="parent.location='editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">Update Progress</button>
-                        <%} %>
+                                <button type="button" class="btn btn-success" onClick="parent.location='showcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">View Progress</button>
+                                <button type="button" class="btn btn-success" onClick="parent.location='editcourse.aspx?certid=141-PVT&student=<%=mShownUser.UserEmail %>'">Update Progress</button>
+                            <%} %>
+                            <%} %>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -228,6 +231,7 @@
                         </div>
                     </div>
             </div>
+                <!--
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="card">
@@ -257,6 +261,52 @@
                         </div>
                     </div>
                 </div>
+                -->
+
+                <%if (mShownUser.IsStudent) { %>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="content">
+                                 <table class="table table-condensed extracompact">
+                                    <thead>
+                                        <tr class="active">
+                                            <th style="width:10%">Date</th>
+                                            <th>Lesson</th>
+                                            <th>Student</th>
+                                            <th>Instructor</th>
+                                            <th>Flight Hours</th>
+                                            <th>Ground Hours</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <%
+                                            var lessons = lessonweb.Data.LessonLog.GetLatestForStudent(500, mShownUser.UserEmail);
+                                            foreach (lessonweb.Data.LessonLogItem itm in lessons)
+                                            {
+                                                %>
+                                        <tr>
+                                              <td><%=itm.DoneOn.ToString("d") %></td> 
+                                            <td><%=itm.LessonName%></td>
+                                            <td><%=itm.StudentName%></td>
+                                            <td><%=itm.InstructorName%></td>
+                                            <td><%=itm.HoursLogged%></td>
+                                            <td><%=itm.GroundHoursLogged%></td>
+                                        </tr>
+                                            <%
+                                            }
+                                             %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+                }
+                    %>
+
             </div>
         </div>
 

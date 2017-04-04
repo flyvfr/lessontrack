@@ -17,14 +17,14 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
+
 
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
-
+        <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                         <p>Instructors</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="showcourse.aspx?certid=141-PVT">
                         <i class="ti-book"></i>
                         <p>Private Syllabus</p>
@@ -209,7 +209,7 @@
                                                                     </div>
                                                                     <div id="collapseTimes<%=s.STAGEID%><%=less.LESSONID %>" class="panel-collapse collapse">
                                                                         <div class="panel-body">
-                                                                            <table class="table table-condensed extracompact">
+                                                                            <table class="table table-condensed">
                                                                                 <thead class="header">
                                                                                     <tr>
                                                                                         <th>Time</th>
@@ -377,7 +377,7 @@
                                                     </div>
                                                     <div id="collapseTimes<%=s.STAGEID%>" class="panel-collapse collapse">
                                                         <div class="panel-body" >
-                                                            <table class="table table-condensed extracompact">
+                                                            <table class="table table-condensed">
                                                                 <thead class="header">
                                                                     <tr>
                                                                         <th>Time</th>

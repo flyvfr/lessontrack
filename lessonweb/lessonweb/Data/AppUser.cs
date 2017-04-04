@@ -24,7 +24,8 @@ namespace lessonweb.Data
             AppUser usr = (from u in dbc.AppUsers
                           where u.UserEmail == email
                           select u).SingleOrDefault();
-            if (usr.PasswordHash != null && usr.PasswordHash.ToArray()[0] != 0)
+            if (usr == null) return null;
+            if (usr.PasswordHash != null && usr.PasswordHash.Length>0 && usr.PasswordHash.ToArray()[0] != 0)
             {
                 string internalpwd = System.Text.Encoding.UTF8.GetString(usr.PasswordHash.ToArray());
                 if (internalpwd != passwd)
@@ -45,14 +46,18 @@ namespace lessonweb.Data
             return nUsers;
         }
 
-        internal static AppUser getUser(string uid)
+        internal static AppUser getUser(DBClassesDataContext dbc, string uid)
         {
-            DBClassesDataContext dbc = new DBClassesDataContext();
             AppUser usr = (from u in dbc.AppUsers
                            where u.UserEmail == uid
                            select u).SingleOrDefault();
 
             return usr;
+        }
+        internal static AppUser getUser(string uid)
+        {
+            DBClassesDataContext dbc = new DBClassesDataContext();
+            return getUser(dbc, uid) ;
         }
 
         internal static IEnumerable<AppUser> GetInstructors()

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="lessonweb.web.dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RewardsManagement.aspx.cs" Inherits="lessonweb.web.PGStudents" %>
+<%@ Import Namespace="lessonweb.Data" %>
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>LessonTrack Dashboard</title>
+	<title>LessonTrack Student List</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -16,13 +17,13 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
-    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
-
+        <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -46,10 +47,11 @@
                     Atomic Helicopters
                 </a>
             </div>
+
             <ul class="nav">
                  <%if (mUser.IsRestrictedUser())
                     {%>
-                    <li class="active">
+                    <li >
                         <a href="showuser.aspx?uid=<%=mUser.UserEmail %>">
                             <i class="ti-user"></i>
                             <p>Home</p>
@@ -58,13 +60,13 @@
                 <%}
                 else
                 { %>
-                    <li class="active">
+                    <li >
                         <a href="dashboard.aspx">
                             <i class="ti-panel"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li >
+                    <li class="active">
                         <a href="students.aspx">
                             <i class="ti-user"></i>
                             <p>Students</p>
@@ -104,7 +106,7 @@
                 </li>
                  <%if (!mUser.IsRestrictedUser())
                     {%>
-                    <li >
+                    <li class="active">
                         <a href="RewardsManagement.aspx">
                             <i class="ti-user"></i>
                             <p>Manage Rewards</p>
@@ -125,7 +127,10 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <div>
+                    <a class="navbar-brand" href="#">Manage Rewards</a>
+                    <button type="button" class="btn btn-success" onClick="parent.location='edituser.aspx?type=student'">Add New</button>
+                    </div>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -156,121 +161,38 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
-                                            <i class="ti-user"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Students</p>
-                                            <%=GetTotalStudents() %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                   <!-- <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> This week
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-success text-center">
-                                            <i class="ti-light-bulb"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Instructors</p>
-                                            <%=GetTotalInstructors() %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                   <!-- <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> This week
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="fa fa-plane"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Aircraft </p>
-                                            <%=GetTotalAircraft() %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                   <!-- <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> This week
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Recent Lessons</h4>
-                            </div>
                             <div class="content">
-                                 <table class="table table-condensed">
+                                <h5>All Tasks</h5>
+                                <table class="table table-condensed">
                                     <thead>
                                         <tr class="active">
-                                            <th style="width:10%">Date</th>
-                                            <th>Lesson</th>
-                                            <th>Student</th>
-                                            <th>Instructor</th>
-                                            <th>Flight Hours</th>
-                                            <th>Ground Hours</th>
+                                            <th>Task Name</th>
+                                            <th>Task Type</th>
+                                            <th>Phone</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <%
-                                            var lessons = lessonweb.Data.LessonLog.GetLatest(20);
-                                            foreach (lessonweb.Data.LessonLogItem itm in lessons)
+                                            var Students = GetStudentList();
+                                            foreach (AppUser usr in Students)
                                             {
                                                 %>
                                         <tr>
-                                              <td><%=itm.DoneOn.ToString("d") %></td> 
-                                            <td><%=itm.LessonName%></td>
-                                            <td><%=itm.StudentName%></td>
-                                            <td><%=itm.InstructorName%></td>
-                                            <td><%=itm.HoursLogged%></td>
-                                            <td><%=itm.GroundHoursLogged%></td>
+                                              <td><a href="show.aspx?uid=<%=usr.UserEmail%>"><%=usr.GetFullName() %></a></td> 
+                                            <td><%=usr.UserEmail %></td>
+                                            <td><%=usr.CellPhone %></td>
+                                            <td><a href="deleteTask.aspx?uid=<%=usr.UserEmail%>" class="ti-pencil"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="editTask.aspx?uid=<%=usr.UserEmail%>" class="ti-trash"/></td>
                                         </tr>
                                             <%
                                             }
                                              %>
                                     </tbody>
                                 </table>
+                                <button type="button" class="btn btn-sm btn-success" onClick="parent.location='edituser.aspx?type=student'">Add New</button>
                             </div>
                         </div>
                     </div>

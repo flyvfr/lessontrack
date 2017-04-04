@@ -26,7 +26,7 @@
 
 
     <!--  Fonts and icons     -->
-    <link href="../assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/themify-icons.css" rel="stylesheet">
 
 </head>

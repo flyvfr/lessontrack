@@ -19,12 +19,13 @@
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
+
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet" />
-
+        <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -37,7 +38,7 @@
     <hr />
     <div>
         <table class="table table-condensed">
-            <thead>
+            <thead class="header">
                 <tr class="active">
                     <th style="width:5%">Done</th>
                     <th style="width:60%">Lesson</th>

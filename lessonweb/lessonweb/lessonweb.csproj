@@ -128,6 +128,7 @@
     <Content Include="Assets\js\demo.js" />
     <Content Include="Assets\js\jquery-1.10.2.js" />
     <Content Include="Assets\js\paper-dashboard.js" />
+    <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Templates\dashboard.html" />
@@ -140,6 +141,7 @@
     <Content Include="Templates\user.html" />
     <Content Include="web\deleteaircraft.aspx" />
     <Content Include="web\printprogress.aspx" />
+    <Content Include="web\RewardsManagement.aspx" />
     <Content Include="web\updatecourse.aspx" />
     <Content Include="web\deleteuser.aspx" />
     <Content Include="web\editaircraft.aspx" />
@@ -160,6 +162,8 @@
     <Compile Include="App_Code\Constants.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\LessonLog.cs" />
+    <Compile Include="Data\LessonLogItem.cs" />
     <Compile Include="Data\LessonTimeLog.cs" />
     <Compile Include="Data\CompletionLog.cs" />
     <Compile Include="Data\LESSONITEM.cs" />
@@ -172,6 +176,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,6 +201,13 @@
     </Compile>
     <Compile Include="web\printprogress.aspx.designer.cs">
       <DependentUpon>printprogress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\RewardsManagement.aspx.cs">
+      <DependentUpon>RewardsManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\RewardsManagement.aspx.designer.cs">
+      <DependentUpon>RewardsManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\updatecourse.aspx.cs">
       <DependentUpon>updatecourse.aspx</DependentUpon>

@@ -28,6 +28,8 @@ namespace lessonweb.web
                 Response.Redirect("dashboard.aspx");
                 return;
             }
+            ErrorLine.Visible = true;
+            ErrorLine.Text = "Invalid user or password";
         }
     }
 }

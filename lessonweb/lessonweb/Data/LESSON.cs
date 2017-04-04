@@ -40,6 +40,14 @@ namespace lessonweb.Data
             }
         }
 
+        public static LESSON GetLesson(DBClassesDataContext dbc, int lid)
+        {
+            LESSON li = (from l in dbc.LESSONs
+                         where l.LESSONID == lid
+                         select l).SingleOrDefault();
+            return li;
+        }
+
         /**
  * load the completion status of all items for this student
  */
@@ -87,11 +95,77 @@ namespace lessonweb.Data
 
         public string GetReportLines()
         {
+            if (!IsAllStarted) return "<tr class='danger'><td colspan='4'>" + Title + " (Not Started)</td></tr>\n"; ;
+
             String s = "<tr class='warning'><td colspan='4'>" + Title+ "</td></tr>\n";
+            // now log the times in a smaller table
+            String timesStr = "<tr class='warning'><td/><td>" + getTimeLogLines() + "</td><td colspan='2'/></tr>\n";
+            // now make a table of all the times completed
+
+            s += timesStr;
+
             foreach (LESSONITEM less in LessonItems)
             {
                 s += less.GetReportLines();
             }
+            return s;
+        }
+
+        private string getTimeLogLines()
+        {
+            String s = "<table class='table table-condensed'>" +
+            "<thead class='header'>" +
+                "<tr class='warning'>" +
+                    "<th style = 'width:40%' >Time</ th >" +
+                    "<th style='width:20%'>Required</th>" +
+                    "<th style = 'width:20%' >Completed</th>" +
+                    "<th style = 'width:20%' >Remaining</th>" +
+                "</tr></thead><tbody>";
+
+            // now log each time
+            if (briefing > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Briefing", briefing, Loggedbriefing, (briefing - Loggedbriefing));
+            }
+            if (classvideo > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Class / Video", classvideo, Loggedclassvideo, (classvideo - Loggedclassvideo));
+            }
+            if (exams > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Exams", exams, Loggedexams, (exams - Loggedexams));
+            }
+            if (debrief > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Debrief", debrief, Loggeddebrief, (debrief - Loggeddebrief));
+            }
+            if (duallocalday > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Dual Day", duallocalday, Loggedduallocalday, (duallocalday - Loggedduallocalday));
+            }
+            if (duallocalnight > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Dual Night", duallocalnight, Loggedduallocalnight, (duallocalnight - Loggedduallocalnight));
+            }
+            if (dualccday > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Dual Day CC", dualccday, Loggeddualccday, (dualccday - Loggeddualccday));
+            }
+            if (dualccnight > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Dual Night CC", dualccnight, Loggeddualccnight, (dualccnight - Loggeddualccnight));
+            }
+            if (sololocalday > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Solo Local", sololocalday, Loggedsololocalday, (sololocalday - Loggedsololocalday));
+            }
+            if (soloccday > 0.0M)
+            {
+                s += STAGE.MakeTimeLogLine("Solo CC", soloccday, Loggedsoloccday, (soloccday - Loggedsoloccday));
+            }
+
+            s += "</tbody></table>";
+
             return s;
         }
 

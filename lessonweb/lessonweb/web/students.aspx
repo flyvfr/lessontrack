@@ -23,7 +23,7 @@
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
-
+        <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -66,7 +66,7 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li >
+                    <li class="active">
                         <a href="students.aspx">
                             <i class="ti-user"></i>
                             <p>Students</p>
@@ -151,7 +151,7 @@
                             <div class="content">
                                 <table class="table table-condensed">
                                     <thead>
-                                        <tr>
+                                        <tr class="active">
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>

@@ -18,19 +18,28 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
+
 
     <!-- Animation library for notifications   -->
     <link href="../assets/css/animate.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet" />
-
+    <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/themify-icons.css" rel="stylesheet">
+
+    <script>
+        document.addEventListener('keypress', function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 </head>
 <body>
 
@@ -79,7 +88,7 @@
                             <p>Instructors</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="showcourse.aspx?certid=141-PVT">
                             <i class="ti-book"></i>
                             <p>Private Syllabus</p>
@@ -196,7 +205,7 @@
                                                                         </div>
                                                                         <div id="collapseTimes<%=s.STAGEID%><%=less.LESSONID %>" class="panel-collapse collapse">
                                                                             <div class="panel-body nopadding">
-                                                                                <table class="table table-condensed extracompact">
+                                                                                <table class="table table-condensed">
                                                                                     <thead class="header">
                                                                                         <tr>
                                                                                             <th>Time</th>
@@ -219,7 +228,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedbriefing%></td>
                                                                                             <td><%=(less.briefing - less.Loggedbriefing) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-briefing-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.briefing%>" class="form-control" name="TIMELOG-briefing-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -231,7 +240,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedclassvideo%></td>
                                                                                             <td><%=(less.classvideo - less.Loggedclassvideo) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-classvideo-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.classvideo%>" class="form-control" name="TIMELOG-classvideo-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -243,7 +252,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedexams%></td>
                                                                                             <td><%=(less.exams - less.Loggedexams) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-exams-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.exams%>" class="form-control" name="TIMELOG-exams-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -255,7 +264,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggeddebrief%></td>
                                                                                             <td><%=(less.debrief - less.Loggeddebrief) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-debrief-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.debrief%>" class="form-control" name="TIMELOG-debrief-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -267,7 +276,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedduallocalday %></td>
                                                                                             <td><%=(less.duallocalday - less.Loggedduallocalday) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-duallocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.duallocalday%>" class="form-control" name="TIMELOG-duallocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -279,7 +288,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggeddualccday%></td>
                                                                                             <td><%=(less.dualccday - less.Loggeddualccday) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-dualccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.dualccday%>" class="form-control" name="TIMELOG-dualccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -291,7 +300,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedduallocalnight%></td>
                                                                                             <td><%=(less.duallocalnight - less.Loggedduallocalnight) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-duallocalnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.duallocalnight%>" class="form-control" name="TIMELOG-duallocalnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -303,7 +312,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggeddualccnight%></td>
                                                                                             <td><%=(less.dualccnight - less.Loggeddualccnight) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-dualccnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.dualccnight%>" class="form-control" name="TIMELOG-dualccnight-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -315,7 +324,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedsololocalday%></td>
                                                                                             <td><%=(less.sololocalday - less.Loggedsololocalday) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-sololocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.sololocalday%>" class="form-control" name="TIMELOG-sololocalday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>
@@ -327,7 +336,7 @@
                                                                                                 {%>
                                                                                             <td><%=less.Loggedsoloccday%></td>
                                                                                             <td><%=(less.soloccday - less.Loggedsoloccday) %></td>
-                                                                                            <td><input type="number" step="0.1" max="20.0" class="form-control" name="TIMELOG-soloccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
+                                                                                            <td><input type="number" step="0.1" min="0.0" max="<%=less.soloccday%>" class="form-control" name="TIMELOG-soloccday-<%=less.LESSONID%>-<%=less.STAGEID%>" /></td>
                                                                                             <%} %>
                                                                                         </tr>
                                                                                         <%} %>

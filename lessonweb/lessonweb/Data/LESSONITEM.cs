@@ -62,27 +62,6 @@ namespace lessonweb.Data
             return s;
         }
 
-        public static List<LESSONITEM> GetLatest(int count)
-        {
-            List<LESSONITEM> list = new List<LESSONITEM>();
-            DBClassesDataContext dbc = new DBClassesDataContext();
-            IEnumerable<CompletionLog> lst = (from s in dbc.CompletionLogs
-                                     orderby s.DateCompleted descending
-                                     select s).Take(count);
-
-            foreach(CompletionLog log in lst)
-            {
-                LESSONITEM li = (from l in dbc.LESSONITEMs
-                                where l.LESSONGUID == log.LessonGUID
-                                select l).SingleOrDefault();
-                li.Instructor = log.Instructor;
-                li.CompletedOn = log.DateCompleted;
-                li.IsComplete = true;
-                li.Student = AppUser.getUser(log.Student);
-                list.Add(li);
-            }
-            return list;
-        }
 
     }
 }

@@ -14,5 +14,18 @@ namespace lessonweb.Data
                                  select u);
             return log;
         }
+
+        internal void SetLessonAndStage(string lessonGUID)
+        {
+            try
+            {
+                String[] comps = lessonGUID.Split(new char[] { ':' });
+                int StageID = int.Parse(comps[0]);
+                int LID = int.Parse(comps[1]);
+                STAGEID = StageID;
+                LESSONID = LID;
+            }
+            catch { }
+        }
     }
 }

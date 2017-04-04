@@ -23,6 +23,7 @@
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
+        <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
 
     <!--  Fonts and icons     -->
@@ -154,7 +155,7 @@
                             <div class="content">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="active">
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
