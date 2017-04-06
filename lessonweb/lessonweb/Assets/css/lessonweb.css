@@ -19,3 +19,7 @@
    font-family:Arial;
    font-weight:bold;
 }
+
+a:active, a:focus {
+    outline: none
+}

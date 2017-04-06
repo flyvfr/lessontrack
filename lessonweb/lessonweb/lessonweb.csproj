@@ -109,6 +109,9 @@
     <Content Include="Assets\css\font-awesome.min.css" />
     <Content Include="Assets\css\lessonweb.css" />
     <Content Include="Assets\css\login.css" />
+    <Content Include="Assets\css\material-kit.css" />
+    <Content Include="Assets\js\material-kit.js" />
+    <Content Include="Assets\js\material.min.js" />
     <Content Include="Assets\css\paper-dashboard.css" />
     <Content Include="Assets\css\themify-icons.css" />
     <Content Include="Assets\fonts\themify.svg" />
@@ -128,6 +131,7 @@
     <Content Include="Assets\js\demo.js" />
     <Content Include="Assets\js\jquery-1.10.2.js" />
     <Content Include="Assets\js\paper-dashboard.js" />
+    <Content Include="Assets\js\RewardsManagement.js" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
@@ -160,8 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Constants.cs" />
+    <Content Include="App_Code\Helpers.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\AchievementDefinition.cs" />
+    <Compile Include="Data\AchievementPrereq.cs" />
     <Compile Include="Data\LessonLog.cs" />
     <Compile Include="Data\LessonLogItem.cs" />
     <Compile Include="Data\LessonTimeLog.cs" />
@@ -177,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Data\TaskDefinition.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,6 +202,12 @@
     </Compile>
     <Compile Include="web\deleteaircraft.aspx.designer.cs">
       <DependentUpon>deleteaircraft.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\deletetask.ashx.cs">
+      <DependentUpon>deletetask.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\savetask.ashx.cs">
+      <DependentUpon>savetask.ashx</DependentUpon>
     </Compile>
     <Compile Include="web\printprogress.aspx.cs">
       <DependentUpon>printprogress.aspx</DependentUpon>
@@ -355,12 +369,15 @@
     <Content Include="Assets\sass\paper\_tables.scss" />
     <Content Include="Assets\sass\paper\_typography.scss" />
     <Content Include="Assets\sass\paper\_variables.scss" />
+    <Content Include="Assets\css\material-kit.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="web\savetask.ashx" />
+    <Content Include="web\deletetask.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
