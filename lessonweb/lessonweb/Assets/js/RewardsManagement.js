@@ -235,7 +235,86 @@
         });*/
     }
 
+
+    //----------------------------- ACHIEVEMENTS------------------------------
+    $('#editAchievement').on('hidden.bs.modal', function () {
+        var modal = this;
+        $("#editAchivementForm")[0].reset();
+        // clear all errors
+        $("#grp_achievementname").removeClass("has-error");
+    });
+    $("#editAchievement").on("submit", function (e) {
+        $("#grp_achievementname").removeClass("has-error");
+        var cansubmit = true;
+        if ($('#achievementname').val() == '') {
+            cansubmit = false;
+            $("#grp_achievementname").addClass("has-error");
+        }
+
+        if (!cansubmit) {
+            e.preventDefault();
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: e.action,
+            complete: OnSuccess()
+        });
+
+    });
+    $('#editAchievement').on('show.bs.modal', function (event) {
+        var modal = $(this);
+
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var achid = button.data('achievementid'); // Extract info from data-* attributes
+        var achname = button.data('achievementname');
+        var desc = button.data('achievementdescription');
+        var title = button.data("title");
+        var nosave = button.data("nosave");
+
+        if (nosave == '1') {
+            modal.find('#btnsaveachievement').hide();
+        } else {
+            modal.find('#btnsaveachievement').show();
+        }
+
+        if (!title) {
+            modal.find('#editAchievementLabel').text("New Achievement");
+        } else {
+            modal.find('#editAchievementLabel').text(title);
+        }
+
+        modal.find('#achievementid').val(achid);
+        modal.find('#achievementname').val(achname);
+        modal.find('#achievementdescription').text(button.data("achievementdescription"));
+    });
+    $('#deleteAchievement').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var achievementid = button.data('achievementid') // Extract info from data-* attributes
+        var achievementname = button.data('achievementname') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('#AchievementName').text(achievementname);
+        modal.data("AchievementID", achievementid);
+    });
 });
+
+
+function doDeleteAchievement() {
+    var achievementid = $("#deleteAchievement").data("AchievementID");
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            location.reload();
+        }
+    };
+    xhttp.open("GET", "deleteachievement.ashx?achievementid=" + achievementid, true);
+    xhttp.send();
+}
 
 
 

@@ -219,8 +219,7 @@
                                                             data-ispassenger="<%:tsk.IsWithPassenger %>"
                                                             data-lessonname="<%:tsk.Lesson %>"
                                                             data-maneuver="<%:tsk.Maneuver %>"
-                                                            data-tailno="<%:tsk.TailNo %>"
-                                                            ><%:tsk.TaskName %></a></td>
+                                                            data-tailno="<%:tsk.TailNo %>"><%:tsk.TaskName %>></a></td>
                                                         <td><%:tsk.GetTaskTypeName() %></td>
                                                         <td><%:tsk.GetTaskDetail()%></td>
                                                         <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-taskid="<%:tsk.TaskID %>" style="margin-right: 10px; outline: none"
@@ -240,9 +239,8 @@
                                                             data-ispassenger="<%:tsk.IsWithPassenger %>"
                                                             data-lessonname="<%:tsk.Lesson %>"
                                                             data-maneuver="<%:tsk.Maneuver %>"
-                                                            data-tailno="<%:tsk.TailNo %>"
-                                                            />
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-taskid="<%:tsk.TaskID %>" data-taskname="<%:tsk.TaskName%>" style="outline: none" /></td>
+                                                            data-tailno="<%:tsk.TailNo %>" ></a>
+                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-taskid="<%:tsk.TaskID %>" data-taskname="<%:tsk.TaskName%>" style="outline: none" ></a></td>
                                                     </tr>
                                                     <%
                                                         }
@@ -257,31 +255,43 @@
                                                 <thead>
                                                     <tr class="active">
                                                         <th>Achievement Name</th>
-                                                        <th>Task Type</th>
-                                                        <th>Details</th>
-                                                        <th>Actions</th>
+                                                        <th>Tasks</th>
+                                                        <th>Prerequisites</th>
+                                                        <th>Validity (months)</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                     <%
-                                                        var tTasks = TaskDefinition.getAllTaskDefinitions();
-                                                        foreach (TaskDefinition tsk in tTasks)
+                                                        var achievements = AchievementDefinition.getAll();
+                                                        foreach (AchievementDefinition ach in achievements)
                                                         {
+                                                            int nAchs = 0;
+                                                            int nTasks = AchievementPrereq.getPrereqTypes(AchievementPrereq.getPrereqsForAchievement(ach.AchievementID), out nAchs);
                                                     %>
                                                     <tr>
-                                                        <td><a href="#" data-toggle="modal" data-target="#editTask" data-taskid="<%=tsk.TaskID %>"><%=tsk.TaskName %></a></td>
-                                                        <td><%=tsk.GetTaskTypeName() %></td>
-                                                        <td><%=tsk.GetTaskDetail()%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" />
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" /></td>
+                                                        <td><a href="#" data-toggle="modal" data-target="#editAchievement" data-achievementid="<%:ach.AchievementID%>"
+                                                            data-achievementname="<%:ach.AchievementName %>"
+                                                            data-achievementdescription="<%:ach.AchievementDesc %>"
+                                                            data-title="View Achievement"
+                                                            data-nosave="1"
+                                                            ><%:ach.AchievementName%></a></td>
+                                                        <td><%=nTasks%></td>
+                                                        <td><%=nAchs%></td>
+                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editAchievement" 
+                                                            data-achievementid="<%:ach.AchievementID %>"
+                                                            data-achievementname="<%:ach.AchievementName %>"
+                                                            data-achievementdescription="<%:ach.AchievementDesc %>"
+                                                            data-title="Edit Achievement" style="margin-right: 10px; outline: none" ></a>
+                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteAchievement" 
+                                                                data-achievementid="<%:ach.AchievementID %>" data-achievementname="<%:ach.AchievementName %>" style="outline: none" ></a></td>
                                                     </tr>
                                                     <%
                                                         }
                                                     %>
                                                 </tbody>
                                             </table>
-                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editTask" data-whatever="@mdo">Add New</button>
+                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editAchievement" data-whatever="@mdo">Add New</button>
                                         </div>
                                         <!-- START Rewards TAB -->
                                         <div id="rewards" class="tab-pane fade in">
@@ -297,15 +307,15 @@
 
                                                 <tbody>
                                                     <%
-                                                        foreach (TaskDefinition tsk in tTasks)
+                                                        foreach (TaskDefinition tsk in Tasks)
                                                         {
                                                     %>
                                                     <tr>
                                                         <td><a href="#" data-toggle="modal" data-target="#editTask" data-taskid="<%=tsk.TaskID %>"><%=tsk.TaskName %></a></td>
                                                         <td><%=tsk.GetTaskTypeName() %></td>
                                                         <td><%=tsk.GetTaskDetail()%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" />
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" /></td>
+                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" ></a>
+                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" ></a></td>
                                                     </tr>
                                                     <%
                                                         }
@@ -328,15 +338,15 @@
 
                                                 <tbody>
                                                     <%
-                                                        foreach (TaskDefinition tsk in tTasks)
+                                                        foreach (TaskDefinition tsk in Tasks)
                                                         {
                                                     %>
                                                     <tr>
                                                         <td><a href="#" data-toggle="modal" data-target="#editTask" data-taskid="<%=tsk.TaskID %>"><%=tsk.TaskName %></a></td>
                                                         <td><%=tsk.GetTaskTypeName() %></td>
                                                         <td><%=tsk.GetTaskDetail()%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" />
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" /></td>
+                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" ></a>
+                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" ></a></td>
                                                     </tr>
                                                     <%
                                                         }
@@ -415,12 +425,12 @@
                                         <div class="form-group" id="grp_taskname">
                                             <label class="control-label ">Task Name</label>
                                             <input type="text" class="form-control border-input" id="taskname" placeholder="Task Name" name="taskname">
-                                    <input type="text" hidden class="form-control hidden" id="taskid" name="taskid">
+                                            <input type="text" hidden class="form-control hidden" id="taskid" name="taskid">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="flighthoursrow row" hidden >
+                                <div class="flighthoursrow row" hidden>
                                     <div class="col-md-5">
                                         <div class="form-group" id="grp_actype">
                                             <label>Aircraft Type</label>
@@ -436,7 +446,6 @@
                                         <div class="form-group" id="grp_hours">
                                             <label>Hours</label>
                                             <input type="number" id="Hours" class="form-control border-input input-sm danger" name="hours">
-
                                         </div>
                                     </div>
                                 </div>
@@ -498,7 +507,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button id="btnclosetask" type="button" data-dismiss="modal"" class="btn btn-default btn-fill btn-wd pull-left">Close</button>
+                                    <button id="btnclosetask" type="button" data-dismiss="modal" class="btn btn-default btn-fill btn-wd pull-left">Close</button>
                                     <button id="btnsavetask" type="submit" class="btn btn-info btn-fill btn-wd pull-right">Save Task</button>
                                 </div>
                                 <div class="clearfix"></div>
@@ -517,7 +526,7 @@
     </div>
 
 
-      <!-- Dialog box for deleting Task -->
+    <!-- Dialog box for deleting Task -->
     <div class="modal fade" id="deleteTask" tabindex="-1" role="dialog" aria-labelledby="deleteTaskLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -526,10 +535,10 @@
                     <h4 class="modal-title" id="deleteTaskLabel">Delete this ?</h4>
                 </div>
                 <div class="modal-body">
-                        <div class="content">
-                            <p>Are you sure you wish to delete this task ?</p>
-                            <p class="text-danger" id="TaskName">TaskName</p>
-                        </div>
+                    <div class="content">
+                        <p>Are you sure you wish to delete this task ?</p>
+                        <p class="text-danger" id="TaskName">TaskName</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -538,7 +547,9 @@
             </div>
         </div>
     </div>
-</body>
+
+<!--#include file="editachievements.html" -->
+
 
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
@@ -554,8 +565,9 @@
 <script src="../assets/js/bootstrap-notify.js"></script>
 <script src="../assets/js/rewardsmanagement.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+</body>
+
+
 
 
 <!--

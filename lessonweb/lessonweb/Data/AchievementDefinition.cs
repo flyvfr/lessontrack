@@ -24,7 +24,22 @@ namespace lessonweb.Data
             IEnumerable<AchievementDefinition> ach = (from u in dbc.AchievementDefinitions
                                                         select u);
 
-            return ach;
+            return ach.ToList();
+        }
+
+        internal static void delete(Guid achID)
+        {
+            using (DBClassesDataContext dbc = new DBClassesDataContext())
+            {
+                AchievementDefinition ach = (from u in dbc.AchievementDefinitions
+                                      where u.AchievementID == achID
+                                      select u).SingleOrDefault();
+                if (ach != null)
+                {
+                    dbc.AchievementDefinitions.DeleteOnSubmit(ach);
+                    dbc.SubmitChanges();
+                }
+            }
         }
     }
 }
