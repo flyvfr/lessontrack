@@ -84,12 +84,12 @@ namespace lessonweb.Data
     partial void InsertPilotTask(PilotTask instance);
     partial void UpdatePilotTask(PilotTask instance);
     partial void DeletePilotTask(PilotTask instance);
-    partial void InsertRewardDefinition(RewardDefinition instance);
-    partial void UpdateRewardDefinition(RewardDefinition instance);
-    partial void DeleteRewardDefinition(RewardDefinition instance);
     partial void InsertRewardPrereq(RewardPrereq instance);
     partial void UpdateRewardPrereq(RewardPrereq instance);
     partial void DeleteRewardPrereq(RewardPrereq instance);
+    partial void InsertRewardDefinition(RewardDefinition instance);
+    partial void UpdateRewardDefinition(RewardDefinition instance);
+    partial void DeleteRewardDefinition(RewardDefinition instance);
     #endregion
 		
 		public DBClassesDataContext() : 
@@ -266,19 +266,19 @@ namespace lessonweb.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<RewardDefinition> RewardDefinitions
-		{
-			get
-			{
-				return this.GetTable<RewardDefinition>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RewardPrereq> RewardPrereqs
 		{
 			get
 			{
 				return this.GetTable<RewardPrereq>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RewardDefinition> RewardDefinitions
+		{
+			get
+			{
+				return this.GetTable<RewardDefinition>();
 			}
 		}
 	}
@@ -4951,6 +4951,116 @@ namespace lessonweb.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RewardPrereq")]
+	public partial class RewardPrereq : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _RewardID;
+		
+		private System.Guid _RequiredAchievement;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRewardIDChanging(System.Guid value);
+    partial void OnRewardIDChanged();
+    partial void OnRequiredAchievementChanging(System.Guid value);
+    partial void OnRequiredAchievementChanged();
+    #endregion
+		
+		public RewardPrereq()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RewardID
+		{
+			get
+			{
+				return this._RewardID;
+			}
+			set
+			{
+				if ((this._RewardID != value))
+				{
+					this.OnRewardIDChanging(value);
+					this.SendPropertyChanging();
+					this._RewardID = value;
+					this.SendPropertyChanged("RewardID");
+					this.OnRewardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredAchievement", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RequiredAchievement
+		{
+			get
+			{
+				return this._RequiredAchievement;
+			}
+			set
+			{
+				if ((this._RequiredAchievement != value))
+				{
+					this.OnRequiredAchievementChanging(value);
+					this.SendPropertyChanging();
+					this._RequiredAchievement = value;
+					this.SendPropertyChanged("RequiredAchievement");
+					this.OnRequiredAchievementChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RewardDefinition")]
 	public partial class RewardDefinition : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4967,9 +5077,9 @@ namespace lessonweb.Data
 		
 		private string _RewardType;
 		
-		private decimal _RewardCount;
+		private System.Nullable<decimal> _RewardCount;
 		
-		private int _RewardValidityMonths;
+		private System.Nullable<System.DateTime> _RewardValidityTill;
 		
 		private string _RewardItem;
 		
@@ -4987,10 +5097,10 @@ namespace lessonweb.Data
     partial void OnRewardDescChanged();
     partial void OnRewardTypeChanging(string value);
     partial void OnRewardTypeChanged();
-    partial void OnRewardCountChanging(decimal value);
+    partial void OnRewardCountChanging(System.Nullable<decimal> value);
     partial void OnRewardCountChanged();
-    partial void OnRewardValidityMonthsChanging(int value);
-    partial void OnRewardValidityMonthsChanged();
+    partial void OnRewardValidityTillChanging(System.Nullable<System.DateTime> value);
+    partial void OnRewardValidityTillChanged();
     partial void OnRewardItemChanging(string value);
     partial void OnRewardItemChanged();
     #endregion
@@ -5100,8 +5210,8 @@ namespace lessonweb.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardCount", DbType="Decimal(18,0) NOT NULL")]
-		public decimal RewardCount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardCount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> RewardCount
 		{
 			get
 			{
@@ -5120,22 +5230,22 @@ namespace lessonweb.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardValidityMonths", DbType="Int NOT NULL")]
-		public int RewardValidityMonths
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardValidityTill", DbType="Date")]
+		public System.Nullable<System.DateTime> RewardValidityTill
 		{
 			get
 			{
-				return this._RewardValidityMonths;
+				return this._RewardValidityTill;
 			}
 			set
 			{
-				if ((this._RewardValidityMonths != value))
+				if ((this._RewardValidityTill != value))
 				{
-					this.OnRewardValidityMonthsChanging(value);
+					this.OnRewardValidityTillChanging(value);
 					this.SendPropertyChanging();
-					this._RewardValidityMonths = value;
-					this.SendPropertyChanged("RewardValidityMonths");
-					this.OnRewardValidityMonthsChanged();
+					this._RewardValidityTill = value;
+					this.SendPropertyChanged("RewardValidityTill");
+					this.OnRewardValidityTillChanged();
 				}
 			}
 		}
@@ -5156,116 +5266,6 @@ namespace lessonweb.Data
 					this._RewardItem = value;
 					this.SendPropertyChanged("RewardItem");
 					this.OnRewardItemChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RewardPrereq")]
-	public partial class RewardPrereq : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Guid _RewardID;
-		
-		private System.Guid _RequiredAchievement;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnRewardIDChanging(System.Guid value);
-    partial void OnRewardIDChanged();
-    partial void OnRequiredAchievementChanging(System.Guid value);
-    partial void OnRequiredAchievementChanged();
-    #endregion
-		
-		public RewardPrereq()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RewardID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid RewardID
-		{
-			get
-			{
-				return this._RewardID;
-			}
-			set
-			{
-				if ((this._RewardID != value))
-				{
-					this.OnRewardIDChanging(value);
-					this.SendPropertyChanging();
-					this._RewardID = value;
-					this.SendPropertyChanged("RewardID");
-					this.OnRewardIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredAchievement", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid RequiredAchievement
-		{
-			get
-			{
-				return this._RequiredAchievement;
-			}
-			set
-			{
-				if ((this._RequiredAchievement != value))
-				{
-					this.OnRequiredAchievementChanging(value);
-					this.SendPropertyChanging();
-					this._RequiredAchievement = value;
-					this.SendPropertyChanged("RequiredAchievement");
-					this.OnRequiredAchievementChanged();
 				}
 			}
 		}

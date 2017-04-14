@@ -24,6 +24,9 @@
 
     <!--  Paper Dashboard core CSS    -->
     <link href="../assets/css/paper-dashboard.css" rel="stylesheet" />
+    <link href="../assets/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="../assets/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="../assets/css/lessonweb.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
@@ -43,6 +46,9 @@
         #editTaskForm .has-success .form-control-feedback {
             color: #18bc9c;
         }
+        #TableRewards {
+width: 100% !Important;
+}
     </style>
 </head>
 <body>
@@ -257,7 +263,7 @@
                                                         <th>Achievement Name</th>
                                                         <th>Tasks</th>
                                                         <th>Prerequisites</th>
-                                                        <th>Validity (months)</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
 
@@ -295,7 +301,7 @@
                                         </div>
                                         <!-- START Rewards TAB -->
                                         <div id="rewards" class="tab-pane fade in">
-                                            <table class="table table-condensed">
+                                            <table class="table table-condensed table-hover" id="TableRewards">
                                                 <thead>
                                                     <tr class="active">
                                                         <th>Reward</th>
@@ -304,25 +310,7 @@
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-
-                                                <tbody>
-                                                    <%
-                                                        foreach (TaskDefinition tsk in Tasks)
-                                                        {
-                                                    %>
-                                                    <tr>
-                                                        <td><a href="#" data-toggle="modal" data-target="#editTask" data-taskid="<%=tsk.TaskID %>"><%=tsk.TaskName %></a></td>
-                                                        <td><%=tsk.GetTaskTypeName() %></td>
-                                                        <td><%=tsk.GetTaskDetail()%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" ></a>
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" ></a></td>
-                                                    </tr>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </tbody>
                                             </table>
-                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editTask" data-whatever="@mdo">Add New</button>
                                         </div>
                                         <!-- START Pilot levels TAB -->
                                         <div id="levels" class="tab-pane fade in">
@@ -549,11 +537,15 @@
     </div>
 
 <!--#include file="editachievements.html" -->
+<!--#include file="editrewards.html" -->
 
 
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.dataTable.min.js"></script>
+<script src="../assets/js/dataTables.select.min.js"></script>
+<script src="../assets/js/dataTables.buttons.min.js"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="../assets/js/bootstrap-checkbox-radio.js"></script>
