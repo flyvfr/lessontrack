@@ -47,8 +47,14 @@
             color: #18bc9c;
         }
         #TableRewards {
-width: 100% !Important;
-}
+        width: 100% !Important;
+        }
+        #TableAchievements {
+        width: 100% !Important;
+        }
+        #TableTasks{
+        width: 100% !Important;
+        }
     </style>
 </head>
 <body>
@@ -190,7 +196,7 @@ width: 100% !Important;
                                 <div class="content">
                                     <div class="tab-content">
                                         <div id="tasks" class="tab-pane fade in active">
-                                            <table class="table table-condensed">
+                                            <table class="table table-condensed table-hover" id="TableTasks">
                                                 <thead>
                                                     <tr class="active">
                                                         <th>Task Name</th>
@@ -199,7 +205,7 @@ width: 100% !Important;
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-
+                                                <!--
                                                 <tbody>
                                                     <%
                                                         var Tasks = TaskDefinition.getAllTaskDefinitions();
@@ -251,13 +257,12 @@ width: 100% !Important;
                                                     <%
                                                         }
                                                     %>
-                                                </tbody>
+                                                </tbody>-->
                                             </table>
-                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editTask" data-whatever="@mdo">Add New</button>
-                                        </div>
+                                        </div> 
                                         <!-- START ACHIEVEMENT TAB -->
                                         <div id="achievements" class="tab-pane fade in">
-                                            <table class="table table-condensed">
+                                            <table class="table table-condensed table-hover" id="TableAchievements">
                                                 <thead>
                                                     <tr class="active">
                                                         <th>Achievement Name</th>
@@ -266,39 +271,9 @@ width: 100% !Important;
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-
-                                                <tbody>
-                                                    <%
-                                                        var achievements = AchievementDefinition.getAll();
-                                                        foreach (AchievementDefinition ach in achievements)
-                                                        {
-                                                            int nAchs = 0;
-                                                            int nTasks = AchievementPrereq.getPrereqTypes(AchievementPrereq.getPrereqsForAchievement(ach.AchievementID), out nAchs);
-                                                    %>
-                                                    <tr>
-                                                        <td><a href="#" data-toggle="modal" data-target="#editAchievement" data-achievementid="<%:ach.AchievementID%>"
-                                                            data-achievementname="<%:ach.AchievementName %>"
-                                                            data-achievementdescription="<%:ach.AchievementDesc %>"
-                                                            data-title="View Achievement"
-                                                            data-nosave="1"
-                                                            ><%:ach.AchievementName%></a></td>
-                                                        <td><%=nTasks%></td>
-                                                        <td><%=nAchs%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editAchievement" 
-                                                            data-achievementid="<%:ach.AchievementID %>"
-                                                            data-achievementname="<%:ach.AchievementName %>"
-                                                            data-achievementdescription="<%:ach.AchievementDesc %>"
-                                                            data-title="Edit Achievement" style="margin-right: 10px; outline: none" ></a>
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteAchievement" 
-                                                                data-achievementid="<%:ach.AchievementID %>" data-achievementname="<%:ach.AchievementName %>" style="outline: none" ></a></td>
-                                                    </tr>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </tbody>
                                             </table>
-                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editAchievement" data-whatever="@mdo">Add New</button>
                                         </div>
+
                                         <!-- START Rewards TAB -->
                                         <div id="rewards" class="tab-pane fade in">
                                             <table class="table table-condensed table-hover" id="TableRewards">
@@ -496,7 +471,7 @@ width: 100% !Important;
                                 </div>
                                 <div class="text-center">
                                     <button id="btnclosetask" type="button" data-dismiss="modal" class="btn btn-default btn-fill btn-wd pull-left">Close</button>
-                                    <button id="btnsavetask" type="submit" class="btn btn-info btn-fill btn-wd pull-right">Save Task</button>
+                                    <button id="btnsavetask" type="button" onclick="OnSubmitTask()" class="btn btn-info btn-fill btn-wd pull-right">Save Task</button>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
@@ -530,7 +505,7 @@ width: 100% !Important;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="doDelete()">Yes, Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="doDeleteTask()">Yes, Delete</button>
                 </div>
             </div>
         </div>
@@ -555,7 +530,9 @@ width: 100% !Important;
 
 <!--  Notifications Plugin    -->
 <script src="../assets/js/bootstrap-notify.js"></script>
-<script src="../assets/js/rewardsmanagement.js"></script>
+<script src="../assets/js/RewardsManagement.js"></script>
+<script src="../assets/js/AchievementsManagement.js"></script>
+<script src="../assets/js/TasksManagement.js"></script>
 
 </body>
 

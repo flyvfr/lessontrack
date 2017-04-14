@@ -137,6 +137,8 @@
     <Content Include="Assets\js\demo.js" />
     <Content Include="Assets\js\jquery-1.10.2.js" />
     <Content Include="Assets\js\paper-dashboard.js" />
+    <Content Include="Assets\js\AchievementsManagement.js" />
+    <Content Include="Assets\js\TasksManagement.js" />
     <Content Include="Assets\js\RewardsManagement.js" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -217,6 +219,12 @@
     </Compile>
     <Compile Include="web\deletereward.ashx.cs">
       <DependentUpon>deletereward.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\JSONAchievementsList.ashx.cs">
+      <DependentUpon>JSONAchievementsList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\JSONTasksList.ashx.cs">
+      <DependentUpon>JSONTasksList.ashx</DependentUpon>
     </Compile>
     <Compile Include="web\JSONRewardsList.ashx.cs">
       <DependentUpon>JSONRewardsList.ashx</DependentUpon>
@@ -407,6 +415,8 @@
     <Content Include="web\JSONRewardsList.ashx" />
     <Content Include="web\savereward.ashx" />
     <Content Include="web\deletereward.ashx" />
+    <Content Include="web\JSONAchievementsList.ashx" />
+    <Content Include="web\JSONTasksList.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
