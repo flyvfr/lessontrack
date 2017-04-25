@@ -26,7 +26,7 @@
                         data-title='Edit Task'>" + sData + "</a>");
                 }
             },
-            { data: "TaskType" },
+            { data: "TaskTypeName" },
             { data: "Detail" },
             {
                 data: "actions",

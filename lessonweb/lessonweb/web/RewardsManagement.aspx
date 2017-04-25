@@ -28,6 +28,7 @@
     <link href="../assets/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="../assets/css/lessonweb.css" rel="stylesheet" />
+    <link href="../assets/css/boot-checklist.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -53,6 +54,9 @@
         width: 100% !Important;
         }
         #TableTasks{
+        width: 100% !Important;
+        }
+        #TablePilotClass{
         width: 100% !Important;
         }
     </style>
@@ -188,7 +192,7 @@
                         <li class="active"><a data-toggle="tab" href="#tasks">Tasks</a></li>
                         <li><a data-toggle="tab" href="#achievements">Achievements</a></li>
                         <li><a data-toggle="tab" href="#rewards">Rewards</a></li>
-                        <li><a data-toggle="tab" href="#levels">Pilot Levels</a></li>
+                        <li><a data-toggle="tab" href="#classes">Pilot Classes</a></li>
                     </ul>
                     <div class="row">
                         <div class="col-md-12">
@@ -287,36 +291,18 @@
                                                 </thead>
                                             </table>
                                         </div>
-                                        <!-- START Pilot levels TAB -->
-                                        <div id="levels" class="tab-pane fade in">
-                                            <table class="table table-condensed">
+                                        <!-- START Pilot Classes TAB -->
+                                        <div id="classes" class="tab-pane fade in">
+                                            <table class="table table-condensed table-hover" id="TablePilotClass">
                                                 <thead>
                                                     <tr class="active">
-                                                        <th>Pilot Level</th>
-                                                        <th>Task Type</th>
+                                                        <th>Pilot Class</th>
+                                                        <th>Prerequisites</th>
                                                         <th>Details</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-
-                                                <tbody>
-                                                    <%
-                                                        foreach (TaskDefinition tsk in Tasks)
-                                                        {
-                                                    %>
-                                                    <tr>
-                                                        <td><a href="#" data-toggle="modal" data-target="#editTask" data-taskid="<%=tsk.TaskID %>"><%=tsk.TaskName %></a></td>
-                                                        <td><%=tsk.GetTaskTypeName() %></td>
-                                                        <td><%=tsk.GetTaskDetail()%></td>
-                                                        <td><a href="#" class="ti-pencil" data-toggle="modal" data-target="#editTask" data-whatever="@mdo" style="margin-right: 10px; outline: none" ></a>
-                                                            <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-whatever="@mdo" style="outline: none" ></a></td>
-                                                    </tr>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </tbody>
                                             </table>
-                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editTask" data-whatever="@mdo">Add New</button>
                                         </div>
 
                                     </div>
@@ -513,6 +499,7 @@
 
 <!--#include file="editachievements.html" -->
 <!--#include file="editrewards.html" -->
+<!--#include file="editpilotclasses.html" -->
 
 
 <!--   Core JS Files   -->
@@ -530,9 +517,11 @@
 
 <!--  Notifications Plugin    -->
 <script src="../assets/js/bootstrap-notify.js"></script>
+<script src="../assets/js/boot-checklist.js"></script>
 <script src="../assets/js/RewardsManagement.js"></script>
 <script src="../assets/js/AchievementsManagement.js"></script>
 <script src="../assets/js/TasksManagement.js"></script>
+<script src="../assets/js/PilotClassManagement.js"></script>
 
 </body>
 

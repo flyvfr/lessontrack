@@ -12,8 +12,29 @@
                         data-title='Edit Achievement'>" + sData + "</a>");
                     }
                 },
-                { data: "Tasks" },
-                { data: "Prerequisites" },
+                {
+                    data: "Tasks",
+                    className: "dt-center",
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<span class='badge badge-default badge-pill' style='margin:0 auto'>" + oData.Tasks + "</span>" +
+                            "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editAchievementDependencies'\
+                            data-achievementid='" + oData.AchievementID + "'\
+                            data-achievementname='"+ oData.Achievement + "'\
+                            data-achievementdescription='"+ oData.AchievementDesc + "'\
+                            data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
+                    }},
+                {
+                    data: "Prerequisites",
+                    className: "dt-center",
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<span class='badge badge-default badge-pill' style='margin:0 auto'>" + oData.Prerequisites + "</span>" +
+                            "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editAchievementDependencies'\
+                            data-achievementid='" + oData.AchievementID + "'\
+                            data-achievementname='"+ oData.Achievement + "'\
+                            data-achievementdescription='"+ oData.AchievementDesc + "'\
+                            data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
+                    }
+                },
                 {
                     data: "actions",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
@@ -85,7 +106,80 @@
         modal.find('#AchievementName').text(achievementname);
         modal.data("AchievementID", achievementid);
     });
+
+    $('#editAchievementDependencies').on('show.bs.modal', function (event) {
+        var modal = $(this);
+
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var achid = button.data('achievementid'); // Extract info from data-* attributes
+        var achname = button.data('achievementname');
+        var title = button.data("title");
+        if (!title) {
+            modal.find('#editAchievementLabel').text("Dependencies");
+        } else {
+            modal.find('#editAchievementLabel').text(achname);
+        }
+
+        modal.find('#depachievementid').val(achid);
+
+        // Now load all the achievements and populate into the list box
+        var achlist = $("#requiredachievements");
+        achlist.empty();
+        var tasklist = $("#requiredtasks");
+        tasklist.empty();
+
+        $.getJSON("JSONGetPrereqs.ashx?achievementid=" + achid, function (data) {
+            var achitems = [];
+            var taskitems = [];
+
+            $.each(data, function (key, val) {
+                if (key == 'Achievements') {
+                    $.each(val, function (index, obj) {
+                        if (achid != obj.id) { // dont show this same achievement
+                            achitems.push("<li class=\"list-group-item\" "+ (obj.depends=='1'?"data-checked='true'":"") +" data-achievementid='"+obj.id+"' >" + obj.name + "</li>");
+                        }
+                    });
+                } else {
+                    $.each(val, function (index, obj) {
+                        taskitems.push("<li class=\"list-group-item\" " + (obj.depends == '1' ? "data-checked='true'" : "") + " data-taskid='" + obj.taskid +"' >" + obj.taskname + "</li>");
+                    });
+                }
+            });
+            achlist.append(achitems.join(''));
+            tasklist.append(taskitems.join(''));
+            doUpdateCheckBoxes();
+        });
+    });
 });
+
+function OnSubmitAchievementDependencies() {
+    var checkedAchievements = [], counter = 0;
+    var checkedTasks = [];
+    $("#requiredachievements li.active").each(function (idx, li) {
+        checkedAchievements.push($(li).data('achievementid'));
+    });
+
+    counter = 0;
+    $("#requiredtasks li.active").each(function (idx, li) {
+        checkedTasks.push($(li).data('taskid'));
+    });
+
+    var achid = $("#depachievementid").val();
+
+    var Dependencies = { "AchievementID": achid };
+    Dependencies["Achievements"] = checkedAchievements;
+    Dependencies["Tasks"] = checkedTasks;
+
+    var data = JSON.stringify(Dependencies);
+    $.ajax({
+        type: "POST",
+        async: true,
+        data: data,
+        url: "saveachievementdeps.ashx",
+
+    }).done(function () { OnSuccessAchievement(); });
+    $('#editAchievementDependencies').modal('hide');
+}
 
 function OnSubmitAchievement() {
     $("#grp_achievementname").removeClass("has-error");

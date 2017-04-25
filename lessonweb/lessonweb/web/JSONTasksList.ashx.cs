@@ -31,6 +31,9 @@ namespace lessonweb.web
             string json = JsonConvert.SerializeObject(res);
             context.Response.Write(json);
             */
+
+            
+            Dictionary<int, String> TypeCodes = TaskDefinition.GetTaskTypeCodes();
             Dictionary<String, object> res = new Dictionary<string, object>();
             List<Object> finalList = new List<object>();
             IEnumerable<TaskDefinition> rews = TaskDefinition.getAllTaskDefinitions();
@@ -40,6 +43,7 @@ namespace lessonweb.web
                 obj.Add("TaskName", r.TaskName);
                 obj.Add("TaskID", r.TaskID.ToString());
                 obj.Add("actions", r.TaskID.ToString());
+                obj.Add("TaskTypeName", TypeCodes[r.TaskType]);
                 obj.Add("TaskType", r.TaskType.ToString());
                 obj.Add("TaskDescription", r.TaskDescription);
                 obj.Add("AircraftType", r.AircraftType);

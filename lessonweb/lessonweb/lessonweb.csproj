@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\animate.min.css" />
+    <Content Include="Assets\css\boot-checklist.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\buttons.dataTables.min.css" />
     <Content Include="Assets\css\demo.css" />
@@ -113,6 +114,8 @@
     <Content Include="Assets\css\login.css" />
     <Content Include="Assets\css\material-kit.css" />
     <Content Include="Assets\css\select.dataTables.min.css" />
+    <Content Include="Assets\js\boot-checklist.js" />
+    <Content Include="Assets\js\PilotClassManagement.js" />
     <Content Include="Assets\js\dataTables.buttons.min.js" />
     <Content Include="Assets\js\dataTables.select.min.js" />
     <Content Include="Assets\js\jquery.dataTable.min.js" />
@@ -152,6 +155,7 @@
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
     <Content Include="web\deleteaircraft.aspx" />
+    <Content Include="web\editpilotclasses.html" />
     <Content Include="web\editRewards.html" />
     <Content Include="web\editachievements.html" />
     <Content Include="web\printprogress.aspx" />
@@ -177,6 +181,8 @@
     <Content Include="App_Code\Helpers.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\PilotClassPrereq.cs" />
+    <Compile Include="Data\PilotClassDefinition.cs" />
     <Compile Include="Data\AchievementDefinition.cs" />
     <Compile Include="Data\AchievementPrereq.cs" />
     <Compile Include="Data\LessonLog.cs" />
@@ -207,6 +213,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="web\deletepilotclass.ashx.cs">
+      <DependentUpon>deletepilotclass.ashx</DependentUpon>
+    </Compile>
     <Compile Include="web\deleteaircraft.aspx.cs">
       <DependentUpon>deleteaircraft.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,6 +229,12 @@
     <Compile Include="web\deletereward.ashx.cs">
       <DependentUpon>deletereward.ashx</DependentUpon>
     </Compile>
+    <Compile Include="web\JSONGetPrereqs.ashx.cs">
+      <DependentUpon>JSONGetPrereqs.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\JSONPilotClassList.ashx.cs">
+      <DependentUpon>JSONPilotClassList.ashx</DependentUpon>
+    </Compile>
     <Compile Include="web\JSONAchievementsList.ashx.cs">
       <DependentUpon>JSONAchievementsList.ashx</DependentUpon>
     </Compile>
@@ -231,6 +246,12 @@
     </Compile>
     <Compile Include="web\deletetask.ashx.cs">
       <DependentUpon>deletetask.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\saveachievementdeps.ashx.cs">
+      <DependentUpon>saveachievementdeps.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\savepilotclass.ashx.cs">
+      <DependentUpon>savepilotclass.ashx</DependentUpon>
     </Compile>
     <Compile Include="web\saveachievement.ashx.cs">
       <DependentUpon>saveachievement.ashx</DependentUpon>
@@ -417,6 +438,11 @@
     <Content Include="web\deletereward.ashx" />
     <Content Include="web\JSONAchievementsList.ashx" />
     <Content Include="web\JSONTasksList.ashx" />
+    <Content Include="web\JSONPilotClassList.ashx" />
+    <Content Include="web\savepilotclass.ashx" />
+    <Content Include="web\deletepilotclass.ashx" />
+    <Content Include="web\JSONGetPrereqs.ashx" />
+    <Content Include="web\saveachievementdeps.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
