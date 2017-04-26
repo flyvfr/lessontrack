@@ -181,6 +181,7 @@
     <Content Include="App_Code\Helpers.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Data\RewardPrereq.cs" />
     <Compile Include="Data\PilotClassPrereq.cs" />
     <Compile Include="Data\PilotClassDefinition.cs" />
     <Compile Include="Data\AchievementDefinition.cs" />
@@ -246,6 +247,12 @@
     </Compile>
     <Compile Include="web\deletetask.ashx.cs">
       <DependentUpon>deletetask.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\savepilotclassdeps.ashx.cs">
+      <DependentUpon>savepilotclassdeps.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\saverewarddeps.ashx.cs">
+      <DependentUpon>saverewarddeps.ashx</DependentUpon>
     </Compile>
     <Compile Include="web\saveachievementdeps.ashx.cs">
       <DependentUpon>saveachievementdeps.ashx</DependentUpon>
@@ -443,6 +450,8 @@
     <Content Include="web\deletepilotclass.ashx" />
     <Content Include="web\JSONGetPrereqs.ashx" />
     <Content Include="web\saveachievementdeps.ashx" />
+    <Content Include="web\saverewarddeps.ashx" />
+    <Content Include="web\savepilotclassdeps.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

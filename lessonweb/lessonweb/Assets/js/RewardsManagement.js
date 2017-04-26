@@ -19,6 +19,17 @@
                 { data: "Type" },
                 { data: "Detail" },
                 {
+                    data: "Prerequisites",
+                    className: "dt-center",
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<span class='badge badge-default badge-pill' style='margin:0 auto'>" + oData.Prerequisites + "</span>" +
+                            "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editRewardDependencies'\
+                            data-rewardid='" + oData.RewardID + "'\
+                            data-rewardname='"+ oData.Reward + "'\
+                            data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
+                    }
+                },
+                {
                     data: "actions",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         $(nTd).html("<a href='#' class='ti-pencil' data-toggle='modal' data-target='#editReward'\
@@ -177,4 +188,65 @@ function doDeleteReward() {
     };
     xhttp.open("GET", "deletereward.ashx?rewardid=" + rewardid, true);
     xhttp.send();
+}
+
+
+
+$('#editRewardDependencies').on('show.bs.modal', function (event) {
+    var modal = $(this);
+
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var achid = button.data('rewardid'); // Extract info from data-* attributes
+    var achname = button.data('rewardname');
+    var title = button.data("title");
+    if (!title) {
+        modal.find('#editRewardLabel').text("Dependencies");
+    } else {
+        modal.find('#editRewardLabel').text(achname);
+    }
+
+    modal.find('#deprewardid').val(achid);
+
+    // Now load all the rewards and populate into the list box
+    var achlist = $("#rewardrequiredachievements");
+    achlist.empty();
+
+    $.getJSON("JSONGetPrereqs.ashx?rewardid=" + achid, function (data) {
+        var achitems = [];
+
+        $.each(data, function (key, val) {
+            if (key == 'Achievements') {
+                $.each(val, function (index, obj) {
+                    if (achid != obj.id) { // dont show this same reward
+                        achitems.push("<li class=\"list-group-item\" " + (obj.depends == '1' ? "data-checked='true'" : "") + " data-achievementid='" + obj.id + "' >" + obj.name + "</li>");
+                    }
+                });
+            } 
+        });
+        achlist.append(achitems.join(''));
+        doUpdateCheckBoxes();
+    });
+});
+
+
+function OnSubmitRewardDependencies() {
+    var checkedRewards = [], counter = 0;
+    $("#rewardrequiredachievements li.active").each(function (idx, li) {
+        checkedRewards.push($(li).data('achievementid'));
+    });
+
+    var achid = $("#deprewardid").val();
+
+    var Dependencies = { "RewardID": achid };
+    Dependencies["Achievements"] = checkedRewards;
+
+    var data = JSON.stringify(Dependencies);
+    $.ajax({
+        type: "POST",
+        async: true,
+        data: data,
+        url: "saverewarddeps.ashx",
+
+    }).done(function () { OnSuccessReward(); });
+    $('#editRewardDependencies').modal('hide');
 }

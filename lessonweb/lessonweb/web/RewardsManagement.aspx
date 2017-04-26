@@ -286,6 +286,7 @@
                                                         <th>Reward</th>
                                                         <th>Reward Type</th>
                                                         <th>Details</th>
+                                                        <th>Prerequisites</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>

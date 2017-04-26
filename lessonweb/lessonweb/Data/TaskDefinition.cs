@@ -62,14 +62,18 @@ namespace lessonweb.Data
         {
             using (DBClassesDataContext dbc = new DBClassesDataContext())
             {
+                // first remove any prereq involving this task
+                IEnumerable<AchievementPrereq> achPrereqs = (from u in dbc.AchievementPrereqs where u.TaskID == taskID select u);
+                dbc.AchievementPrereqs.DeleteAllOnSubmit(achPrereqs);
+
                 TaskDefinition tsk = (from u in dbc.TaskDefinitions
                                       where u.TaskID == taskID
                                       select u).SingleOrDefault();
                 if (tsk != null)
                 {
                     dbc.TaskDefinitions.DeleteOnSubmit(tsk);
-                    dbc.SubmitChanges();
                 }
+                dbc.SubmitChanges();
             }
         }
 

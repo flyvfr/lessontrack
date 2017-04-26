@@ -46,7 +46,48 @@
     </div>
 </div>
 
+<!-- Dialog box for editing PilotClass dependencies-->
+<div class="modal fade" id="editPilotClassDependencies" tabindex="-1" role="dialog" aria-labelledby="editPilotClassDepLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editPilotClassDepLabel">Select dependencies</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="content">
+                        <form id="editAchivementDepForm" method="post" action="savepilotclassdeps.ashx">
+                            <div class="row pilotclassdepsrow">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="grp_pilotclassprereqs">
+                                        <label>Required Achievements</label>
+                                        <div class="well" style="max-height: 300px;overflow: auto;">
+                                            <ul class="list-group checked-list-box" id="pilotclassrequiredachievements"></ul>
+                                        </div>
+                                        <input type="text" hidden class="form-control hidden" id="deppilotclassid" name="deppilotclassid">
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="text-center">
+                                <button id="btnclosepilotclass" type="button" data-dismiss="modal" class="btn btn-default btn-fill btn-wd pull-left">Close</button>
+                                <button id="btnsavepilotclass" type="button" onclick="OnSubmitPilotClassDependencies()" class="btn btn-info btn-fill btn-wd pull-right">Save Dependencies</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
 <!-- Dialog box for deleting PilotClass -->
 <div class="modal fade" id="deletePilotClass" tabindex="-1" role="dialog" aria-labelledby="deletePilotClassLabel">
     <div class="modal-dialog" role="document">

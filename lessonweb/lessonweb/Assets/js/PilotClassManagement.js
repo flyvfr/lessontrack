@@ -16,7 +16,11 @@
                     data: "Prerequisites",
                     className: "dt-center",
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<span class='badge badge-default badge-pill' style='margin:0 auto'>" + oData.Prerequisites + "</span>");
+                        $(nTd).html("<span class='badge badge-default badge-pill' style='margin:0 auto'>" + oData.Prerequisites + "</span>" +
+                            "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editPilotClassDependencies'\
+                            data-pilotclassid='" + oData.PilotClassID+ "'\
+                            data-pilotclassname='"+ oData.PilotClass + "'\
+                            data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
                     }
                 },
 
@@ -132,3 +136,62 @@ function doDeletePilotClass() {
     xhttp.send();
 }
 
+
+$('#editPilotClassDependencies').on('show.bs.modal', function (event) {
+    var modal = $(this);
+
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var achid = button.data('pilotclassid'); // Extract info from data-* attributes
+    var achname = button.data('pilotclassname');
+    var title = button.data("title");
+    if (!title) {
+        modal.find('#editPilotClassLabel').text("Dependencies");
+    } else {
+        modal.find('#editPilotClassLabel').text(achname);
+    }
+
+    modal.find('#deppilotclassid').val(achid);
+
+    // Now load all the pilotclasss and populate into the list box
+    var achlist = $("#pilotclassrequiredachievements");
+    achlist.empty();
+
+    $.getJSON("JSONGetPrereqs.ashx?pilotclassid=" + achid, function (data) {
+        var achitems = [];
+
+        $.each(data, function (key, val) {
+            if (key == 'Achievements') {
+                $.each(val, function (index, obj) {
+                    if (achid != obj.id) { // dont show this same pilotclass
+                        achitems.push("<li class=\"list-group-item\" " + (obj.depends == '1' ? "data-checked='true'" : "") + " data-achievementid='" + obj.id + "' >" + obj.name + "</li>");
+                    }
+                });
+            }
+        });
+        achlist.append(achitems.join(''));
+        doUpdateCheckBoxes();
+    });
+});
+
+
+function OnSubmitPilotClassDependencies() {
+    var checkedPilotClasss = [], counter = 0;
+    $("#pilotclassrequiredachievements li.active").each(function (idx, li) {
+        checkedPilotClasss.push($(li).data('achievementid'));
+    });
+
+    var achid = $("#deppilotclassid").val();
+
+    var Dependencies = { "PilotClassID": achid };
+    Dependencies["Achievements"] = checkedPilotClasss;
+
+    var data = JSON.stringify(Dependencies);
+    $.ajax({
+        type: "POST",
+        async: true,
+        data: data,
+        url: "savepilotclassdeps.ashx",
+
+    }).done(function () { OnSuccessPilotClass(); });
+    $('#editPilotClassDependencies').modal('hide');
+}

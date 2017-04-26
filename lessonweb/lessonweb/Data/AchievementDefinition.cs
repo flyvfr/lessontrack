@@ -31,6 +31,18 @@ namespace lessonweb.Data
         {
             using (DBClassesDataContext dbc = new DBClassesDataContext())
             {
+                // first remove any prereq involving this achievement
+                IEnumerable<AchievementPrereq> achPrereqs = (from u in dbc.AchievementPrereqs where u.RequiredAchievementID == achID select u);
+                dbc.AchievementPrereqs.DeleteAllOnSubmit(achPrereqs);
+
+                // first remove any prereq involving this achievement
+                IEnumerable<RewardPrereq> rewPrereqs = (from u in dbc.RewardPrereqs where u.RequiredAchievement == achID select u);
+                dbc.RewardPrereqs.DeleteAllOnSubmit(rewPrereqs);
+
+                // first remove any prereq involving this achievement
+                IEnumerable<PilotClassPrereq> pcPrereqs = (from u in dbc.PilotClassPrereqs where u.AchievementID == achID select u);
+                dbc.PilotClassPrereqs.DeleteAllOnSubmit(pcPrereqs);
+
                 AchievementDefinition ach = (from u in dbc.AchievementDefinitions
                                       where u.AchievementID == achID
                                       select u).SingleOrDefault();

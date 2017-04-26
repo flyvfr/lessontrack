@@ -24,6 +24,14 @@ namespace lessonweb.web
             {
                 finalList = GetPrereqsForAchievement(AchievementID);
             }
+            else if (!String.IsNullOrEmpty(RewardID))
+            {
+                finalList = GetPrereqsForReward(RewardID);
+            }
+            else if (!String.IsNullOrEmpty(PilotClassID))
+            {
+                finalList = GetPrereqsForPilotClass(PilotClassID);
+            }
             string json = JsonConvert.SerializeObject(finalList);
             context.Response.Write(json);
 
@@ -82,6 +90,74 @@ namespace lessonweb.web
                 }
             }
             finalList.Add("Tasks", finalTaskList);
+
+            return finalList;
+        }
+
+        private Dictionary<String, Object> GetPrereqsForReward(string rewardid)
+        {
+            Guid RewardGUID = Guid.Parse(rewardid);
+            Dictionary<String, Object> finalList = new Dictionary<string, object>();
+            List<Object> finalAchList = new List<object>();
+            using (DBClassesDataContext dbc = new DBClassesDataContext())
+            {
+                // load All achievements, then lookup each in achievementprereq to see if they are needed for achievement ID
+                IEnumerable<AchievementDefinition> achs = (from u in dbc.AchievementDefinitions
+                                                           select u);
+                foreach (AchievementDefinition ach in achs)
+                {
+                    Dictionary<String, String> AchPre = new Dictionary<string, string>();
+                    AchPre.Add("id", ach.AchievementID.ToString());
+                    AchPre.Add("name", ach.AchievementName);
+                    IEnumerable<RewardPrereq> pre = (from u in dbc.RewardPrereqs
+                                                     where u.RequiredAchievement == ach.AchievementID && u.RewardID== RewardGUID
+                                                          select u);
+                    if (pre.Count<RewardPrereq>() == 0)
+                    {
+                        AchPre.Add("depends", "0");
+                    }
+                    else
+                    {
+                        AchPre.Add("depends", "1");
+                    }
+                    finalAchList.Add(AchPre);
+                }
+                finalList.Add("Achievements", finalAchList);
+            }
+
+            return finalList;
+        }
+
+        private Dictionary<String, Object> GetPrereqsForPilotClass(string pcid)
+        {
+            Guid PilotClassGUID = Guid.Parse(pcid);
+            Dictionary<String, Object> finalList = new Dictionary<string, object>();
+            List<Object> finalAchList = new List<object>();
+            using (DBClassesDataContext dbc = new DBClassesDataContext())
+            {
+                // load All achievements, then lookup each in achievementprereq to see if they are needed for achievement ID
+                IEnumerable<AchievementDefinition> achs = (from u in dbc.AchievementDefinitions
+                                                           select u);
+                foreach (AchievementDefinition ach in achs)
+                {
+                    Dictionary<String, String> AchPre = new Dictionary<string, string>();
+                    AchPre.Add("id", ach.AchievementID.ToString());
+                    AchPre.Add("name", ach.AchievementName);
+                    IEnumerable<PilotClassPrereq> pre = (from u in dbc.PilotClassPrereqs
+                                                     where u.AchievementID == ach.AchievementID && u.PilotClassID == PilotClassGUID
+                                                     select u);
+                    if (pre.Count<PilotClassPrereq>() == 0)
+                    {
+                        AchPre.Add("depends", "0");
+                    }
+                    else
+                    {
+                        AchPre.Add("depends", "1");
+                    }
+                    finalAchList.Add(AchPre);
+                }
+                finalList.Add("Achievements", finalAchList);
+            }
 
             return finalList;
         }
