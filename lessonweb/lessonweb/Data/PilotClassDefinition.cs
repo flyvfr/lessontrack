@@ -10,12 +10,14 @@ namespace lessonweb.Data
         // if the user exists and is valid, return the user, else return null
         internal static PilotClassDefinition getPilotClassDefinition(Guid defid)
         {
-            DBClassesDataContext dbc = new DBClassesDataContext();
-            PilotClassDefinition ach = (from u in dbc.PilotClassDefinitions
-                                         where u.PilotClassID == defid
-                                  select u).SingleOrDefault();
+            using (DBClassesDataContext dbc = new DBClassesDataContext())
+            {
+                PilotClassDefinition ach = (from u in dbc.PilotClassDefinitions
+                                            where u.PilotClassID == defid
+                                            select u).SingleOrDefault();
 
-            return ach;
+                return ach;
+            }
         }
 
         public static IEnumerable<PilotClassDefinition> getAll()
