@@ -6,9 +6,7 @@
     <title>Login</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/Content/jquery.mobile-1.4.5.min.css" />
-    <script src="/Assets/js/jquery-2.2.4.min.js"></script>
-    <script src="/Scripts/jquery.mobile-1.4.5.min.js"></script>
+    <!-- #Include virtual="links.inc" -->
 </head>
 <body>
     <div data-role="page">

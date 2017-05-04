@@ -234,6 +234,7 @@
                                                             data-isnight="<%:tsk.IsNight %>"
                                                             data-ispassenger="<%:tsk.IsWithPassenger %>"
                                                             data-lessonname="<%:tsk.Lesson %>"
+                                                            data-ratingname="<%:tsk.Rating %>"
                                                             data-maneuver="<%:tsk.Maneuver %>"
                                                             data-tailno="<%:tsk.TailNo %>"><%:tsk.TaskName %>></a></td>
                                                         <td><%:tsk.GetTaskTypeName() %></td>
@@ -254,6 +255,7 @@
                                                             data-isnight="<%:tsk.IsNight %>"
                                                             data-ispassenger="<%:tsk.IsWithPassenger %>"
                                                             data-lessonname="<%:tsk.Lesson %>"
+                                                            data-ratingname="<%:tsk.Rating %>"
                                                             data-maneuver="<%:tsk.Maneuver %>"
                                                             data-tailno="<%:tsk.TailNo %>" ></a>
                                                             <a href="#" class="ti-trash" data-toggle="modal" data-target="#deleteTask" data-taskid="<%:tsk.TaskID %>" data-taskname="<%:tsk.TaskName%>" style="outline: none" ></a></td>
@@ -413,6 +415,14 @@
                                         <div class="form-group" id="grp_lessonname">
                                             <label>Lesson Name</label>
                                             <input type="text" class="form-control border-input" id="lessonname" placeholder="Enter the Lesson Name" name="lessonname">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ratingrow" hidden>
+                                    <div class="col-md-12">
+                                        <div class="form-group" id="grp_ratingname">
+                                            <label>Rating</label>
+                                            <input type="text" class="form-control border-input" id="ratingname" placeholder="Enter the Rating" name="ratingname">
                                         </div>
                                     </div>
                                 </div>

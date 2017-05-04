@@ -23,3 +23,19 @@
 a:active, a:focus {
     outline: none
 }
+
+.completed-task-title{
+    color:forestgreen;
+}
+.pending-task-title {
+    color: coral;
+}
+.incomplete-task-title {
+    color: brown;
+}
+.task-details {
+    color: forestgreen;
+}
+.task-notes{
+    color: brown;
+}

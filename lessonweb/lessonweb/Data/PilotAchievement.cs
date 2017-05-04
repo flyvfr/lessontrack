@@ -50,5 +50,28 @@ namespace lessonweb.Data
             return DateTime.MinValue;
         }
 
+        /// <summary>
+        /// if the achievement is already present, ignore, else save a new record with todays date
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <param name="email"></param>
+        /// <param name="achievements"></param>
+        internal static void saveAchievements(DBClassesDataContext dc, string email, List<Guid> achievements)
+        {
+            foreach (Guid ach in achievements)
+            {
+                PilotAchievement pach = (from u in dc.PilotAchievements
+                                        where u.PilotEmail == email && u.AchievementID == ach
+                                        select u).SingleOrDefault();
+                if (pach == null)
+                {
+                    pach = new PilotAchievement();
+                    pach.PilotEmail = email;
+                    pach.AchievementID = ach;
+                    pach.DateCompleted = DateTime.Now;
+                    dc.PilotAchievements.InsertOnSubmit(pach);
+                }
+            }
+        }
     }
 }

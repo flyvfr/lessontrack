@@ -109,6 +109,7 @@
     <Content Include="Assets\css\buttons.dataTables.min.css" />
     <Content Include="Assets\css\demo.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
+    <Content Include="Assets\css\jqm-datebox.min.css" />
     <Content Include="Assets\css\jquery.dataTable.min.css" />
     <Content Include="Assets\css\lessonweb.css" />
     <Content Include="Assets\css\login.css" />
@@ -116,6 +117,8 @@
     <Content Include="Assets\css\select.dataTables.min.css" />
     <Content Include="Assets\img\atomic_logo.png" />
     <Content Include="Assets\js\boot-checklist.js" />
+    <Content Include="Assets\js\jqm-datebox.core.min.js" />
+    <Content Include="Assets\js\jqm-datebox.mode.calbox.min.js" />
     <Content Include="Assets\js\jquery-2.2.4.min.js" />
     <Content Include="Assets\js\jquery-3.2.1.min.js" />
     <Content Include="Assets\js\PilotClassManagement.js" />
@@ -144,6 +147,7 @@
     <Content Include="Assets\js\jquery-1.10.2.js" />
     <Content Include="Assets\js\paper-dashboard.js" />
     <Content Include="Assets\js\AchievementsManagement.js" />
+    <Content Include="Assets\js\pilotweb.js" />
     <Content Include="Assets\js\TasksManagement.js" />
     <Content Include="Assets\js\RewardsManagement.js" />
     <Content Include="Content\images\ajax-loader.gif" />
@@ -381,8 +385,14 @@
     <Content Include="web\editpilotclasses.html" />
     <Content Include="web\editRewards.html" />
     <Content Include="web\editachievements.html" />
+    <Content Include="web\pilotapp\DlgCompleteTask.aspx" />
+    <Content Include="web\pilotapp\DlgSelectTask.aspx" />
     <Content Include="web\pilotapp\homepage.aspx" />
+    <Content Include="web\pilotapp\links.inc" />
     <Content Include="web\pilotapp\login.aspx" />
+    <Content Include="web\pilotapp\PlanAchievement.aspx" />
+    <Content Include="web\pilotapp\todo.aspx" />
+    <Content Include="web\pilotapp\planner.aspx" />
     <Content Include="web\printprogress.aspx" />
     <Content Include="web\RewardsManagement.aspx" />
     <Content Include="web\rewards\home.aspx" />
@@ -405,6 +415,9 @@
     <Content Include="web\dashboard.aspx" />
     <Content Include="Web.config" />
     <Content Include="web\login.aspx" />
+    <Content Include="web\pilotapp\AddTaskToDo.ashx" />
+    <Content Include="web\pilotapp\AddTaskComplete.ashx" />
+    <Content Include="web\pilotapp\RemoveTaskToDo.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Constants.cs" />
@@ -412,6 +425,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Data\PilotAchievement.cs" />
+    <Compile Include="Data\PilotTask.cs" />
     <Compile Include="Data\PilotReward.cs" />
     <Compile Include="Data\PilotClass.cs" />
     <Compile Include="Data\Planner.cs" />
@@ -437,6 +451,7 @@
       <DependentUpon>DBClasses.dbml</DependentUpon>
     </Compile>
     <Compile Include="Data\TaskDefinition.cs" />
+    <Compile Include="Data\Utils.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,6 +497,26 @@
     <Compile Include="web\deletetask.ashx.cs">
       <DependentUpon>deletetask.ashx</DependentUpon>
     </Compile>
+    <Compile Include="web\pilotapp\AddTaskComplete.ashx.cs">
+      <DependentUpon>AddTaskComplete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\RemoveTaskToDo.ashx.cs">
+      <DependentUpon>RemoveTaskToDo.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\DlgCompleteTask.aspx.cs">
+      <DependentUpon>DlgCompleteTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\DlgCompleteTask.aspx.designer.cs">
+      <DependentUpon>DlgCompleteTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\DlgSelectTask.aspx.cs">
+      <DependentUpon>DlgSelectTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\DlgSelectTask.aspx.designer.cs">
+      <DependentUpon>DlgSelectTask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\pilotapp\homepage.aspx.cs">
       <DependentUpon>homepage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -495,6 +530,30 @@
     </Compile>
     <Compile Include="web\pilotapp\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\PlanAchievement.aspx.cs">
+      <DependentUpon>PlanAchievement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\PlanAchievement.aspx.designer.cs">
+      <DependentUpon>PlanAchievement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\todo.aspx.cs">
+      <DependentUpon>todo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\todo.aspx.designer.cs">
+      <DependentUpon>todo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\planner.aspx.cs">
+      <DependentUpon>planner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\planner.aspx.designer.cs">
+      <DependentUpon>planner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\AddTaskToDo.ashx.cs">
+      <DependentUpon>AddTaskToDo.ashx</DependentUpon>
     </Compile>
     <Compile Include="web\rewards\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>

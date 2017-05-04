@@ -50,5 +50,24 @@ namespace lessonweb.Data
             return DateTime.MinValue;
         }
 
+
+        internal static void saveClasses(DBClassesDataContext dc, string email, List<Guid> classes)
+        {
+            foreach (Guid cls in classes)
+            {
+                PilotClass pcls = (from u in dc.PilotClasses
+                                    where u.PilotEmail == email && u.PilotClassID == cls
+                                    select u).SingleOrDefault();
+                if (pcls == null)
+                {
+                    pcls = new PilotClass();
+                    pcls.PilotClassID = cls;
+                    pcls.PilotEmail = email;
+                    pcls.DateCompleted = DateTime.Now;
+                    dc.PilotClasses.InsertOnSubmit(pcls);
+                }
+            }
+        }
+
     }
 }

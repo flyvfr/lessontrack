@@ -23,7 +23,9 @@ namespace lessonweb.web.pilotapp
                 Session[Constants.SESS_KEY_USER] = user;
                 if (chkStay.Checked)
                 {
-                    Response.SetCookie(new HttpCookie("StaySignedIn", user.UserEmail));
+                    HttpCookie cook = new HttpCookie("StaySignedIn", user.UserEmail);
+                    cook.Expires = DateTime.Now.AddDays(365);
+                    Response.SetCookie(cook);
                 }
                 else
                 {

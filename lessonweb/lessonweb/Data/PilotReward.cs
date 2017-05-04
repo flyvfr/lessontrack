@@ -50,5 +50,23 @@ namespace lessonweb.Data
             return DateTime.MinValue;
         }
 
+        internal static void saveRewards(DBClassesDataContext dc, string email, List<Guid> rewards)
+        {
+            foreach (Guid rew in rewards)
+            {
+                PilotReward prew= (from u in dc.PilotRewards
+                                   where u.PilotEmail == email && u.RewardID == rew
+                                         select u).SingleOrDefault();
+                if (prew == null)
+                {
+                    prew = new PilotReward();
+                    prew.RewardID = rew;
+                    prew.PilotEmail = email;
+                    prew.DateCompleted = DateTime.Now;
+                    prew.IsIssued = false;
+                    dc.PilotRewards.InsertOnSubmit(prew);
+                }
+            }
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace lessonweb.Data
 
         public const int TASK_DESTINATION = 0x40;
         public const int TASK_CLASS= 0x80;
+        public const int TASK_RATING = 0x100;
+        
 
         // if the user exists and is valid, return the user, else return null
         internal static TaskDefinition getTaskDefinition(Guid defid)
@@ -28,8 +30,7 @@ namespace lessonweb.Data
                 TaskDefinition tsk = (from u in dbc.TaskDefinitions
                                       where u.TaskID == defid
                                       select u).SingleOrDefault();
-
-                return tsk;
+                return Utils.CloneObject<TaskDefinition>(tsk);
             }
         }
 
@@ -44,6 +45,7 @@ namespace lessonweb.Data
             result.Add(TASK_PINNACLE, "Pinnacle");
             result.Add(TASK_DESTINATION, "Destination");
             result.Add(TASK_CLASS, "Class");
+            result.Add(TASK_RATING, "Rating");
             return result;
         }
 
@@ -96,6 +98,25 @@ namespace lessonweb.Data
                 case TASK_PINNACLE: return Detail;
                 case TASK_DESTINATION: return Detail;
                 case TASK_CLASS: return Course;
+                case TASK_RATING: return Rating;
+            }
+            return "Undefined";
+        }
+
+
+        public String GetTaskTypeString()
+        {
+            switch (TaskType)
+            {
+                case TASK_AIRPORT: return "Go to airport: "+Airport;
+                case TASK_MANEUVER: return "Perform maneuver: "+Maneuver;
+                case TASK_GROUNDLESSON: return "Complete ground lesson: "+Lesson;
+                case TASK_FLIGHTLESSON: return "Complete flight lesson: " + Lesson;
+                case TASK_HOURS: return "Fly "+Hours.ToString() + " hours in " + AircraftType;
+                case TASK_PINNACLE: return "Land on Pinnacle: "+Detail;
+                case TASK_DESTINATION: return "Take a trip to: "+Detail;
+                case TASK_CLASS: return "Complete the course: "+Course;
+                case TASK_RATING: return "Attain rating: "+Rating;
             }
             return "Undefined";
         }

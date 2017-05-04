@@ -9,20 +9,19 @@
     <title>Home</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/Content/jquery.mobile-1.4.5.min.css" />
-    <script src="/Assets/js/jquery-2.2.4.min.js"></script>
-    <script src="/Scripts/jquery.mobile-1.4.5.min.js"></script>
+    <!-- #Include virtual="links.inc" -->
 </head>
 <body>
     <div data-role="page" id="homepage" >
         <div data-role="panel" id="navPanel" data-display="push">
             <ul data-role="listview">
                 <li data-theme="b">Home</li>
-                <li><a href="#">Pilot Levels</a></li>
-                <li><a href="#">Rewards</a></li>
-                <li><a href="#">Achievements</a></li>
-                <li><a href="#">Tasks</a></li>
-                <li><a href="#">Planner</a></li>
+                <li><a href="todo.aspx"  data-ajax="false">To Do</a></li>
+                <li><a href="planner.aspx"  data-ajax="false">Planner</a></li>
+                <li><a href="levels.aspx"  data-ajax="false">Pilot Levels</a></li>
+                <li><a href="rewards.aspx"  data-ajax="false">Rewards</a></li>
+                <li><a href="achievements.aspx"  data-ajax="false">Achievements</a></li>
+                <li><a href="tasks.aspx"  data-ajax="false">Tasks</a></li>
             </ul>
         </div>
 
@@ -46,7 +45,7 @@
                     <h3>Pilot Level : <%=pc.PilotClassName %></h3>
                 </div>
                 <div class="ui-body ui-body-a">
-                    <p>Achieved on <%= Helpers.FormatDateTime(PilotClass.WhenAchieved(pc.PilotClassID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
+                    <p>Achieved : <%= Helpers.FormatDateTime(PilotClass.WhenAchieved(pc.PilotClassID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
                 </div>
             </div>
             <%}
@@ -78,7 +77,7 @@
                     <h3>Reward : <%=pc.RewardName %></h3>
                 </div>
                 <div class="ui-body ui-body-a">
-                    <p>Achieved on <%= Helpers.FormatDateTime(PilotReward.WhenAchieved(pc.RewardID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
+                    <p>Achieved : <%= Helpers.FormatDateTime(PilotReward.WhenAchieved(pc.RewardID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
                 </div>
             </div>
             <%}
@@ -110,7 +109,7 @@
                     <h3>Achievement : <%=pc.AchievementName %></h3>
                 </div>
                 <div class="ui-body ui-body-a">
-                    <p>Achieved on <%= Helpers.FormatDateTime(PilotReward.WhenAchieved(pc.AchievementID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
+                    <p>Achieved : <%= Helpers.FormatDateTime(PilotAchievement.WhenAchieved(pc.AchievementID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
                 </div>
             </div>
             <%}

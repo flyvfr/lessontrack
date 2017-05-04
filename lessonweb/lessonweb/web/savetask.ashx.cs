@@ -24,6 +24,7 @@ namespace lessonweb.web
             string description = context.Request.Form["description"];
             string maneuver = context.Request.Form["maneuver"];
             string lessonname = context.Request.Form["lessonname"];
+            string ratingname = context.Request.Form["ratingname"];
             string pinnacle = context.Request.Form["pinnacle"];
             string destination = context.Request.Form["destination"];
             string classname = context.Request.Form["classname"];
@@ -52,13 +53,13 @@ namespace lessonweb.web
                     task.Airport = airport;
                     task.Course = classname;
                     task.Lesson = lessonname;
+                    task.Rating = ratingname;
                     task.Maneuver = maneuver;
                     task.TaskDescription = description;
                     task.TaskName = taskname;
 
                     task.AircraftType = aircraft;
                     try { task.Hours = decimal.Parse(hours); } catch { }
-                    task.Lesson = lessonname;
                     if (task.TaskType == TaskDefinition.TASK_DESTINATION)
                     {
                         task.Detail = destination;

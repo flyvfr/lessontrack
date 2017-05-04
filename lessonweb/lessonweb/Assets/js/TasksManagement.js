@@ -21,6 +21,7 @@
                         data-isnight='"+oData.IsNight +"'\
                         data-ispassenger='"+oData.IsWithPassenger +"'\
                         data-lessonname='"+oData.Lesson +"'\
+                        data-ratingname='"+oData.Rating +"'\
                         data-maneuver='"+oData.Maneuver +"'\
                         data-tailno='"+oData.TailNo +"'\
                         data-title='Edit Task'>" + sData + "</a>");
@@ -47,6 +48,7 @@
                         data-isnight='"+ oData.IsNight + "'\
                         data-ispassenger='"+ oData.IsWithPassenger + "'\
                         data-lessonname='"+ oData.Lesson + "'\
+                        data-ratingname='"+oData.Rating +"'\
                         data-maneuver='"+ oData.Maneuver + "'\
                         data-tailno='"+ oData.TailNo +"'\
                         data-title='Edit Task' style= 'margin-right: 10px; outline: none' ></a >"+
@@ -87,6 +89,7 @@
         $("#grp_hours").removeClass("has-error");
         $("#grp_classname").removeClass("has-error");
         $("#grp_lessonname").removeClass("has-error");
+        $("#grp_ratingname").removeClass("has-error");
         $("#grp_manuever").removeClass("has-error");
         $("#grp_airport").removeClass("has-error");
         $("#grp_destination").removeClass("has-error");
@@ -151,6 +154,13 @@
                 if ($('#classname').val() == '') {
                     cansubmit = false;
                     $("#grp_classname").addClass("has-error");
+                }
+                break;
+            case '256':
+                data['ratingname'] = $('#ratingname').val();
+                if ($('#ratingname').val() == '') {
+                    cansubmit = false;
+                    $("#grp_ratingname").addClass("has-error");
                 }
                 break;
             default:
@@ -229,6 +239,7 @@
         $("#grp_hours").removeClass("has-error");
         $("#grp_classname").removeClass("has-error");
         $("#grp_lessonname").removeClass("has-error");
+        $("#grp_ratingname").removeClass("has-error");
         $("#grp_manuever").removeClass("has-error");
         $("#grp_airport").removeClass("has-error");
         $("#grp_destination").removeClass("has-error");
@@ -265,6 +276,7 @@
         modal.find('#Hours').val(button.data("hours"));
         modal.find('#classname').val(button.data("classname"));
         modal.find('#lessonname').val(button.data("lessonname"));
+        modal.find('#ratingname').val(button.data("ratingname"));
         modal.find('#maneuver').val(button.data("maneuver"));
         modal.find('#airport').val(button.data("airport"));
         modal.find('#destination').val(button.data("detail"));
@@ -301,6 +313,7 @@ function OnSubmitTask() {
     $("#grp_hours").removeClass("has-error");
     $("#grp_classname").removeClass("has-error");
     $("#grp_lessonname").removeClass("has-error");
+    $("#grp_ratingname").removeClass("has-error");
     $("#grp_manuever").removeClass("has-error");
     $("#grp_airport").removeClass("has-error");
     $("#grp_destination").removeClass("has-error");
@@ -357,6 +370,12 @@ function OnSubmitTask() {
             if ($('#classname').val() == '') {
                 cansubmit = false;
                 $("#grp_classname").addClass("has-error");
+            }
+            break;
+        case '256':
+            if ($('#ratingname').val() == '') {
+                cansubmit = false;
+                $("#grp_ratingname").addClass("has-error");
             }
             break;
         default:

@@ -57,6 +57,7 @@ namespace lessonweb.web
                 obj.Add("IsNight", (r.IsNight != null) ? r.IsNight.ToString() : "");
                 obj.Add("IsWithPassenger", (r.IsWithPassenger != null) ? r.IsWithPassenger.ToString() : "");
                 obj.Add("Lesson", r.Lesson);
+                obj.Add("Rating", r.Rating);
                 obj.Add("Maneuver", r.Maneuver);
                 obj.Add("TailNo", r.TailNo);
                 

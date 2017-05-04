@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,30 @@ namespace lessonweb.Data
 
                 return ach.ToList();
             }
+        }
+
+        /// <summary>
+        /// get the tasks required for this achievement
+        /// </summary>
+        /// <param name="achid"></param>
+        /// <returns></returns>
+        public static ArrayList getPrereqTasksForAchievement(Guid achid)
+        {
+            ArrayList Result = new ArrayList();
+            using (DBClassesDataContext dbc = new DBClassesDataContext())
+            {
+                IEnumerable<AchievementPrereq> ach = (from u in dbc.AchievementPrereqs
+                                                      where u.AchievementID == achid && u.TaskID != null
+                                                      select u);
+
+                foreach (AchievementPrereq prereq in ach)
+                {
+                    TaskDefinition td = TaskDefinition.getTaskDefinition(prereq.TaskID ?? Guid.Empty);
+                    if (td != null) Result.Add(td);
+                }
+            }
+
+            return Result;
         }
 
         public static int getPrereqTypes(IEnumerable<AchievementPrereq> prereqs, out int Achievements)

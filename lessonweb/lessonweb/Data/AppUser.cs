@@ -67,7 +67,7 @@ namespace lessonweb.Data
                                          where u.IsInstructor == true
                                          select u);
 
-            return usrs;
+            return usrs.ToList();
         }
 
         internal static IEnumerable<AppUser> GetStudents()
@@ -77,7 +77,7 @@ namespace lessonweb.Data
                            where u.IsStudent == true
                            select u);
 
-            return usrs;
+            return usrs.ToList();
         }
 
         internal static int GetTotalInstructors()
