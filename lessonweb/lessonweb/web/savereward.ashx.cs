@@ -17,6 +17,7 @@ namespace lessonweb.web
         public void ProcessRequest(HttpContext context)
         {
             string rewardname= context.Request.Form["rewardname"];
+            string logo= context.Request.Form["rewardlogo"];
             string rewardtype = context.Request.Form["rewardtype"];
             string rewarditem = context.Request.Form["rewarddetail"];
             string rewardcount = context.Request.Form["rewardcount"];
@@ -42,6 +43,7 @@ namespace lessonweb.web
                                 select u).SingleOrDefault();
                     }
                     reward.RewardName = rewardname;
+                    reward.Logo = logo;
                     reward.RewardType= rewardtype;
                     try { reward.RewardCount = Decimal.Parse(rewardcount); } catch { }
                     reward.RewardDesc = description;

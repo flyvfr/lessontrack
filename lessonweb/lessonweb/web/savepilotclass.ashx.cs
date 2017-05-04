@@ -16,6 +16,7 @@ namespace lessonweb.web
         {
             string pilotclassid = context.Request.Form["pilotclassid"];
             string achname = context.Request.Form["pilotclassname"];
+            string logo = context.Request.Form["pilotlogo"];
             string achdesc = context.Request.Form["pilotclassdescription"];
 
             PilotClassDefinition ach = new PilotClassDefinition();
@@ -35,6 +36,7 @@ namespace lessonweb.web
                                where u.PilotClassID== Guid.Parse(pilotclassid)
                                select u).SingleOrDefault();
                     }
+                    ach.Logo = logo;
                     ach.PilotClassName = achname;
                     ach.PilotClassDescription = achdesc;
 

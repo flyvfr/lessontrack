@@ -17,7 +17,7 @@ namespace lessonweb.web
         protected string NewType = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            mUser = (AppUser)Session[Constants.SESS_KEY_USER];
+            mUser = dashboard.getUserFromSessionOrCookie(Request, Session);
             if (mUser == null)
             {
                 Response.Redirect("login.aspx");

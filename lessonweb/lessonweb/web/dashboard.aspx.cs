@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using lessonweb.Data;
+using System.Web.SessionState;
 
 namespace lessonweb.web
 {
@@ -12,9 +13,23 @@ namespace lessonweb.web
     {
         protected AppUser mUser = null;
 
+        public static AppUser getUserFromSessionOrCookie(HttpRequest Request, HttpSessionState session)
+        {
+            AppUser usr = (AppUser)session[Constants.SESS_KEY_USER];
+            if (usr == null)
+            {
+                HttpCookie stay = Request.Cookies.Get("DashStaySignedIn");
+                if (stay != null && !string.IsNullOrEmpty(stay.Value))
+                {
+                    usr = AppUser.getUser(stay.Value);
+                }
+            }
+            return usr;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            mUser = (AppUser)Session[Constants.SESS_KEY_USER];    
+            mUser = dashboard.getUserFromSessionOrCookie(Request, Session);
             if (mUser == null)
             {
                 Response.Redirect("login.aspx");

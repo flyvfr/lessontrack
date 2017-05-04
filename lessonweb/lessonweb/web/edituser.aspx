@@ -134,7 +134,7 @@
                             </a>
                         </li>
 						<li>
-                            <a href="login.aspx">
+                            <a href="logout.aspx">
 								<i class="ti-lock"></i>
 								<p>Logout</p>
                             </a>

@@ -32,7 +32,7 @@ namespace lessonweb.web.pilotapp
             Task = Request.Params["Task"];
             AchievementID = Request.Params["Achievement"];
 
-            mUser = (AppUser)Session[Constants.SESS_KEY_USER];
+            mUser = dashboard.getUserFromSessionOrCookie(Request, Session);
             if (mUser == null)
             {
                 getUserFromCookie();

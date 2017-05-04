@@ -39,6 +39,7 @@ namespace lessonweb.web
                 Dictionary<string, string> obj = new Dictionary<string, string>();
                 obj.Add("empty", "");
                 obj.Add("Reward", r.RewardName);
+                obj.Add("RewardLogo", r.Logo);
                 obj.Add("Prerequisites", RewardPrereq.getPrereqs(r.RewardID).Count<RewardPrereq>().ToString());
                 obj.Add("Type", r.RewardType);
                 obj.Add("Detail", r.getRewardDetail());

@@ -35,6 +35,7 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/themify-icons.css" rel="stylesheet">
 
+
     <style type="text/css">
         #editTaskForm .has-error .control-label,
         #editTaskForm .has-error .help-block,
@@ -60,6 +61,11 @@
         width: 100% !Important;
         }
     </style>
+
+<!--   Core JS Files   -->
+<script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+
 </head>
 <body>
 
@@ -174,7 +180,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="login.aspx">
+                                <a href="logout.aspx">
                                     <i class="ti-lock"></i>
                                     <p>Logout</p>
                                 </a>
@@ -513,9 +519,7 @@
 <!--#include file="editpilotclasses.html" -->
 
 
-<!--   Core JS Files   -->
-<script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+
 <script src="../assets/js/jquery.dataTable.min.js"></script>
 <script src="../assets/js/dataTables.select.min.js"></script>
 <script src="../assets/js/dataTables.buttons.min.js"></script>
@@ -527,8 +531,11 @@
 <script src="../assets/js/chartist.min.js"></script>
 
 <!--  Notifications Plugin    -->
+
 <script src="../assets/js/bootstrap-notify.js"></script>
 <script src="../assets/js/boot-checklist.js"></script>
+
+
 <script src="../assets/js/RewardsManagement.js"></script>
 <script src="../assets/js/AchievementsManagement.js"></script>
 <script src="../assets/js/TasksManagement.js"></script>

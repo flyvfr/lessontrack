@@ -116,6 +116,33 @@
     <Content Include="Assets\css\material-kit.css" />
     <Content Include="Assets\css\select.dataTables.min.css" />
     <Content Include="Assets\img\atomic_logo.png" />
+    <Content Include="Assets\img\custom\96\Air Pilot Hat_96px.png" />
+    <Content Include="Assets\img\custom\96\Autopilot_96px.png" />
+    <Content Include="Assets\img\custom\96\Fighter Jet_96px.png" />
+    <Content Include="Assets\img\custom\96\Helicopter_96px.png" />
+    <Content Include="Assets\img\custom\96\In Air_96px.png" />
+    <Content Include="Assets\img\custom\96\Magical Scroll_96px.png" />
+    <Content Include="Assets\img\custom\96\Medal First Place_96px.png" />
+    <Content Include="Assets\img\custom\96\Medal Second Place_96px.png" />
+    <Content Include="Assets\img\custom\96\Medal Third Place_96px.png" />
+    <Content Include="Assets\img\custom\96\Medal_96px.png" />
+    <Content Include="Assets\img\custom\96\Military Helicopter_96px.png" />
+    <Content Include="Assets\img\custom\96\Olympic Medal Bronze_96px.png" />
+    <Content Include="Assets\img\custom\96\Olympic Medal Silver_96px.png" />
+    <Content Include="Assets\img\custom\96\Party Baloon_96px.png" />
+    <Content Include="Assets\img\custom\96\Passenger_96px.png" />
+    <Content Include="Assets\img\custom\96\Pin 2_96px.png" />
+    <Content Include="Assets\img\custom\96\Planner_96px.png" />
+    <Content Include="Assets\img\custom\96\Security Checked_96px.png" />
+    <Content Include="Assets\img\custom\96\Shield_96px.png" />
+    <Content Include="Assets\img\custom\96\Space Fighter_96px.png" />
+    <Content Include="Assets\img\custom\96\Student Female_96px.png" />
+    <Content Include="Assets\img\custom\96\Student Male_96px.png" />
+    <Content Include="Assets\img\custom\96\System Information_96px.png" />
+    <Content Include="Assets\img\custom\96\Trophy_96px.png" />
+    <Content Include="Assets\img\custom\96\US Airborne_96px.png" />
+    <Content Include="Assets\img\custom\96\User Shield_96px.png" />
+    <Content Include="Assets\img\custom\96\Web Shield_96px.png" />
     <Content Include="Assets\js\boot-checklist.js" />
     <Content Include="Assets\js\jqm-datebox.core.min.js" />
     <Content Include="Assets\js\jqm-datebox.mode.calbox.min.js" />
@@ -381,10 +408,12 @@
     <Content Include="Templates\template.html" />
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
+    <Content Include="web\badgeselector.html" />
     <Content Include="web\deleteaircraft.aspx" />
     <Content Include="web\editpilotclasses.html" />
     <Content Include="web\editRewards.html" />
     <Content Include="web\editachievements.html" />
+    <Content Include="web\logout.aspx" />
     <Content Include="web\pilotapp\DlgCompleteTask.aspx" />
     <Content Include="web\pilotapp\DlgSelectTask.aspx" />
     <Content Include="web\pilotapp\homepage.aspx" />
@@ -496,6 +525,13 @@
     </Compile>
     <Compile Include="web\deletetask.ashx.cs">
       <DependentUpon>deletetask.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\pilotapp\AddTaskComplete.ashx.cs">
       <DependentUpon>AddTaskComplete.ashx</DependentUpon>

@@ -25,11 +25,29 @@ namespace lessonweb.web
             if (user != null)
             {
                 Session[Constants.SESS_KEY_USER] = user;
+                if (chkRemember.Checked)
+                {
+                    HttpCookie cook = new HttpCookie("DashStaySignedIn", user.UserEmail);
+                    cook.Expires = DateTime.Now.AddDays(365);
+                    Response.SetCookie(cook);
+                }
+                else
+                {
+                    HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["DashStaySignedIn"];
+                    if (currentUserCookie != null)
+                    {
+                        HttpContext.Current.Response.Cookies.Remove("DashStaySignedIn");
+                        currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                        currentUserCookie.Value = null;
+                        HttpContext.Current.Response.SetCookie(currentUserCookie);
+                    }
+                }
                 Response.Redirect("dashboard.aspx");
                 return;
             }
             ErrorLine.Visible = true;
             ErrorLine.Text = "Invalid user or password";
+
         }
     }
 }

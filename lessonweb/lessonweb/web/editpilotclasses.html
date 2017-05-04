@@ -11,11 +11,24 @@
                     <div class="content">
                         <form id="editPilotClassForm" method="post" action="savepilotclass.ashx">
                             <div class="row pilotclassnamerow">
-                                <div class="col-md-12">
+                                <div class="col-md-5">
                                     <div class="form-group" id="grp_pilotclassname">
                                         <label>Pilot Class Name</label>
                                         <input type="text" class="form-control border-input" id="pilotclassname" placeholder="Enter the pilotclass Name" name="pilotclassname">
                                         <input type="text" hidden class="form-control hidden" id="pilotclassid" name="pilotclassid">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group" id="grp_pilotlogo">
+                                        <label>Badge</label>
+                                        <select class="form-control border-input pilotlogopicker" data-selectOnTab="true" name="pilotlogo" id="pilotlogo">
+                                            <!--#include file="badgeselector.html" -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group" id="grp_pilotlogoimg">
+                                        <img src="/Assets/img/custom/96/Helicopter_96px.png" id="pilotlogoimg" style='margin-top:20px;width:60px;height:60px;display:block;margin: auto'>
                                     </div>
                                 </div>
                             </div>

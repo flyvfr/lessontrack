@@ -1,5 +1,6 @@
 ﻿$(function () {
 
+    //$('#rewardlogo').selectpicker();
     rewardstable =   $('#TableRewards').DataTable({
             columns: [
                 {
@@ -8,6 +9,7 @@
                         $(nTd).html("<a href='#' data-toggle='modal' data-target='#editReward' " +
                             "data-rewardid='" + oData.RewardID + "'\
                             data-rewardname='"+ oData.Reward + "'\
+                            data-rewardlogo='"+ oData.RewardLogo + "'\
                             data-rewarddesc='"+ oData.RewardDesc + "'\
                             data-rewardcount='"+ oData.RewardCount + "'\
                             data-rewardtype='"+ oData.Type + "'\
@@ -26,6 +28,7 @@
                             "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editRewardDependencies'\
                             data-rewardid='" + oData.RewardID + "'\
                             data-rewardname='"+ oData.Reward + "'\
+                            data-rewardlogo='"+ oData.RewardLogo + "'\
                             data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
                     }
                 },
@@ -35,6 +38,7 @@
                         $(nTd).html("<a href='#' class='ti-pencil' data-toggle='modal' data-target='#editReward'\
                                                             data-rewardid='"+ oData.RewardID + "'\
                                                             data-rewardname='"+ oData.Reward + "'\
+                                                            data-rewardlogo='"+ oData.RewardLogo + "'\
                                                             data-rewarddesc='"+ oData.RewardDesc+ "'\
                                                             data-rewardcount='"+ oData.RewardCount + "'\
                                                             data-rewardtype='"+ oData.Type + "'\
@@ -58,7 +62,16 @@
             ],
             paging: false,
             ajax: "/web/JSONRewardsList.ashx",
-        });
+    });
+
+    $('#rewardlogo').on('change', function () {
+        var selected = $(this).find("option:selected").val();
+        updateRewardLogo(selected);
+    });
+
+    function updateRewardLogo(sel) {
+        $("#rewardlogoimg").attr('src', "/Assets/img/custom/96/" + sel + "_96px.png");
+    }
 
     //----------------------------- REWARDS------------------------------
     $('#editReward').on('hidden.bs.modal', function () {
@@ -73,10 +86,12 @@
     });
     $('#editReward').on('show.bs.modal', function (event) {
         var modal = $(this);
+        $('.selectpicker').selectpicker('refresh');
 
         var button = $(event.relatedTarget); // Button that triggered the modal
         var achid = button.data('rewardid'); // Extract info from data-* attributes
         var achname = button.data('rewardname');
+        var logo = button.data('rewardlogo');
         var desc = button.data('rewarddesc');
         var rewardtype = button.data("rewardtype");
         var rewarddetail = button.data("rewarditem");
@@ -99,6 +114,13 @@
 
         modal.find('#rewardid').val(achid);
         modal.find('#rewardname').val(achname);
+        if (logo != null) {
+            $('#rewardlogo').val(logo);
+            updateRewardLogo(logo);
+        } else {
+            $('#rewardlogo').val("Helicopter");
+            updateRewardLogo("Helicopter");
+        }
         modal.find('#rewardtype').val(rewardtype);
         modal.find('#RewardDetail').val(rewarddetail);
         modal.find('#RewardCount').val(rewardcount);
@@ -143,6 +165,16 @@ function OnSubmitReward() {
                 $("#grp_rewardcount").addClass("has-error");
             }
         }
+
+        if ($('#rewardtype').val() == 'CAP' || $('#rewardtype').val() == 'PATCH' || $('#rewardtype').val() == 'BADGE' || $('#rewardtype').val() == 'STICKER'
+            || $('#rewardtype').val() == 'CHOCHKY') {
+            if ($('#RewardDetail').val() == '') {
+                cansubmit = false;
+                $("#grp_rewarddetail").addClass("has-error");
+            }
+        }
+
+
         if ($('#rewardtype').val() == 'OTHER') {
             if ($('#RewardDetail').val() == '') {
                 cansubmit = false;

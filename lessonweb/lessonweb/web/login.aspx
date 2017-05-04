@@ -15,7 +15,7 @@
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
                     <h1 class="text-center login-title">Sign in to LessonTrack</h1>
                     <div class="account-wall">
-                        <img class="profile-img" src="http://atomichelicopters.com/img/atomic_logo.png"
+                        <img class="profile-img" src="/Assets/img/atomic_logo.png"
                             alt="">
                         <form id="form1" class="form-signin" runat="server">
                         <asp:TextBox ID="Email" runat="server" class="form-control" placeholder="Email" required autofocus></asp:TextBox>

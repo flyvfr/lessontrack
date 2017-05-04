@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    //$('.pilotlogopicker').selectpicker();
     pilotclasstable = $('#TablePilotClass').DataTable({
             columns: [
                 {
@@ -8,6 +8,7 @@
                         $(nTd).html("<a href='#' data-toggle='modal' data-target='#editPilotClass' " +
                             "data-pilotclassid='" + oData.PilotClassID + "'\
                             data-pilotclassname='"+ oData.PilotClass + "'\
+                            data-pilotlogo='"+ oData.PilotLogo+ "'\
                             data-pilotclassdescription='"+ oData.PilotClassDescription + "'\
                         data-title='Edit Pilot Class'>" + sData + "</a>");
                     }
@@ -20,6 +21,7 @@
                             "<a href='#' class='ti-layers-alt' style='margin-left:10px' data-toggle='modal' data-target='#editPilotClassDependencies'\
                             data-pilotclassid='" + oData.PilotClassID+ "'\
                             data-pilotclassname='"+ oData.PilotClass + "'\
+                            data-pilotlogo='"+ oData.PilotLogo+ "'\
                             data-title='Edit Dependencies' style= 'margin-right: 10px; outline: none' ></a >");
                     }
                 },
@@ -31,6 +33,7 @@
                         $(nTd).html("<a href='#' class='ti-pencil' data-toggle='modal' data-target='#editPilotClass'\
                             data-pilotclassid='" + oData.PilotClassID + "'\
                             data-pilotclassname='"+ oData.PilotClass + "'\
+                            data-pilotlogo='"+ oData.PilotLogo+ "'\
                             data-pilotclassdescription='"+ oData.PilotClassDescription + "'\
                             data-title='Edit PilotClass' style= 'margin-right: 10px; outline: none' ></a >"+
                             "<a href='#' class='ti-trash' data-toggle='modal' data-target='#deletePilotClass'" +
@@ -52,6 +55,15 @@
             ajax: "/web/JSONPilotClassList.ashx",
     });
 
+    $('#pilotlogo').on('change', function () {
+        var selected = $(this).find("option:selected").val();
+        updatePilotLogo(selected);
+    });
+
+    function updatePilotLogo(sel) {
+        $("#pilotlogoimg").attr('src', "/Assets/img/custom/96/" + sel + "_96px.png");
+    }
+
     //----------------------------- ACHIEVEMENTS------------------------------
     $('#editPilotClass').on('hidden.bs.modal', function () {
         var modal = this;
@@ -66,6 +78,7 @@
         var button = $(event.relatedTarget); // Button that triggered the modal
         var achid = button.data('pilotclassid'); // Extract info from data-* attributes
         var achname = button.data('pilotclassname');
+        var logo = button.data('pilotlogo');
         var desc = button.data('pilotclassdescription');
         var title = button.data("title");
         var nosave = button.data("nosave");
@@ -83,6 +96,14 @@
         }
 
         modal.find('#pilotclassid').val(achid);
+        if (logo != null) {
+            //$('#pilotlogo').selectpicker("val", logo);
+            $('#pilotlogo').val(logo);
+            updatePilotLogo(logo);
+        } else {
+            $('#pilotlogo').val("Helicopter");
+            updatePilotLogo("Helicopter");
+        }
         modal.find('#pilotclassname').val(achname);
         modal.find('#pilotclassdescription').text(desc != null ? desc : "");
     });

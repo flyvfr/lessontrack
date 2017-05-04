@@ -11,13 +11,28 @@
                     <div class="content">
                         <form id="editRewardForm" method="post" action="savereward.ashx">
                             <div class="row rewardnamerow">
-                                <div class="col-md-12">
+                                <div class="col-md-5">
                                     <div class="form-group" id="grp_rewardname">
                                         <label>Reward Name</label>
                                         <input type="text" class="form-control border-input" id="rewardname" placeholder="Enter the reward Name" name="rewardname">
                                         <input type="text" hidden class="form-control hidden" id="rewardid" name="rewardid">
                                     </div>
                                 </div>
+                                <div class="col-md-5">
+                                    <div class="form-group" id="grp_rewardlogo">
+                                        <label>Badge</label>
+                                        <select class="form-control border-input rewardlogopicker" data-selectOnTab="true"  id="rewardlogo" name="rewardlogo">
+                                            <!--#include file="badgeselector.html" -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group" id="grp_rewardlogoimg">
+                                        <img src="/Assets/img/custom/96/Helicopter_96px.png" id="rewardlogoimg" style='margin-top:20px;width:60px;height:60px;display:block;margin: auto'>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="rewardtyperow row">
                                 <div class="col-md-4">

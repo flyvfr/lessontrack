@@ -24,6 +24,7 @@ namespace lessonweb.web
 
                 Dictionary<string, string> obj = new Dictionary<string, string>();
                 obj.Add("PilotClass", r.PilotClassName);
+                obj.Add("PilotLogo", r.Logo);
                 obj.Add("Prerequisites", pre.Count<PilotClassPrereq>().ToString());
                 obj.Add("actions", r.PilotClassID.ToString());
                 obj.Add("PilotClassID", r.PilotClassID.ToString());
