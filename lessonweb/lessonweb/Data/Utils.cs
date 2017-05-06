@@ -37,5 +37,10 @@ namespace lessonweb.Data
             // Return the cloned object.
             return newObject;
         }
+
+        public static string GetLogoURL(string logoName)
+        {
+            return "/Assets/img/custom/96/" + logoName + "_96px.png";
+        }
     }
 }

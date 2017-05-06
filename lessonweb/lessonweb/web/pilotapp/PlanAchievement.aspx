@@ -20,14 +20,14 @@
                 <li><a href="todo.aspx"  data-ajax="false">To Do</a></li>
                 <li><a href="planner.aspx" data-ajax="false">Planner</a></li>
                 <li data-theme="b">Plan</li>
-                <li><a href="levels.aspx"  data-ajax="false">Pilot Levels</a></li>
-                <li><a href="rewards.aspx"  data-ajax="false">Rewards</a></li>
-                <li><a href="achievements.aspx"  data-ajax="false">Achievements</a></li>
-                <li><a href="tasks.aspx"  data-ajax="false">Tasks</a></li>
             </ul>
         </div>
 
-        <div data-role="panel" id="userPanel" data-position="right" data-display="push">
+        <div data-role="panel" id="userPanel" data-position="right" data-display="push" style="background-color:lightblue" >
+            <img src="<%=Utils.GetLogoURL("Air Pilot Hat") %>" style="display:block; margin:auto" />
+            <h4 style="text-align:center"><%=mUser.GetFullName() %></h4>
+
+            <a class="ui-btn" href="logout.aspx">Log Out</a>
         </div>
 
         <div data-role="header" data-position="fixed">

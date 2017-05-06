@@ -86,7 +86,6 @@
     });
     $('#editReward').on('show.bs.modal', function (event) {
         var modal = $(this);
-        $('.selectpicker').selectpicker('refresh');
 
         var button = $(event.relatedTarget); // Button that triggered the modal
         var achid = button.data('rewardid'); // Extract info from data-* attributes

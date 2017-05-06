@@ -419,6 +419,7 @@
     <Content Include="web\pilotapp\homepage.aspx" />
     <Content Include="web\pilotapp\links.inc" />
     <Content Include="web\pilotapp\login.aspx" />
+    <Content Include="web\pilotapp\logout.aspx" />
     <Content Include="web\pilotapp\PlanAchievement.aspx" />
     <Content Include="web\pilotapp\todo.aspx" />
     <Content Include="web\pilotapp\planner.aspx" />
@@ -535,6 +536,13 @@
     </Compile>
     <Compile Include="web\pilotapp\AddTaskComplete.ashx.cs">
       <DependentUpon>AddTaskComplete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\pilotapp\RemoveTaskToDo.ashx.cs">
       <DependentUpon>RemoveTaskToDo.ashx</DependentUpon>

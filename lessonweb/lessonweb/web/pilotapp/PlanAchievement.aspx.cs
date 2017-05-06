@@ -31,7 +31,8 @@ namespace lessonweb.web.pilotapp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            mUser = dashboard.getUserFromSessionOrCookie(Request, Session);
+            mUser = (AppUser)Session[Constants.SESS_KEY_USER];
+
             if (mUser == null)
             {
                 getUserFromCookie();

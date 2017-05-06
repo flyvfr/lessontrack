@@ -39,3 +39,12 @@ a:active, a:focus {
 .task-notes{
     color: brown;
 }
+.compactdiv{
+    margin:0px;
+    padding:0px;
+}
+
+.rightpanel{
+    background-color: #c9f0f9;
+}
+
