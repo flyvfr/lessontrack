@@ -27,9 +27,34 @@ namespace lessonweb.Data
             return ach.ToList();
         }
 
-        internal string getRewardDetail()
+        protected string GetRewardType()
         {
-            return RewardDesc;
+            switch (RewardType)
+            {
+                case "DISCOUNT":
+                    return "Discount";
+                case "CAP":
+                    return "Discount";
+                case "BADGE":
+                    return "Discount";
+                case "PATCH":
+                    return "Discount";
+                case "STICKER":
+                    return "Discount";
+                case "CHOCHKY":
+                    return "Discount";
+                case "SHOUT":
+                    return "Discount";
+                case "OTHER":
+                    return "Other";
+                default:
+                    return "Other";
+            }
+        }
+
+        public string getRewardDetail()
+        {
+            return "Pilot gets "+(RewardCount>0?""+RewardCount:"a")+" "+GetRewardType()+": "+RewardItem;
         }
 
         internal static void delete(Guid achID)

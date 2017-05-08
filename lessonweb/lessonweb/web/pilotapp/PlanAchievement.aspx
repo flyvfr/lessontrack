@@ -20,6 +20,10 @@
                 <li><a href="todo.aspx"  data-ajax="false">To Do</a></li>
                 <li><a href="planner.aspx" data-ajax="false">Planner</a></li>
                 <li data-theme="b">Plan</li>
+                <li><a href="PilotLevels.aspx" data-ajax="false">Pilot Levels</a></li>
+                <li><a href="Rewards.aspx" data-ajax="false">Rewards</a></li>
+                <li><a href="achievements.aspx" data-ajax="false">Achievements</a></li>
+                <li><a href="tasks.aspx" data-ajax="false">Tasks</a></li>
             </ul>
         </div>
 
@@ -32,6 +36,7 @@
 
         <div data-role="header" data-position="fixed">
             <a class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" href="#navPanel"></a>
+            <a class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-rel="back" href="#"></a>
             <h1 class="ui-title">Planner</h1>
             <a class="ui-btn ui-icon-user ui-btn-icon-notext ui-corner-all" href="#userPanel"></a>
         </div>

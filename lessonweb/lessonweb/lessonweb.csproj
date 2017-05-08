@@ -131,7 +131,7 @@
     <Content Include="Assets\img\custom\96\Olympic Medal Silver_96px.png" />
     <Content Include="Assets\img\custom\96\Party Baloon_96px.png" />
     <Content Include="Assets\img\custom\96\Passenger_96px.png" />
-    <Content Include="Assets\img\custom\96\Pin 2_96px.png" />
+    <Content Include="Assets\img\custom\96\Pin_96px.png" />
     <Content Include="Assets\img\custom\96\Planner_96px.png" />
     <Content Include="Assets\img\custom\96\Security Checked_96px.png" />
     <Content Include="Assets\img\custom\96\Shield_96px.png" />
@@ -409,18 +409,27 @@
     <Content Include="Templates\typography.html" />
     <Content Include="Templates\user.html" />
     <Content Include="web\badgeselector.html" />
+    <Content Include="web\cleanuprewards.aspx" />
     <Content Include="web\deleteaircraft.aspx" />
     <Content Include="web\editpilotclasses.html" />
     <Content Include="web\editRewards.html" />
     <Content Include="web\editachievements.html" />
     <Content Include="web\logout.aspx" />
+    <Content Include="web\pilotapp\Tasks.aspx" />
     <Content Include="web\pilotapp\DlgCompleteTask.aspx" />
     <Content Include="web\pilotapp\DlgSelectTask.aspx" />
     <Content Include="web\pilotapp\homepage.aspx" />
     <Content Include="web\pilotapp\links.inc" />
     <Content Include="web\pilotapp\login.aspx" />
     <Content Include="web\pilotapp\logout.aspx" />
+    <Content Include="web\pilotapp\Achievements.aspx" />
+    <Content Include="web\pilotapp\Rewards.aspx" />
     <Content Include="web\pilotapp\PlanAchievement.aspx" />
+    <Content Include="web\pilotapp\PilotLevels.aspx" />
+    <Content Include="web\pilotapp\ShowTask.aspx" />
+    <Content Include="web\pilotapp\ShowAchievement.aspx" />
+    <Content Include="web\pilotapp\ShowReward.aspx" />
+    <Content Include="web\pilotapp\ShowPilotLevel.aspx" />
     <Content Include="web\pilotapp\todo.aspx" />
     <Content Include="web\pilotapp\planner.aspx" />
     <Content Include="web\printprogress.aspx" />
@@ -493,6 +502,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="web\cleanuprewards.aspx.cs">
+      <DependentUpon>cleanuprewards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\cleanuprewards.aspx.designer.cs">
+      <DependentUpon>cleanuprewards.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\deletepilotclass.ashx.cs">
       <DependentUpon>deletepilotclass.ashx</DependentUpon>
     </Compile>
@@ -534,6 +550,13 @@
     <Compile Include="web\logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="web\pilotapp\Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\pilotapp\AddTaskComplete.ashx.cs">
       <DependentUpon>AddTaskComplete.ashx</DependentUpon>
     </Compile>
@@ -543,6 +566,20 @@
     </Compile>
     <Compile Include="web\pilotapp\logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\Achievements.aspx.cs">
+      <DependentUpon>Achievements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\Achievements.aspx.designer.cs">
+      <DependentUpon>Achievements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\Rewards.aspx.cs">
+      <DependentUpon>Rewards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\Rewards.aspx.designer.cs">
+      <DependentUpon>Rewards.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\pilotapp\RemoveTaskToDo.ashx.cs">
       <DependentUpon>RemoveTaskToDo.ashx</DependentUpon>
@@ -581,6 +618,41 @@
     </Compile>
     <Compile Include="web\pilotapp\PlanAchievement.aspx.designer.cs">
       <DependentUpon>PlanAchievement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\PilotLevels.aspx.cs">
+      <DependentUpon>PilotLevels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\PilotLevels.aspx.designer.cs">
+      <DependentUpon>PilotLevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowTask.aspx.cs">
+      <DependentUpon>ShowTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowTask.aspx.designer.cs">
+      <DependentUpon>ShowTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowAchievement.aspx.cs">
+      <DependentUpon>ShowAchievement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowAchievement.aspx.designer.cs">
+      <DependentUpon>ShowAchievement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowReward.aspx.cs">
+      <DependentUpon>ShowReward.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowReward.aspx.designer.cs">
+      <DependentUpon>ShowReward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowPilotLevel.aspx.cs">
+      <DependentUpon>ShowPilotLevel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pilotapp\ShowPilotLevel.aspx.designer.cs">
+      <DependentUpon>ShowPilotLevel.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\pilotapp\todo.aspx.cs">
       <DependentUpon>todo.aspx</DependentUpon>

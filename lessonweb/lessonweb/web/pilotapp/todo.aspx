@@ -18,6 +18,10 @@
                 <li><a href="homepage.aspx" data-ajax="false">Home</a></li>
                 <li data-theme="b">To Do</li>
                 <li><a href="planner.aspx" data-ajax="false">Planner</a></li>
+                <li><a href="PilotLevels.aspx" data-ajax="false">Pilot Levels</a></li>
+                <li><a href="Rewards.aspx" data-ajax="false">Rewards</a></li>
+                <li><a href="achievements.aspx" data-ajax="false">Achievements</a></li>
+                <li><a href="tasks.aspx" data-ajax="false">Tasks</a></li>
 
             </ul>
         </div>

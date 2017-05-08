@@ -48,3 +48,35 @@ a:active, a:focus {
     background-color: #c9f0f9;
 }
 
+.ui-bar-blue {
+    background: #0094ff !important;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: -4px
+}
+.ui-bar-gray {
+    background: #808080;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: -4px
+}
+
+.ui-bar-green {
+    background: #419220 !important;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: -4px
+}
+.ui-bar-note {
+    background: #fef1ac;
+    border:solid;
+    border-width:1px;
+    border-color:#fdc692;
+    border-radius: 5px
+}
+.ui-bar-red {
+    background: #bc0b0b !important;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom:-4px
+}

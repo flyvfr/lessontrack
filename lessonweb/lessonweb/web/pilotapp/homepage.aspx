@@ -11,23 +11,7 @@
         content="width=device-width, initial-scale=1" />
     <!-- #Include virtual="links.inc" -->
 
-    <style>
-        .ui-bar-blue {
-            background: #0094ff !important;
-            border: none;
-            border-radius: 10px
-        }
-        .ui-bar-green {
-            background: #419220 !important;
-            border: none;
-            border-radius: 10px
-        }
-        .ui-bar-red {
-            background: #bc0b0b !important;
-            border: none;
-            border-radius: 10px
-        }
-    </style>
+
 </head>
 <body>
     <div data-role="page" id="homepage">
@@ -36,6 +20,11 @@
                 <li data-theme="b">Home</li>
                 <li><a href="todo.aspx" data-ajax="false">To Do</a></li>
                 <li><a href="planner.aspx" data-ajax="false">Planner</a></li>
+                <li><a href="PilotLevels.aspx" data-ajax="false">Pilot Levels</a></li>
+                <li><a href="Rewards.aspx" data-ajax="false">Rewards</a></li>
+                <li><a href="achievements.aspx" data-ajax="false">Achievements</a></li>
+                <li><a href="tasks.aspx" data-ajax="false">Tasks</a></li>
+
             </ul>
         </div>
 
@@ -59,11 +48,11 @@
                 <div class="ui-bar ui-bar-b ui-bar-blue">
                     <h3>Your Level(s)</h3>
                 </div>
-                <ul data-role="listview" data-inset="true">
+                <ul style="margin-top:0px" data-role="listview" data-inset="true">
                     <%
                         foreach (PilotClassDefinition pc in PilotClasses)
                         {%>
-                    <li><a href="#">
+                    <li><a href="ShowPilotLevel.aspx?PilotClassID=<%=pc.PilotClassID %>">
                         <img src="<%=Utils.GetLogoURL(pc.Logo) %>" />
                         <h4><%=pc.PilotClassName %></h4>
                         <p>Achieved :<%= Helpers.FormatDateTime(PilotClass.WhenAchieved(pc.PilotClassID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
@@ -96,11 +85,11 @@
                 <div class="ui-bar ui-bar-b ui-bar-green">
                     <h3>Your Rewards</h3>
                 </div>
-                <ul data-role="listview" data-inset="true">
+                <ul data-role="listview" data-inset="true" style="margin-top:0px">
                     <%
                         foreach (RewardDefinition pc in Rewards)
                         {%>
-                    <li><a href="#">
+                    <li><a href="ShowReward.aspx?RewardID=<%=pc.RewardID%>">
                         <img src="<%=Utils.GetLogoURL(pc.Logo) %>" />
                         <h4><%=pc.RewardName %></h4>
                         <p>Achieved :<%= Helpers.FormatDateTime(PilotReward.WhenAchieved(pc.RewardID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
@@ -132,11 +121,11 @@
                 <div class="ui-bar ui-bar-b ui-bar-red">
                     <h3>Your Achievements</h3>
                 </div>
-                <ul data-role="listview" data-inset="true">
+                <ul data-role="listview" data-inset="true" style="margin-top:0px">
                     <%
                         foreach (AchievementDefinition pc in Achievements)
                         {%>
-                    <li><a href="#">
+                    <li><a href="ShowAchievement.aspx?AchievementID=<%=pc.AchievementID%>">
                         <img src="<%=Utils.GetLogoURL("Trophy") %>" />
                         <h4><%=pc.AchievementName %></h4>
                         <p>Achieved :<%= Helpers.FormatDateTime(PilotAchievement.WhenAchieved(pc.AchievementID, mUser.UserEmail), Helpers.DATEFORMAT.FORMAT_SHORT) %></p>
