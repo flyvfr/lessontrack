@@ -35,10 +35,8 @@
         </div>
 
         <div data-role="header" data-position="fixed">
-            <div class="ui-btn-left" data-type="horizontal">
-                <a class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" href="#navPanel"></a>
-                <a class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-rel="back" href="#"></a>
-            </div>
+            <a class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" href="#navPanel"></a>
+
             <h1 class="ui-title">Pilot Levels</h1>
             <a class="ui-btn ui-btn-right ui-icon-user ui-btn-icon-notext ui-corner-all" href="#userPanel"></a>
         </div>
