@@ -97,7 +97,7 @@
                     <hr />
                 </li>
                 <li >
-                    <a href="rewardshome.aspx?uid=<%=mUser.UserEmail %>">
+                    <a href="pilotapp/rewards.aspx?uid=<%=mUser.UserEmail %>">
                         <i class="ti-user"></i>
                         <p>Rewards</p>
                     </a>
